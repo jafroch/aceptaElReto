@@ -2030,7 +2030,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0b003f;
         public static final int action_mode_bar_stub=0x7f0b003e;
         public static final int action_mode_close_button=0x7f0b0031;
-        public static final int action_settings=0x7f0b005b;
+        public static final int action_settings=0x7f0b005e;
         public static final int activity_chooser_view_content=0x7f0b0032;
         public static final int always=0x7f0b0025;
         public static final int beginning=0x7f0b002c;
@@ -2047,9 +2047,9 @@ containing a value of this type.
         public static final int disableHome=0x7f0b001f;
         public static final int dropdown=0x7f0b002b;
         public static final int edit_query=0x7f0b0044;
-        public static final int email=0x7f0b0057;
-        public static final int email_login_form=0x7f0b0056;
-        public static final int email_sign_in_button=0x7f0b005a;
+        public static final int email=0x7f0b0059;
+        public static final int email_login_form=0x7f0b0058;
+        public static final int email_sign_in_button=0x7f0b005c;
         public static final int end=0x7f0b002d;
         public static final int expand_activities_button=0x7f0b0033;
         public static final int expanded_menu=0x7f0b0039;
@@ -2062,22 +2062,25 @@ containing a value of this type.
         public static final int icon=0x7f0b0037;
         public static final int ifRoom=0x7f0b0027;
         public static final int image=0x7f0b0034;
+        public static final int item_detail=0x7f0b005d;
+        public static final int item_detail_container=0x7f0b0051;
+        public static final int item_list=0x7f0b0050;
         public static final int listMode=0x7f0b001d;
         public static final int list_item=0x7f0b0036;
-        public static final int login=0x7f0b0059;
-        public static final int login_form=0x7f0b0051;
-        public static final int login_progress=0x7f0b0050;
+        public static final int login=0x7f0b005b;
+        public static final int login_form=0x7f0b0053;
+        public static final int login_progress=0x7f0b0052;
         public static final int match_parent=0x7f0b0015;
         public static final int middle=0x7f0b002e;
         public static final int monochrome=0x7f0b001c;
         public static final int never=0x7f0b0028;
         public static final int none=0x7f0b000a;
         public static final int normal=0x7f0b000b;
-        public static final int password=0x7f0b0058;
-        public static final int plus_disconnect_button=0x7f0b0055;
-        public static final int plus_sign_in_button=0x7f0b0052;
-        public static final int plus_sign_out_button=0x7f0b0054;
-        public static final int plus_sign_out_buttons=0x7f0b0053;
+        public static final int password=0x7f0b005a;
+        public static final int plus_disconnect_button=0x7f0b0057;
+        public static final int plus_sign_in_button=0x7f0b0054;
+        public static final int plus_sign_out_button=0x7f0b0056;
+        public static final int plus_sign_out_buttons=0x7f0b0055;
         public static final int production=0x7f0b0010;
         public static final int progress_circular=0x7f0b0007;
         public static final int progress_horizontal=0x7f0b0008;
@@ -2160,9 +2163,27 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f030014;
         public static final int abc_search_view=0x7f030015;
         public static final int abc_simple_dropdown_hint=0x7f030016;
-        public static final int activity_login=0x7f030017;
-        public static final int activity_main=0x7f030018;
-        public static final int support_simple_spinner_dropdown_item=0x7f030019;
+        /** 
+    Layout alias to replace the single-pane version of the layout with a
+    two-pane version on Large screens.
+
+    For more on layout aliases, see:
+    http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
+    
+
+    Layout alias to replace the single-pane version of the layout with a
+    two-pane version on Large screens.
+
+    For more on layout aliases, see:
+    http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
+    
+         */
+        public static final int activity_item_list=0x7f03001c;
+        public static final int activity_item_twopane=0x7f030017;
+        public static final int activity_login=0x7f030018;
+        public static final int activity_main=0x7f030019;
+        public static final int fragment_item_detail=0x7f03001a;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
@@ -2226,8 +2247,8 @@ containing a value of this type.
         public static final int abc_toolbar_collapse_description=0x7f060027;
         public static final int accept=0x7f060002;
         public static final int action_settings=0x7f060035;
-        public static final int action_sign_in=0x7f060039;
-        public static final int action_sign_in_short=0x7f06003a;
+        public static final int action_sign_in=0x7f06003b;
+        public static final int action_sign_in_short=0x7f06003c;
         public static final int app_name=0x7f060033;
         /**   Text for notification shown when the Android Wear apps needs to be updated. Only shown on the wearable. [CHAR LIMIT=NONE] 
          */
@@ -2331,20 +2352,22 @@ containing a value of this type.
         public static final int create_calendar_message=0x7f060005;
         public static final int create_calendar_title=0x7f060004;
         public static final int decline=0x7f060003;
-        public static final int error_field_required=0x7f060040;
-        public static final int error_incorrect_password=0x7f06003f;
-        public static final int error_invalid_email=0x7f06003d;
-        public static final int error_invalid_password=0x7f06003e;
+        public static final int error_field_required=0x7f060042;
+        public static final int error_incorrect_password=0x7f060041;
+        public static final int error_invalid_email=0x7f06003f;
+        public static final int error_invalid_password=0x7f060040;
         public static final int hello_world=0x7f060034;
-        public static final int plus_disconnect=0x7f06003c;
-        public static final int plus_sign_out=0x7f06003b;
+        public static final int plus_disconnect=0x7f06003e;
+        public static final int plus_sign_out=0x7f06003d;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f060037;
-        public static final int prompt_password=0x7f060038;
+        public static final int prompt_email=0x7f060039;
+        public static final int prompt_password=0x7f06003a;
         public static final int store_picture_message=0x7f060001;
         public static final int store_picture_title=0x7f060000;
-        public static final int title_activity_login=0x7f060036;
+        public static final int title_activity_login=0x7f060038;
+        public static final int title_item_detail=0x7f060037;
+        public static final int title_item_list=0x7f060036;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */
