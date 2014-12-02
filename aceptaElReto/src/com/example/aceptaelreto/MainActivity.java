@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity implements
@@ -31,7 +32,12 @@ public class MainActivity extends ActionBarActivity implements
 	 * Used to store the last screen title. For use in
 	 * {@link #restoreActionBar()}.
 	 */
+	
+	//ATRIBUTOS PARA MANEJO DEL MENU.
 	private CharSequence mTitle;
+	private String[] opcionesMenu;
+    private DrawerLayout drawerLayout;
+    private ListView drawerList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +55,40 @@ public class MainActivity extends ActionBarActivity implements
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
-		// update the main content by replacing fragments
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager
-				.beginTransaction()
-				.replace(R.id.container,
-						PlaceholderFragment.newInstance(position + 1)).commit();
-	}
+		  // update the main content by replacing fragments
+		  FragmentManager fragmentManager = getSupportFragmentManager();
+		  switch (position+1) {
+		    case 1:
+		      fragmentManager.beginTransaction().replace(R.id.container,
+		      PlaceholderFragment.newInstance(position + 1)).commit();
+		      break;
+		    case 2:
+		      fragmentManager.beginTransaction().replace(R.id.container,
+		      Layout2Fragment.newInstance(position + 1)).commit();
+		      break;
+		    case 3:
+		      fragmentManager.beginTransaction().replace(R.id.container,
+		      Layout3Fragment.newInstance(position + 1)).commit();
+		      break;
+		    case 4:
+			  fragmentManager.beginTransaction().replace(R.id.container,
+			  Layout4Fragment.newInstance(position + 1)).commit();
+			  break;
+		    case 5:
+			  fragmentManager.beginTransaction().replace(R.id.container,
+			  Layout5Fragment.newInstance(position + 1)).commit();
+			  break;
+		    case 6:
+			  fragmentManager.beginTransaction().replace(R.id.container,
+			  Layout6Fragment.newInstance(position + 1)).commit();
+			  break;
+		  }
+		}
 
 	public void onSectionAttached(int number) {
+		Fragment fragment = null;
 		switch (number) {
+		//Aqui es donde tenemos que mandar ejecutar los nuevos fragment
 		case 1:
 			mTitle = getString(R.string.title_section1);
 			break;
@@ -79,6 +109,16 @@ public class MainActivity extends ActionBarActivity implements
 			mTitle = getString(R.string.title_section6);
 			break;
 		}
+	/*	 FragmentManager fragmentManager =getSupportFragmentManager();
+	 
+	     fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+	 
+	     drawerList.setItemChecked(position, true);
+	 
+	     tituloSeccion = opcionesMenu[position];
+	     getSupportActionBar().setTitle(tituloSeccion);
+	     
+	     drawerLayout.closeDrawer(drawerList);*/
 	}
 
 	public void restoreActionBar() {
