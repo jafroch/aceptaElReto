@@ -1,11 +1,14 @@
 package com.example.aceptaelreto;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -16,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,6 +43,7 @@ public class MainActivity extends ActionBarActivity implements
 	private String[] opcionesMenu;
     private DrawerLayout drawerLayout;
     private ListView drawerList;
+    private GridView tablaPerfil;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,7 @@ public class MainActivity extends ActionBarActivity implements
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
+		tablaPerfil=(GridView) findViewById(R.id.gridView1);
 	}
 
 	@Override
@@ -193,4 +200,49 @@ public class MainActivity extends ActionBarActivity implements
 		}
 	}
 
+}
+class VivzAdapter extends BaseAdapter{
+	int idImage;
+	ArrayList<String> atb;
+	ArrayList<String> values;
+	
+	public VivzAdapter(Context context) {
+		// TODO Auto-generated constructor stub
+		this.atb=new ArrayList<String>();
+		this.values=new ArrayList<String>();
+		Resources res = context.getResources();
+		String[] temp = res.getStringArray(R.array.perfil_atb);	
+		for(int i=0;i<this.atb.size();i++){
+			this.atb.add(temp[i]);
+		}
+		this.idImage=-1;
+	}
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return atb.size()+values.size()+1;
+	}
+
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		if(position>=atb.size()){
+			return values.get(position-atb.size());
+		}else{
+		return atb.get(position);
+		}
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

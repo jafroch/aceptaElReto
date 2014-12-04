@@ -12,5 +12,23 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
+    <string-array name="perfil_atb">
+        <item>Email</item>
+        <item>Nick</item>
+        <item>Nombre</item>
+        <item>Fecha de Nacimiento</item>
+        <item>País</item>
+        <item>Género</item>
+        <item>Institución</item>  
+    </string-array>
+    <string-array name="perfil_atb_values">
+        <item>Email</item>
+        <item>Nick</item>
+        <item>Nombre</item>
+        <item>Fecha de Nacimiento</item>
+        <item>País</item>
+        <item>Género</item>
+        <item>Institución</item>  
+    </string-array>
 
 </resources>
