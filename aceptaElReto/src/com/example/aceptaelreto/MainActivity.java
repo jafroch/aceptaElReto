@@ -39,25 +39,24 @@ public class MainActivity extends ActionBarActivity implements
 	 */
 	
 	//ATRIBUTOS PARA MANEJO DEL MENU.
-	private CharSequence mTitle;
-	private String[] opcionesMenu;
-    private DrawerLayout drawerLayout;
-    private ListView drawerList;
-    private GridView tablaPerfil;
+	 CharSequence mTitle;
+	 String[] opcionesMenu;
+     DrawerLayout drawerLayout;
+     ListView drawerList;
+     GridView tablaPerfil;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager()
-				.findFragmentById(R.id.navigation_drawer);
+		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 		mTitle = getTitle();
-
 		// Set up the drawer.
-		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
-				(DrawerLayout) findViewById(R.id.drawer_layout));
-		tablaPerfil=(GridView) findViewById(R.id.gridView1);
+		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,(DrawerLayout) findViewById(R.id.drawer_layout));
+		
+		//tablaPerfil=(GridView) findViewById(R.id.gridView1);
+		//tablaPerfil.setAdapter(new VivzAdapter(this));
+		
 	}
 
 	@Override
@@ -116,16 +115,6 @@ public class MainActivity extends ActionBarActivity implements
 			mTitle = getString(R.string.title_section6);
 			break;
 		}
-	/*	 FragmentManager fragmentManager =getSupportFragmentManager();
-	 
-	     fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-	 
-	     drawerList.setItemChecked(position, true);
-	 
-	     tituloSeccion = opcionesMenu[position];
-	     getSupportActionBar().setTitle(tituloSeccion);
-	     
-	     drawerLayout.closeDrawer(drawerList);*/
 	}
 
 	public void restoreActionBar() {
@@ -202,25 +191,35 @@ public class MainActivity extends ActionBarActivity implements
 
 }
 class VivzAdapter extends BaseAdapter{
-	int idImage;
 	ArrayList<String> atb;
 	ArrayList<String> values;
+	Context mContext;
 	
 	public VivzAdapter(Context context) {
 		// TODO Auto-generated constructor stub
 		this.atb=new ArrayList<String>();
 		this.values=new ArrayList<String>();
+		this.mContext=context;
 		Resources res = context.getResources();
 		String[] temp = res.getStringArray(R.array.perfil_atb);	
 		for(int i=0;i<this.atb.size();i++){
 			this.atb.add(temp[i]);
 		}
-		this.idImage=-1;
+		temp = res.getStringArray(R.array.perfil_atb_values);	
+		for(int i=0;i<this.values.size();i++){
+			this.values.add(temp[i]);
+		}
+	}
+	public void setValues(ArrayList<String> val){
+		values=val;	
+	}
+	public void setItemVal(String value, int pos){
+		values.set(pos, value);
 	}
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return atb.size()+values.size()+1;
+		return atb.size()+values.size();
 	}
 
 	@Override
@@ -236,13 +235,35 @@ class VivzAdapter extends BaseAdapter{
 	@Override
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
-		return 0;
+		return position;
 	}
-
+	class ViewHolder{
+		TextView text;
+		public ViewHolder(View v) {
+			// TODO Auto-generated constructor stub
+			text=(TextView) v.findViewById(R.id.textView);
+		}
+	}
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		View row = convertView;
+		ViewHolder holder = null;
+		if(row==null){
+			 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			 row=inflater.inflate(R.layout.single_item,parent,false);
+			 holder=new ViewHolder(row);
+			 row.setTag(holder);
+			 
+		}else{
+			holder = (ViewHolder) row.getTag();
+			
+		}
+		
+	    holder.text.setText((CharSequence) this.getItem(position));
+	      
+	     return  holder.text; 
 	}
 	
 }
