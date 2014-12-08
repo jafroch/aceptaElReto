@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">aceptaElReto</string>
-    <string name="title_section1">Inicio</string>
-    <string name="title_section2">Perfil</string>
+    <string name="title_section1">Perfil</string>
+    <string name="title_section2">Subir</string>
     <string name="title_section3">Problemas</string>
     <string name="title_section4">Ultimos Enviados</string>
     <string name="title_section5">Estadisticas</string>

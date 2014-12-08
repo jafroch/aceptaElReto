@@ -90,7 +90,6 @@ public class MainActivity extends ActionBarActivity implements
 		}
 
 	public void onSectionAttached(int number) {
-		Fragment fragment = null;
 		switch (number) {
 		//Aqui es donde tenemos que mandar ejecutar los nuevos fragment
 		case 1:
