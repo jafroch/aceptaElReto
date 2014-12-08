@@ -62,6 +62,8 @@ public class MainActivity extends ActionBarActivity implements
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 		  // update the main content by replacing fragments
+		  tablaPerfil=(GridView) findViewById(R.id.gridView1);
+		  tablaPerfil.setAdapter(new VivzAdapter(this));
 		  FragmentManager fragmentManager = getSupportFragmentManager();
 		  switch (position+1) {
 		    case 1:
