@@ -8,24 +8,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.aceptaelreto.MainActivity$PlaceholderFragment" xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/abc_ab_share_pack_holo_dark" />
-
     <GridView
         android:id="@+id/gridView1"
         android:layout_width="fill_parent"
-        android:gravity="center"
-        android:columnWidth="100dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignTop="@id/imageView1"
         android:layout_centerHorizontal="true"
+        android:columnWidth="100dp"
+        android:gravity="center"
         android:numColumns="auto_fit"
         android:stretchMode="spacingWidth"
         android:verticalSpacing="5dp" >
