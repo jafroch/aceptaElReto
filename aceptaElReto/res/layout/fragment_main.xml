@@ -12,8 +12,7 @@
         android:id="@+id/gridView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
         android:columnWidth="100dp"
         android:gravity="center"
@@ -22,5 +21,14 @@
         android:verticalSpacing="5dp" >
 
     </GridView>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/abc_ab_share_pack_holo_light" />
 
 </RelativeLayout>

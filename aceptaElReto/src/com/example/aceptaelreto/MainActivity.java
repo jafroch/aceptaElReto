@@ -206,11 +206,11 @@ class VivzAdapter extends BaseAdapter{
 		this.mContext=context;
 		Resources res = context.getResources();
 		String[] temp = res.getStringArray(R.array.perfil_atb);	
-		for(int i=0;i<this.atb.size();i++){
+		for(int i=0;i<temp.length;i++){
 			this.atb.add(temp[i]);
 		}
 		temp = res.getStringArray(R.array.perfil_atb_values);	
-		for(int i=0;i<this.values.size();i++){
+		for(int i=0;i<temp.length;i++){
 			this.values.add(temp[i]);
 		}
 	}
@@ -227,13 +227,19 @@ class VivzAdapter extends BaseAdapter{
 	}
 
 	@Override
-	public Object getItem(int position) {
+	public String getItem(int position) {
 		// TODO Auto-generated method stub
-		if(position>=atb.size()){
-			return values.get(position-atb.size());
+		int i=0;
+		if(position%2==0){
+			if(position>0){
+				i=position/2;
+			}
+			return this.atb.get(i);
 		}else{
-		return atb.get(position);
+			i= (position-1)/2;
+			return this.values.get(i);
 		}
+		
 	}
 
 	@Override
@@ -246,6 +252,9 @@ class VivzAdapter extends BaseAdapter{
 		public ViewHolder(View v) {
 			// TODO Auto-generated constructor stub
 			text=(TextView) v.findViewById(R.id.textView);
+		}
+		public void setText(String T){
+			this.text.setText(T);
 		}
 	}
 	@Override
@@ -265,9 +274,10 @@ class VivzAdapter extends BaseAdapter{
 			
 		}
 		
-	    holder.text.setText((CharSequence) this.getItem(position));
+	    holder.setText(this.getItem(position));
+	    
 	      
-	     return  holder.text; 
+	     return  row; 
 	}
 	
 }
