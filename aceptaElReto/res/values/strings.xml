@@ -31,5 +31,7 @@
         <item>Género</item>
         <item>Institución</item>  
     </string-array>
+    <string name="id">Id</string>  
+    <string name="valor">Valor</string>
 
 </resources>

@@ -339,6 +339,8 @@ int drawable abc_textfield_search_material 0x7f020032
 int drawable drawer_shadow 0x7f020033
 int drawable ic_drawer 0x7f020034
 int drawable ic_launcher 0x7f020035
+int drawable tabla_celda 0x7f020036
+int drawable tabla_celda_cabecera 0x7f020037
 int id action_bar 0x7f090031
 int id action_bar_activity_content 0x7f090003
 int id action_bar_container 0x7f090030
@@ -347,16 +349,17 @@ int id action_bar_spinner 0x7f090002
 int id action_bar_subtitle 0x7f09001f
 int id action_bar_title 0x7f09001e
 int id action_context_bar 0x7f090032
-int id action_example 0x7f090048
+int id action_example 0x7f09004b
 int id action_menu_divider 0x7f090005
 int id action_menu_presenter 0x7f090006
 int id action_mode_bar 0x7f09002e
 int id action_mode_bar_stub 0x7f09002d
 int id action_mode_close_button 0x7f090020
-int id action_settings 0x7f090047
+int id action_settings 0x7f09004a
 int id activity_chooser_view_content 0x7f090021
 int id always 0x7f090014
 int id beginning 0x7f09001b
+int id cabecera 0x7f090044
 int id checkbox 0x7f090029
 int id collapseActionView 0x7f090015
 int id container 0x7f090040
@@ -371,13 +374,13 @@ int id edit_query 0x7f090033
 int id end 0x7f09001c
 int id expand_activities_button 0x7f090022
 int id expanded_menu 0x7f090028
-int id gridView1 0x7f090044
+int id gridView1 0x7f090047
 int id home 0x7f090000
 int id homeAsUp 0x7f09000e
 int id icon 0x7f090026
 int id ifRoom 0x7f090016
 int id image 0x7f090023
-int id imageView1 0x7f090045
+int id imageView1 0x7f090048
 int id listMode 0x7f09000a
 int id list_item 0x7f090025
 int id middle 0x7f09001d
@@ -388,6 +391,7 @@ int id normal 0x7f09000b
 int id progress_circular 0x7f090007
 int id progress_horizontal 0x7f090008
 int id radio 0x7f09002b
+int id scroll 0x7f090045
 int id search_badge 0x7f090035
 int id search_bar 0x7f090034
 int id search_button 0x7f090036
@@ -406,7 +410,8 @@ int id showTitle 0x7f090012
 int id split_action_bar 0x7f090004
 int id submit_area 0x7f09003c
 int id tabMode 0x7f09000c
-int id textView 0x7f090046
+int id tabla 0x7f090046
+int id textView 0x7f090049
 int id title 0x7f090027
 int id up 0x7f090001
 int id useLogo 0x7f090013
@@ -469,6 +474,7 @@ int string action_example 0x7f0a0019
 int string action_settings 0x7f0a001a
 int string app_name 0x7f0a0010
 int string description_image_profile 0x7f0a001b
+int string id 0x7f0a001c
 int string navigation_drawer_close 0x7f0a0018
 int string navigation_drawer_open 0x7f0a0017
 int string title_section1 0x7f0a0011
@@ -477,6 +483,7 @@ int string title_section3 0x7f0a0013
 int string title_section4 0x7f0a0014
 int string title_section5 0x7f0a0015
 int string title_section6 0x7f0a0016
+int string valor 0x7f0a001d
 int style AppBaseTheme 0x7f0b00eb
 int style AppTheme 0x7f0b00ec
 int style Base_TextAppearance_AppCompat 0x7f0b0098
@@ -714,6 +721,7 @@ int style Widget_AppCompat_Spinner_DropDown 0x7f0b001b
 int style Widget_AppCompat_Spinner_DropDown_ActionBar 0x7f0b001c
 int style Widget_AppCompat_Toolbar 0x7f0b0034
 int style Widget_AppCompat_Toolbar_Button_Navigation 0x7f0b0035
+int style etiqueta 0x7f0b00ed
 int[] styleable ActionBar { 0x7f010000, 0x7f010001, 0x7f01002c, 0x7f010055, 0x7f010056, 0x7f010057, 0x7f010058, 0x7f010059, 0x7f01005a, 0x7f01005b, 0x7f01005c, 0x7f01005d, 0x7f01005e, 0x7f01005f, 0x7f010060, 0x7f010061, 0x7f010062, 0x7f010063, 0x7f010064, 0x7f010065, 0x7f010066, 0x7f010067, 0x7f010068, 0x7f010069, 0x7f01006a, 0x7f01006b, 0x7f01006c }
 int styleable ActionBar_background 11
 int styleable ActionBar_backgroundSplit 13

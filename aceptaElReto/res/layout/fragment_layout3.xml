@@ -8,21 +8,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.ndexample.Layout2Fragment" >
  
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:gravity="center"
-        android:textSize="40sp" />
- 
-    <DigitalClock
-        android:id="@+id/digitalClock1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/section_label"
-        android:text="DigitalClock" />
+   <TableLayout android:id="@+id/cabecera"  
+   android:layout_width="match_parent" 
+   android:layout_height="match_parent">  
+   </TableLayout>  
+  
+   <ScrollView android:id="@+id/scroll"  
+   android:layout_width="match_parent" 
+   android:layout_height="match_parent"  
+   android:scrollbars="vertical" >  
+      <LinearLayout android:orientation="vertical"  
+      android:layout_width="match_parent" 
+      android:layout_height="match_parent">  
+         <TableLayout android:id="@+id/tabla"  
+         android:layout_width="match_parent" 
+         android:layout_height="match_parent">  
+         </TableLayout>  
+      </LinearLayout>  
+   </ScrollView>  
 </RelativeLayout>
