@@ -5,5 +5,7 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="C:/Users/jose/proyectos/Acepta el reto ayuda/javax.xml.bind.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jose/proyectos/Acepta el reto ayuda/javax.ws.rs.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
