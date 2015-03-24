@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
- 
+ /*
+  * clase que genera el fragment de 
+  */
 public class Layout2Fragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
  

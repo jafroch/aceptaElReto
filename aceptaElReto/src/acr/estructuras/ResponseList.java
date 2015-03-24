@@ -1,4 +1,4 @@
-package es.acr.ws.utils;
+package acr.estructuras;
 
 import java.util.List;
 
@@ -214,7 +214,7 @@ public class ResponseList<T> {
 	 * size de la URI y si es más grande que maxSize lo ignora y trabaja
 	 * con maxSize. Si no hay parámetro en la URI, usa maxSize.
 	 * 
-	 * Devuelve en realidad UNO MÁS que lo indicado, para utilizar el
+	 * Devuelve en realidad UNO M�?S que lo indicado, para utilizar el
 	 * auxiliar para saber si se debe proporcionar un puntero al
 	 * siguiente o no.
 	 * 

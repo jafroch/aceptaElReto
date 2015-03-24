@@ -91,7 +91,7 @@ public class MainActivity extends ActionBarActivity implements
 
 	public void onSectionAttached(int number) {
 		switch (number) {
-		//Aqui es donde tenemos que mandar ejecutar los nuevos fragment
+		
 		case 1:
 			mTitle = getString(R.string.title_section1);
 			break;

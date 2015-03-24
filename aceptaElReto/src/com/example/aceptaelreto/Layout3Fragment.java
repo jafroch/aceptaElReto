@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
- 
+/*
+ * clase que genera el fragment de 
+ */
 public class Layout3Fragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     /*

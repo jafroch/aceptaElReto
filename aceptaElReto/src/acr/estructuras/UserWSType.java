@@ -1,4 +1,4 @@
-package es.acr.ws.responses;
+package acr.estructuras;
 
 import java.util.Date;
 import java.util.List;

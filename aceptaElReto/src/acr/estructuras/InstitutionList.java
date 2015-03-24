@@ -1,4 +1,4 @@
-package es.acr.ws.responses;
+package acr.estructuras;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +7,9 @@ import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import es.acr.model.institutions.Institution;
-import es.acr.ws.responses.casttomodel.InstitutionWSTypeBuilder;
-import es.acr.ws.utils.ResponseList;
+//import es.acr.model.institutions.Institution;
+//import es.acr.ws.responses.casttomodel.InstitutionWSTypeBuilder;
+import acr.estructuras.ResponseList;
 
 /**
  * Clase utilizada para devolver una lista de instituciones.
@@ -19,9 +19,9 @@ import es.acr.ws.utils.ResponseList;
 @XmlRootElement(name="institutions")
 public class InstitutionList extends ResponseList<InstitutionWSType> {
 	
-	public static InstitutionList buildFromInstitutionList(List<Institution> model, UriInfo uri) {
+	public static InstitutionList buildFromInstitutionList(List<InstitutionWSType> model, UriInfo uri) {
 		List<InstitutionWSType> l = new ArrayList<InstitutionWSType>(model.size());
-		for (Institution o : model) {
+		for (InstitutionWSType o : model) {
 			l.add(new InstitutionWSTypeBuilder(o).build());
 		}
 		return new InstitutionList(l, uri);
