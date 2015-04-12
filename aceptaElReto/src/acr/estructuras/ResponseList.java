@@ -8,7 +8,11 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlElement;
 
-import es.acr.ws.Config;
+import org.glassfish.jersey.client.JerseyWebTarget;
+
+import acr.estructuras.Config;
+
+
 
 /**
  * Clase genérica de lista que se devuelve en los servicios Web; tiene
@@ -96,7 +100,7 @@ public class ResponseList<T> {
 		
 		if (hayNext) {
 
-			UriBuilder builder = Config.getURIBuilder();
+			UriBuilder builder = Config.getUriBuilder();
 			builder.path(request.getRequestUri().getPath());
 			builder.queryParam("start", (start + size) + 1);
 			builder.queryParam("size", size);
@@ -105,7 +109,7 @@ public class ResponseList<T> {
 		
 		if (hayAnt) {
 			
-			UriBuilder builder = Config.getURIBuilder();
+			UriBuilder builder = Config.getUriBuilder();
 			builder.path(request.getRequestUri().getPath());
 			int nuevoStart = start - size;
 			if (nuevoStart < 0)

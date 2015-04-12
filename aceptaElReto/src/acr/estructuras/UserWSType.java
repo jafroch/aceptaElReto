@@ -38,7 +38,7 @@ public class UserWSType {
 	public UserRoleWSType role;
 	
 	// Tipo de notificación por mail utilizada
-	public MailNotificationWSType mailNotification;
+	//public MailNotificationWSType mailNotification;
 	
 	// Institución a la que pertenece
 	public InstitutionWSType institution;
