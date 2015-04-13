@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlRootElement(name="user")
 @XmlType(propOrder={"id", "nick", "email", "name", "gender", "country", "institution", "mailNotification", "role", "birthday", "registrationDate", "accessList", "avatar"})
-public class UserWSType {
+public class UserWSType extends WSType{
 
 	// Identificador del usuario.
 	public Integer id;

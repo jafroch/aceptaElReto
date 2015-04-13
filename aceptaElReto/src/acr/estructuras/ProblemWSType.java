@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Marco Antonio Gomez Martin
  */
 @XmlRootElement(name="problem")
-public class ProblemWSType {
+public class ProblemWSType extends WSType{
 
 	// Código/número de problema
 	@XmlElement(name="num")	

@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlRootElement(name="institution")
 @XmlType(propOrder={"id", "name", "country", "url", "logo"})
-public class InstitutionWSType {
+public class InstitutionWSType extends WSType{
 	
 	// Identificador para referenciarlo rápidamente
 	@XmlElement

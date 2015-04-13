@@ -1,6 +1,6 @@
 package acr.estructuras;
 
-public class CountryWSType {
+public class CountryWSType extends WSType{
 
 	private String name;
 	

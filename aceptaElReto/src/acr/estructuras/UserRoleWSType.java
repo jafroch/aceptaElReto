@@ -1,5 +1,5 @@
 package acr.estructuras;
 
-public enum UserRoleWSType {
+public class UserRoleWSType extends WSType {
 
 }
