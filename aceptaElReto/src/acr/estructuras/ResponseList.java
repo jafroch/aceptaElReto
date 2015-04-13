@@ -8,8 +8,6 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlElement;
 
-import org.glassfish.jersey.client.JerseyWebTarget;
-
 import acr.estructuras.Config;
 
 
@@ -99,8 +97,8 @@ public class ResponseList<T> {
 		internalList = l;
 		
 		if (hayNext) {
-
-			UriBuilder builder = Config.getUriBuilder();
+			
+			UriBuilder builder = request.getRequestUriBuilder();//Config.getUriBuilder();
 			builder.path(request.getRequestUri().getPath());
 			builder.queryParam("start", (start + size) + 1);
 			builder.queryParam("size", size);
@@ -109,7 +107,7 @@ public class ResponseList<T> {
 		
 		if (hayAnt) {
 			
-			UriBuilder builder = Config.getUriBuilder();
+			UriBuilder builder =  request.getRequestUriBuilder();//Config.getUriBuilder();
 			builder.path(request.getRequestUri().getPath());
 			int nuevoStart = start - size;
 			if (nuevoStart < 0)
