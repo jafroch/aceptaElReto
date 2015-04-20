@@ -22,7 +22,7 @@ public class InstitutionList extends ResponseList<InstitutionWSType> {
 	public static InstitutionList buildFromInstitutionList(List<InstitutionWSType> model, UriInfo uri) {
 		List<InstitutionWSType> l = new ArrayList<InstitutionWSType>(model.size());
 		for (InstitutionWSType o : model) {
-			l.add(new InstitutionWSTypeBuilder(o).build());
+			l.add((InstitutionWSType) new InstitutionWSTypeBuilder(o).build());
 		}
 		return new InstitutionList(l, uri);
 	}

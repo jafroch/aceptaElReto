@@ -8,7 +8,7 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlElement;
 
-import acr.estructuras.Config;
+
 
 
 
@@ -98,7 +98,7 @@ public class ResponseList<T> {
 		
 		if (hayNext) {
 			
-			UriBuilder builder = request.getRequestUriBuilder();//Config.getUriBuilder();
+			UriBuilder builder = Config.getUriBuilder();//Config.getUriBuilder();
 			builder.path(request.getRequestUri().getPath());
 			builder.queryParam("start", (start + size) + 1);
 			builder.queryParam("size", size);
@@ -107,7 +107,7 @@ public class ResponseList<T> {
 		
 		if (hayAnt) {
 			
-			UriBuilder builder =  request.getRequestUriBuilder();//Config.getUriBuilder();
+			UriBuilder builder =  Config.getUriBuilder();//Config.getUriBuilder();
 			builder.path(request.getRequestUri().getPath());
 			int nuevoStart = start - size;
 			if (nuevoStart < 0)
