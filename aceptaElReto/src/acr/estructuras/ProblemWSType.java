@@ -1,4 +1,4 @@
-package acr.estructuras;
+package es.acr.ws.responses;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Marco Antonio Gomez Martin
  */
 @XmlRootElement(name="problem")
-public class ProblemWSType extends WSType{
+public class ProblemWSType {
 
 	// Código/número de problema
 	@XmlElement(name="num")	
