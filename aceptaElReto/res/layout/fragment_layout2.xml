@@ -16,14 +16,19 @@
         android:ems="10"
         android:gravity="center"
         android:textSize="40sp" />
- 
-    <DigitalClock
-        android:id="@+id/digitalClock1"
+
+    <EditText
+        android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/section_label"
-        android:text="DigitalClock" />
+        android:layout_alignLeft="@+id/section_label"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/section_label"
+        android:ems="10"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
     
 </RelativeLayout>

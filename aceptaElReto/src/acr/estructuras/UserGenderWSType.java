@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.acr.ws.responses;
+package acr.estructuras;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;

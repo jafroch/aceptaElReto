@@ -7,12 +7,8 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="lib" path="C:/Users/jose/proyectos/Acepta el reto ayuda/javax.xml.bind.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jose/proyectos/Acepta el reto ayuda/javax.ws.rs.jar"/>
-	<classpathentry kind="lib" path="C:/Users/jose/universidad/5/proyecto/jaxrs-ri/lib/jersey-client.jar"/>
-	<classpathentry kind="lib" path="C:/Users/jose/universidad/5/proyecto/jaxrs-ri/lib/jersey-common.jar"/>
-	<classpathentry kind="lib" path="C:/Users/jose/universidad/5/proyecto/jaxrs-ri/lib/jersey-container-servlet.jar"/>
-	<classpathentry kind="lib" path="C:/Users/jose/universidad/5/proyecto/jaxrs-ri/lib/jersey-container-servlet-core.jar"/>
-	<classpathentry kind="lib" path="C:/Users/jose/universidad/5/proyecto/jaxrs-ri/lib/jersey-media-jaxb.jar"/>
-	<classpathentry kind="lib" path="C:/Users/jose/universidad/5/proyecto/jaxrs-ri/lib/jersey-server.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jose/universidad/5/proyecto/jaxrs-ri/api/javax.ws.rs-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jose/Downloads/jersey-bundle-1.19.jar" sourcepath="C:/Users/jose/.m2/repository/com/sun/jersey/jersey-bundle/1.19/jersey-bundle-1.19-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jose/programas/eclipse/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

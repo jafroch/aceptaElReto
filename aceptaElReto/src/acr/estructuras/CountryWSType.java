@@ -1,4 +1,4 @@
-package es.acr.ws.responses;
+package acr.estructuras;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
