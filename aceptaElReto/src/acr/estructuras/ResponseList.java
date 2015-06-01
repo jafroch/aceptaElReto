@@ -8,6 +8,10 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlElement;
 
+import android.net.Uri;
+import android.net.Uri.Builder;
+import android.util.Config;
+
 
 
 /**
@@ -95,18 +99,18 @@ public class ResponseList<T> {
 		internalList = l;
 		
 		if (hayNext) {
-/*
-			UriBuilder builder = Config.getURIBuilder();
+
+			UriBuilder builder = request.getAbsolutePathBuilder();
 			builder.path(request.getRequestUri().getPath());
 			builder.queryParam("start", (start + size) + 1);
 			builder.queryParam("size", size);
 			this.setNextLink(builder.build().toString());
-*/
+
 		}
 		
 		if (hayAnt) {
-/*			
-			UriBuilder builder = Config.getURIBuilder();
+			
+			UriBuilder builder = request.getAbsolutePathBuilder();
 			builder.path(request.getRequestUri().getPath());
 			int nuevoStart = start - size;
 			if (nuevoStart < 0)
@@ -116,7 +120,7 @@ public class ResponseList<T> {
 			builder.queryParam("start", nuevoStart + 1);
 			builder.queryParam("size", size);
 			this.setPrevLink(builder.build().toString());
-*/
+
 		}
 	}
 	

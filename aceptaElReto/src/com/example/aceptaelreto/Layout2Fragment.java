@@ -60,10 +60,10 @@ public class Layout2Fragment extends Fragment {
  
     public void retrieveSampleData(View vw) {
     	
-        String sampleURL = SERVICE_URL + "/country";
+        String sampleURL = SERVICE_URL + "country/";
  
         WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK, this.getActivity(), "GETting data...",this);
-    
+       
         wst.execute(new String[] { sampleURL });
          
         //this.handleResponse(wst.getResponse());
