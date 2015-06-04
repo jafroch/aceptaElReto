@@ -8,9 +8,7 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlElement;
 
-import android.net.Uri;
-import android.net.Uri.Builder;
-import android.util.Config;
+
 
 
 
@@ -75,7 +73,7 @@ public class ResponseList<T> {
 	 * atributos prevLink y nextLink.
 	 */
 	public ResponseList(List<T> l, UriInfo request) {
-		
+
 		if (request == null) {
 			internalList = l;
 			return;

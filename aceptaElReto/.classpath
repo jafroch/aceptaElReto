@@ -10,5 +10,8 @@
 	<classpathentry kind="lib" path="C:/Users/jose/universidad/5/proyecto/jaxrs-ri/api/javax.ws.rs-api-2.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jose/Downloads/jersey-bundle-1.19.jar" sourcepath="C:/Users/jose/.m2/repository/com/sun/jersey/jersey-bundle/1.19/jersey-bundle-1.19-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jose/programas/eclipse/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jose/universidad/5/proyecto/jackson-all-1.9.9.jar"/>
+	<classpathentry kind="lib" path="libs/gson-2.3.1.jar" sourcepath="C:/Users/jose/.m2/repository/com/google/code/gson/gson/2.3.1/gson-2.3.1-sources.jar"/>
+	<classpathentry kind="lib" path="libs/jackson-all-1.9.9.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

@@ -2,6 +2,12 @@ package com.example.aceptaelreto;
 
 import WS.WebServiceTask;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import acr.estructuras.CountryWSType;
+import acr.estructuras.ResponseList;
+
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -60,12 +66,18 @@ public class Layout2Fragment extends Fragment {
  
     public void retrieveSampleData(View vw) {
     	
-        String sampleURL = SERVICE_URL + "country/";
+        String sampleURL = SERVICE_URL + "country/";//AD/
  
         WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK, this.getActivity(), "GETting data...",this);
        
         wst.execute(new String[] { sampleURL });
          
+        ResponseList<CountryWSType> lista = new ResponseList<CountryWSType>();
+        ArrayList<CountryWSType> paises = new ArrayList<CountryWSType>();
+        
+        //lista.ResponseList(paises,);
+        
+        
         //this.handleResponse(wst.getResponse());
     }
  

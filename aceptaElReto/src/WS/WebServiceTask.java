@@ -4,9 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.net.URI;
 import java.util.ArrayList;
- 
-
+import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -19,23 +20,38 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
- 
 
 
+
+
+/*
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.ObjectCodec;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.type.TypeFactory;
+import org.codehaus.jackson.JsonParser;
+*/
 import com.example.aceptaelreto.Layout2Fragment;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 
-import android.app.Activity;
-import android.app.Fragment;
+import acr.estructuras.CountryWSType;
+import acr.estructuras.ListCountryWSType;
+import acr.estructuras.ListWSType;
+import acr.estructuras.ResponseList;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.Toast;
+
+
 
  public class WebServiceTask extends AsyncTask<String, Integer, String> {
 	 
@@ -61,6 +77,8 @@ import android.widget.Toast;
     private String Response;
     
     private Layout2Fragment fragment;
+    
+    private URI uriInfo;
 
     public WebServiceTask(int taskType, Context mContext, String processMessage, Layout2Fragment fragment) {
 
@@ -100,13 +118,10 @@ import android.widget.Toast;
         String result = "";
 
         HttpResponse response = doResponse(url);
-
         if (response == null) {
             return result;
         } else {
-
             try {
-
                 result = inputStreamToString(response.getEntity().getContent());
 
             } catch (IllegalStateException e) {
@@ -117,18 +132,42 @@ import android.widget.Toast;
             }
 
         }
-
+        
         return result;
     }
 
     @Override
     protected void onPostExecute(String response) {
-         
-    	//handleResponse(response);
+    	//typos que queremos sacar
+    	CountryWSType	pais ;
+    	
+    	//GSON
+    	//un solo elem
+    	Gson gson = new GsonBuilder().create();
+    	JsonParser parser = new JsonParser();
+    	JsonObject data = parser.parse(response).getAsJsonObject();
+    	pais = gson.fromJson(data, CountryWSType.class);
+  
+    	//Lista de elems
+    	//first convert input string to json array
+    	JSONObject jsonobject;
+    	JSONArray jsonArray = null;
+		try {
+			jsonobject = new JSONObject(response);
+			//ponemos country ta que el obj tiene un campo que es la lista de elems llamado country.
+			jsonArray = jsonobject.getJSONArray("country");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    	//then get the type for list and parse using gson as
+    	Type listType = new TypeToken<List<CountryWSType>>(){}.getType();
+    	List<CountryWSType> countriesList = new Gson().fromJson(jsonArray.toString(), listType);
+    	  	
     	this.fragment.handleResponse(response);
         this.Response=response;
     	pDlg.dismiss();
-         
     }
      
     // Establish connection and socket (data retrieval) timeouts
@@ -147,9 +186,10 @@ import android.widget.Toast;
         // Use our connection and data timeouts as parameters for our
         // DefaultHttpClient
         HttpClient httpclient = new DefaultHttpClient(getHttpParams());
-
+     
+        
         HttpResponse response = null;
-
+        
         try {
             switch (taskType) {
 
@@ -157,12 +197,17 @@ import android.widget.Toast;
                 HttpPost httppost = new HttpPost(url);
                 // Add parameters
                 httppost.setEntity(new UrlEncodedFormEntity(params));
-
                 response = httpclient.execute(httppost);
+                
+                uriInfo = httppost.getURI();
+                
                 break;
             case GET_TASK:
                 HttpGet httpget = new HttpGet(url);
                 response = httpclient.execute(httpget);
+                httpget.getRequestLine();
+                uriInfo = httpget.getURI();     
+                
                 break;
             }
         } catch (Exception e) {
@@ -197,5 +242,7 @@ import android.widget.Toast;
     public String getResponse(){
     	return this.Response;
     }
+    
+    
 
 }
