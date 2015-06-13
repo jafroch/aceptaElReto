@@ -66,19 +66,9 @@ public class Layout2Fragment extends Fragment {
  
     public void retrieveSampleData(View vw) {
     	
-        String sampleURL = SERVICE_URL + "country/";//AD/
- 
-        WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK, this.getActivity(), "GETting data...",this);
        
-        wst.execute(new String[] { sampleURL });
-         
-        ResponseList<CountryWSType> lista = new ResponseList<CountryWSType>();
-        ArrayList<CountryWSType> paises = new ArrayList<CountryWSType>();
-        
-        //lista.ResponseList(paises,);
         
         
-        //this.handleResponse(wst.getResponse());
     }
  
     public void clearControls(View vw) {
@@ -94,24 +84,7 @@ public class Layout2Fragment extends Fragment {
  
     public void handleResponse(String response) {
          
-        //ver la respuesta
-    	
-    	  
-        try {
-            /* 
-            JSONObject jso = new JSONObject(response);
-             
-            String firstName = jso.getString("firstName");
-            String lastName = jso.getString("lastName");
-            String email = jso.getString("email");
-             */
-            textoSalida.setText(response.toString());
-            
-             
-        } catch (Exception e) {
-            Log.e(TAG, e.getLocalizedMessage(), e);
-        }
-         
+       
     }
  
     private void hideKeyboard() {

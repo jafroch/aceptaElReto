@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 
 
+
 /*
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.ObjectCodec;
@@ -46,6 +47,7 @@ import acr.estructuras.CountryWSType;
 import acr.estructuras.ListCountryWSType;
 import acr.estructuras.ListWSType;
 import acr.estructuras.ResponseList;
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -76,16 +78,16 @@ import android.util.Log;
     
     private String Response;
     
-    private Layout2Fragment fragment;
+
     
     private URI uriInfo;
 
-    public WebServiceTask(int taskType, Context mContext, String processMessage, Layout2Fragment fragment) {
+    public WebServiceTask(int taskType, Context mContext, String processMessage) {
 
         this.taskType = taskType;
         this.mContext = mContext;
         this.processMessage = processMessage;
-        this.fragment=fragment;
+
     }
 
     public void addNameValuePair(String name, String value) {
@@ -137,35 +139,8 @@ import android.util.Log;
     }
 
     @Override
-    protected void onPostExecute(String response) {
-    	//typos que queremos sacar
-    	CountryWSType	pais ;
-    	
-    	//GSON
-    	//un solo elem
-    	Gson gson = new GsonBuilder().create();
-    	JsonParser parser = new JsonParser();
-    	JsonObject data = parser.parse(response).getAsJsonObject();
-    	pais = gson.fromJson(data, CountryWSType.class);
-  
-    	//Lista de elems
-    	//first convert input string to json array
-    	JSONObject jsonobject;
-    	JSONArray jsonArray = null;
-		try {
-			jsonobject = new JSONObject(response);
-			//ponemos country ta que el obj tiene un campo que es la lista de elems llamado country.
-			jsonArray = jsonobject.getJSONArray("country");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-    	//then get the type for list and parse using gson as
-    	Type listType = new TypeToken<List<CountryWSType>>(){}.getType();
-    	List<CountryWSType> countriesList = new Gson().fromJson(jsonArray.toString(), listType);
-    	  	
-    	this.fragment.handleResponse(response);
+    protected void onPostExecute(String response) { 	
+    
         this.Response=response;
     	pDlg.dismiss();
     }
