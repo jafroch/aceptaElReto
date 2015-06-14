@@ -2,7 +2,14 @@ package WS;
 
 import android.app.Activity;
 import android.app.Fragment;
-
+/*
+ * Clase que se usa para hacer las llamadas al WS, 
+ * para ello se modifica el path con la url que queremos
+ * y se invocan los metodos GET o POST,
+ * que devuelven un String con la respuesta en formato
+ * JSON.
+ * 
+ */
 public class CallerWS {
 	WSquery path;
 	

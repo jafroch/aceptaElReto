@@ -8,6 +8,12 @@ import android.R.string;
 
 
 public class WSquery {
+	/*
+	 * Clase que a traves de metodos nos construye cualquier URL que 
+	 * acepta nuestro WS.
+	 * Ir contruyendo la URL por medio de los metodos para luego por 
+	 * medio del caller llamar al WS y obtener la respuesta.
+	 */
 	
 	private String url="https://www.aceptaelreto.com/ws/";
 	private String login1="session?user=";

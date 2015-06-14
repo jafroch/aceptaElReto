@@ -17,6 +17,15 @@ import acr.estructuras.*;
 
 public class Traductor {
 		
+	/*
+	 * Clase que nos sirve para transformar un JSON en lo que queremos, 
+	 * Hay que notar que solo lo hara correctamente si invocamos el metodo
+	 * que coincide con el STRING JSON que corresponde.
+	 * Pej:
+	 * Si llamamos para obtener una lista de paises tendremos que invocar
+	 * el metodo getPaises, ya que cualquier otro no nos devolvera lo que
+	 * queremos.
+	 */
 		String JSON;
 		
 		
