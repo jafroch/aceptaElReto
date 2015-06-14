@@ -15,10 +15,11 @@ public class WSquery {
 	 * medio del caller llamar al WS y obtener la respuesta.
 	 */
 	
-	private String url="https://www.aceptaelreto.com/ws/";
+	private String url="https://acr2.programame.com/ws/";
 	private String login1="session?user=";
 	private String login2="&password=";
 	private String login3="&app=";
+	private String app_id="2015-2015";
 	private String query;
 	public enum type{
 		allproblems,
@@ -57,8 +58,8 @@ public class WSquery {
 	public String getQuery(){
 		return this.query;
 	}
-	public void login(String usr, String pass,String idApp){
-		this.query=this.url+this.login1+usr+this.login2+pass+this.login3+idApp+"/";
+	public void login(String usr, String pass){
+		this.query=this.url+this.login1+usr+this.login2+pass+this.login3+this.app_id+"/";
 	}
 	public URI getURI() {
 	    return UriBuilder.fromUri(query).build();
