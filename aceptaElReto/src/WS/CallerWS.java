@@ -12,6 +12,7 @@ import android.app.Fragment;
  */
 public class CallerWS {
 	WSquery path;
+	WebServiceTask wst;
 	
 	public CallerWS( ) {
 		// TODO Auto-generated constructor stub
@@ -29,7 +30,7 @@ public class CallerWS {
 
 	public String getCall(Activity frag){
 
-        WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK, frag, "GETting data...");
+        wst = new WebServiceTask(WebServiceTask.GET_TASK, frag, "GETting data...");
        
         wst.execute(new String[] { this.path.getQuery() });
         
@@ -38,7 +39,7 @@ public class CallerWS {
 	}
 	public String postCall(Activity frag){
 
-        WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK, frag, "POSTINGting data...");
+        wst = new WebServiceTask(WebServiceTask.POST_TASK, frag, "POSTINGting data...");
        
         wst.execute(new String[] {  this.path.getQuery() });
         
