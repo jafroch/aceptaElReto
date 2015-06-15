@@ -8,10 +8,6 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import javax.xml.bind.annotation.XmlElement;
 
-
-
-
-
 /**
  * Clase genÃ©rica de lista que se devuelve en los servicios Web; tiene
  * ademÃ¡s mÃ©todos Ãºtiles para gestionar solicitudes paginadas de esas

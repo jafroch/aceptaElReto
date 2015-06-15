@@ -21,6 +21,8 @@ public class WSquery {
 	private String login3="&app=";
 	private String app_id="2015-2015";
 	private String query;
+	private String str="?start=";
+	private String size="&size=";
 	public enum type{
 		allproblems,
 		best,
@@ -48,6 +50,9 @@ public class WSquery {
 	}
 	public void addID(int id){
 		this.query=this.query+Integer.toString(id)+"/";
+	}
+	public void addStartSize(int start, int size){
+		this.query=this.query+this.str+Integer.toString(start)+this.size+Integer.toString(size)+"/";
 	}
 	public void addNumSubCat(int md){
 		this.query=this.query+"?md="+Integer.toString(md)+"/";
