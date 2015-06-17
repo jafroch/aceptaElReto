@@ -15,7 +15,7 @@ public class WSquery {
 	 * medio del caller llamar al WS y obtener la respuesta.
 	 */
 	
-	private String url="acr2.programame.com/ws/";
+	private String url="http://acr2.programame.com/ws/";
 	private String login1="session?user=";
 	private String login2="&password=";
 	private String login3="&app=";

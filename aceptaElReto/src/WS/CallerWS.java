@@ -33,7 +33,6 @@ public class CallerWS {
         wst = new WebServiceTask(WebServiceTask.GET_TASK, frag, "GETting data...");
        
         wst.execute(new String[] { this.path.getQuery() });
-        
         return wst.getResponse();
         
 	}
@@ -42,7 +41,8 @@ public class CallerWS {
         wst = new WebServiceTask(WebServiceTask.POST_TASK, frag, "POSTINGting data...");
        
         wst.execute(new String[] {  this.path.getQuery() });
-        
+        String g = wst.getResponse();
+        g=g+"";
         return wst.getResponse();
 	}
 }

@@ -1,5 +1,7 @@
 package com.example.aceptaelreto;
 
+import WS.CallerWS;
+import WS.WSquery;
 import WS.WebServiceTask;
 
 import java.util.ArrayList;
@@ -32,6 +34,8 @@ public class Layout2Fragment extends Fragment {
     
     private static final String TAG = "AndroidRESTClientActivity";
     private EditText textoSalida;
+    private CallerWS ws;
+    private WSquery path;
  
     public static Layout2Fragment newInstance(int sectionNumber) {
         Layout2Fragment fragment = new Layout2Fragment();
@@ -50,6 +54,8 @@ public class Layout2Fragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_layout2, container,
                 false);
         this.textoSalida= (EditText) rootView.findViewById(R.id.editText1);
+        this.ws= new CallerWS();
+        path = this.ws.getPath();
         this.retrieveSampleData(rootView);
         return rootView;
     }
@@ -66,8 +72,10 @@ public class Layout2Fragment extends Fragment {
  
     public void retrieveSampleData(View vw) {
     	
-       
-        
+       this.path.login("apptest", "testtest");
+       this.ws.setPath(path);
+       String salida = this.ws.postCall(this.getActivity());
+       this.textoSalida.setText(salida);
         
     }
  

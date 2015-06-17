@@ -26,6 +26,7 @@ import android.util.Log;
 
 
 
+
  public class WebServiceTask extends AsyncTask<String, Integer, String> {
 	 
     public static final int POST_TASK = 1;
@@ -132,7 +133,8 @@ import android.util.Log;
         // Use our connection and data timeouts as parameters for our
         // DefaultHttpClient
         HttpClient httpclient = new DefaultHttpClient(getHttpParams());
-     
+        
+       
         
         HttpResponse response = null;
         
@@ -140,8 +142,11 @@ import android.util.Log;
             switch (taskType) {
 
             case POST_TASK:
-                HttpPost httppost = new HttpPost(url);
+                HttpPost httppost = new HttpPost("http://acr2.programame.com/ws/session?");
                 // Add parameters
+                this.addNameValuePair("user", "jafroch@gmail.com");
+                this.addNameValuePair("password", "testtest");
+                this.addNameValuePair("app", "2015-2015");
                 httppost.setEntity(new UrlEncodedFormEntity(params));
                 response = httpclient.execute(httppost);
                 
@@ -183,6 +188,7 @@ import android.util.Log;
         }
 
         // Return full string
+        this.Response=total.toString();
         return total.toString();
     }
     public String getResponse(){
