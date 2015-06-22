@@ -31,18 +31,30 @@ public class CallerWS {
 	public String getCall(Activity frag){
 
         wst = new WebServiceTask(WebServiceTask.GET_TASK, frag, "GETting data...");
-       
+        wst.showProgressDialog();
         wst.execute(new String[] { this.path.getQuery() });
-        return wst.getResponse();
+        String out=null;
+        while(out==null){
+        	out=wst.getResponse();
+        }
+        return out;
         
 	}
 	public String postCall(Activity frag){
 
         wst = new WebServiceTask(WebServiceTask.POST_TASK, frag, "POSTINGting data...");
-       
+        wst.showProgressDialog();
         wst.execute(new String[] {  this.path.getQuery() });
-        String g = wst.getResponse();
-        g=g+"";
-        return wst.getResponse();
+        
+        String out=null;
+        while(out==null){
+        	
+        	out=wst.getResponse();
+        }
+        return out;
+	}
+	
+	public String getResponse(){
+		return this.wst.getResponse();
 	}
 }

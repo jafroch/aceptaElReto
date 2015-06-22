@@ -1,4 +1,6 @@
 package WS;
+
+import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +9,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+
+
+
+
+
+
 
 import acr.estructuras.*;
 
@@ -44,7 +55,12 @@ public class Traductor {
 		this.JSON=json;
 	}
 
-	
+	public NewSession getSession() throws Exception{
+		
+		Serializer serial = new Persister();
+		NewSession session = serial.read(NewSession.class, this.JSON);
+    	return session;
+	}
 	public CategoryWSType getCategoria(){
 		Gson gson = new GsonBuilder().create();
     	JsonParser parser = new JsonParser();

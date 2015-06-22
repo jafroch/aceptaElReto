@@ -1,0 +1,27 @@
+EJEMPLO DE ACCESO AL WS
+
+	//Variables que vamos a utilizar	
+	private CallerWS ws;
+	private WSquery path;
+	
+	//cambiamos la URL del WSQuery de la forma que queramos creando una 
+	// URL que acepte el WS
+	this.path.login("apptest", "testtest");
+	
+	//añadimos esa WSQuery al Caller
+	this.ws.setPath(path);
+	
+	//Ejecutamos pasandole el Contexto y recogemos el String de Salida.
+	String salida = this.ws.postCall(this.getActivity());
+	
+	//Creamos traductor y le pasamos el String salida obtenido.
+	Traductor traductor = new Traductor(salida);
+	
+	//Mandamos al traductor obtener el objeto que sabemos corresponde con la salida.
+	NewSession sesion = null;
+	try {
+		 sesion = traductor.getSession();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}

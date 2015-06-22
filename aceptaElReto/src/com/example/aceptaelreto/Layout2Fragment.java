@@ -1,6 +1,7 @@
 package com.example.aceptaelreto;
 
 import WS.CallerWS;
+import WS.Traductor;
 import WS.WSquery;
 import WS.WebServiceTask;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import acr.estructuras.CountryWSType;
+import acr.estructuras.NewSession;
 import acr.estructuras.ResponseList;
 
 import org.json.JSONObject;
@@ -71,11 +73,23 @@ public class Layout2Fragment extends Fragment {
    
  
     public void retrieveSampleData(View vw) {
-    	
+    	 	
        this.path.login("apptest", "testtest");
        this.ws.setPath(path);
+      
+       
        String salida = this.ws.postCall(this.getActivity());
+       Traductor traductor = new Traductor(salida);
+       NewSession sesion = null;
+      try {
+		 sesion = traductor.getSession();
+      } catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+      }
        this.textoSalida.setText(salida);
+	
+       
         
     }
  
