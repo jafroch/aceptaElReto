@@ -2,12 +2,14 @@ package com.example.aceptaelreto;
 
 import java.util.ArrayList;
 
+import WS.Traductor;
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -44,7 +46,7 @@ public class MainActivity extends ActionBarActivity implements
      DrawerLayout drawerLayout;
      ListView drawerList;
      GridView tablaPerfil;
-
+     String Token;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,6 +55,16 @@ public class MainActivity extends ActionBarActivity implements
 		mTitle = getTitle();
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,(DrawerLayout) findViewById(R.id.drawer_layout));
+		
+		try {
+			Intent myIntent = getIntent(); 
+			String login = (String) myIntent.getExtras().get("LoginResponse");
+			Traductor trad = new Traductor(login);
+			this.Token= trad.getSession().token;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
