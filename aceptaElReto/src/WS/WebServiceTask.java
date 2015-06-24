@@ -27,7 +27,6 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
 import com.example.aceptaelreto.LoginActivity;
-import com.sun.jersey.server.impl.model.parameter.HttpContextInjectableProvider;
 
 import android.app.ProgressDialog;
 import android.content.Context;
