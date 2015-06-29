@@ -15,6 +15,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -36,10 +37,12 @@ import android.util.Log;
 
 
 
- public class WebServiceTask extends AsyncTask<String, Integer, String> {
+ @SuppressWarnings("deprecation")
+public class WebServiceTask extends AsyncTask<String, Integer, String> {
 	 
     public static final int POST_TASK = 1;
-    public static final int GET_TASK = 2;     
+    public static final int GET_TASK = 2; 
+    public static final int PUT_TASK = 3;
     private static final String TAG = "WebServiceTask";
     // connection timeout, in milliseconds (waiting to connect)
     private static final int CONN_TIMEOUT = 3000;
@@ -131,21 +134,18 @@ import android.util.Log;
         HttpClient httpclient = new DefaultHttpClient(getHttpParams());
         int responseCode=0;
         // Create a local instance of cookie store
-        CookieStore cookieStore = new BasicCookieStore();     
+        //CookieStore cookieStore = new BasicCookieStore();     
         // Create local HTTP context
-        HttpContext localContext = new BasicHttpContext();
+        //HttpContext localContext = new BasicHttpContext();
         // Bind custom cookie store to the local context
-        localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);        
+        //localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);        
         HttpResponse response = null;        
         try {
             switch (taskType) {
 
             case POST_TASK:
-                HttpPost httppost = new HttpPost("http://acr2.programame.com/ws/session");
+                HttpPost httppost = new HttpPost(url);
                 // Add parameters
-                this.addNameValuePair("user", "jafroch@gmail.com");
-                this.addNameValuePair("password", "testtest");
-                this.addNameValuePair("app", "2015-2015");
                 httppost.setEntity(new UrlEncodedFormEntity(params));
                 int executeCount = 0;
     			do
@@ -153,16 +153,8 @@ import android.util.Log;
     				pDlg.setMessage("Logging in.. ("+(executeCount+1)+"/5)");
     				// Execute HTTP Post Request
     				executeCount++;
-    				response = httpclient.execute(httppost,localContext);
+    				response = httpclient.execute(httppost);//response = httpclient.execute(httppost,localContext);
     				responseCode = response.getStatusLine().getStatusCode();   			
-    				List<Cookie> cookies = cookieStore.getCookies();
-    				Log.e("CustomHttpClient","Cookies size= " + cookies.size());
-    		            for (int i = 0; i < cookies.size(); i++) {
-    		                Cookie cookie = cookies.get(i);
-    		                Log.e("CustomHttpClient","Local cookie: " + cookie);
-    		                //mSessionCookie = cookie;
-    		                Log.e("CustomHttpClient",""+cookie.getValue());
-    		            }
     				// If you want to see the response code, you can Log it
     				// out here by calling:
     				// Log.d("256 Design", "statusCode: " + responseCode)
@@ -171,18 +163,17 @@ import android.util.Log;
                 break;
             case GET_TASK:
                 HttpGet httpget = new HttpGet(url);
-                response = httpclient.execute(httpget,localContext);
+                response = httpclient.execute(httpget);//response = httpclient.execute(httpget,localContext);
                 responseCode = response.getStatusLine().getStatusCode();
-				List<Cookie> cookies = cookieStore.getCookies();
-				 Log.e("CustomHttpClient","Cookies size= " + cookies.size());
-		            for (int i = 0; i < cookies.size(); i++) {
-		                Cookie cookie = cookies.get(i);
-		                Log.e("CustomHttpClient","Local cookie: " + cookie);
-		                //mSessionCookie = cookie;
-		                Log.e("CustomHttpClient",""+cookie.getValue());
-		            }
                 httpget.getRequestLine();
                 uriInfo = httpget.getURI();                    
+                break;
+            case PUT_TASK:
+                HttpPut httpput = new HttpPut(url);
+                response = httpclient.execute(httpput);//response = httpclient.execute(httpput,localContext);
+                responseCode = response.getStatusLine().getStatusCode();
+                httpput.getRequestLine();
+                uriInfo = httpput.getURI();                    
                 break;
             }
         } catch (Exception e) {

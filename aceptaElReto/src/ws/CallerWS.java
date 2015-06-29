@@ -44,11 +44,29 @@ public class CallerWS {
 
         wst = new WebServiceTask(WebServiceTask.POST_TASK, frag, "POSTINGting data...");
         wst.showProgressDialog();
+        for(int i=0;i<this.path.getParamsNames().size();i++){
+        	wst.addNameValuePair(this.path.getParamsNames().get(i), this.path.getParamsValues().get(i));
+        }
         wst.execute(new String[] {  this.path.getQuery() });
         
         String out=null;
         while(out==null){
         	
+        	out=wst.getResponse();
+        }
+        return out;
+	}
+	public String outCall(Activity frag){
+
+        wst = new WebServiceTask(WebServiceTask.PUT_TASK, frag, "PUTTINGting data...");
+        wst.showProgressDialog();
+        for(int i=0;i<this.path.getParamsNames().size();i++){
+        	wst.addNameValuePair(this.path.getParamsNames().get(i), this.path.getParamsValues().get(i));
+        }
+        wst.execute(new String[] {  this.path.getQuery() });
+        
+        String out=null;
+        while(out==null){
         	out=wst.getResponse();
         }
         return out;
