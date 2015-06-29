@@ -2,7 +2,8 @@ package acr.estructuras;
 
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
+
+import org.simpleframework.xml.Element;
 
 public class LinkedListWSType {
 	public String nextLink;
@@ -12,7 +13,7 @@ public class LinkedListWSType {
 	private int size;
 	private int start;
 	
-	@XmlElement(name="nextLink")
+	@Element(name="nextLink")
 	public String getNextLink() {
 		return nextLink;
 	}
@@ -21,7 +22,7 @@ public class LinkedListWSType {
 		this.nextLink = nextLink;
 	}
 
-	@XmlElement(name="prevLink")
+	@Element(name="prevLink")
 	public String getPrevLink() {
 		return prevLink;
 	}

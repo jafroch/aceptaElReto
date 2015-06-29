@@ -1,8 +1,7 @@
 package acr.estructuras;
 
 import java.util.List;
-
-import javax.xml.bind.annotation.XmlRootElement;
+import org.simpleframework.xml.Root;
 
 /**
  * Clase usada por los WS cuando tienen que responder con
@@ -14,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Marco Antonio Gomez Martin
  */
-@XmlRootElement(name="category")
+@Root(name="category")
 public class CategoryWSType {
 	
 	/**

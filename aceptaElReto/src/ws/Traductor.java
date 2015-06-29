@@ -1,4 +1,4 @@
-package WS;
+package ws;
 
 import java.io.StringReader;
 import java.lang.reflect.Type;

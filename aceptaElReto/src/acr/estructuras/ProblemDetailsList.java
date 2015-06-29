@@ -3,8 +3,9 @@ package acr.estructuras;
 import java.util.List;
 
 import javax.ws.rs.core.UriInfo;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 
 
@@ -14,14 +15,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  * @author Marco Antonio Gomez Martin
  */
-@XmlRootElement(name="problemList")
+@Root(name="problemList")
 public class ProblemDetailsList extends ResponseList<ProblemWSType> {
 	
 	public ProblemDetailsList() {}
 	public ProblemDetailsList(List<ProblemWSType> l) { super(l); }
 	public ProblemDetailsList(List<ProblemWSType> l, UriInfo uri) { super(l, uri); }
 
-	@XmlElement(name="problem")
+	@Element(name="problem")
 	public List<ProblemWSType> getProblems() {
 		return internalList;
 	}

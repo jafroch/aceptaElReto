@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE RelativeLayout>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.aceptaelreto"
     android:versionCode="8"
@@ -30,9 +31,7 @@
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="com.google.android.gms.version"
-            />
+        
     </application>
 
     <!--

@@ -2,12 +2,12 @@ package acr.estructuras;
 
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementArray;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.ElementListUnion;
+import org.simpleframework.xml.Root;
 
 /**
  * Clase devuelta por el servicio Web de login para
@@ -16,7 +16,7 @@ import org.simpleframework.xml.ElementListUnion;
  *
  * @author Marco Antonio Gomez Martin
  */
-@XmlRootElement(name="sessionInfo")
+@Root(name="sessionInfo")
 public class NewSession {
 
 	// Token de la sesión

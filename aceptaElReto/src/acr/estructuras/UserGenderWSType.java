@@ -3,8 +3,7 @@
  */
 package acr.estructuras;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlType;
+import org.simpleframework.xml.Root;
 
 /**
  * Género de un usuario
@@ -12,8 +11,7 @@ import javax.xml.bind.annotation.XmlType;
  * @author Marco Antonio Gomez Martin
  *
  */
-@XmlType(name = "Gender")
-@XmlEnum
+@Root(name = "Gender")
 public enum UserGenderWSType {
 	
 	MALE,

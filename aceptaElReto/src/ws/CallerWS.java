@@ -1,4 +1,4 @@
-package WS;
+package ws;
 
 import android.app.Activity;
 import android.app.Fragment;

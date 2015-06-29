@@ -1,18 +1,19 @@
 package acr.estructuras;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 /**
  * Clase que representa un problema.
  *
  * @author Marco Antonio Gomez Martin
  */
-@XmlRootElement(name="problem")
+@Root(name="problem")
 public class ProblemWSType {
 
 	// Código/número de problema
-	@XmlElement(name="num")	
+	@Element(name="num")	
 	public Integer num;
 
 	// Nombre del problema

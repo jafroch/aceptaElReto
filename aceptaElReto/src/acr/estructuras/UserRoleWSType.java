@@ -3,8 +3,8 @@
  */
 package acr.estructuras;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import org.simpleframework.xml.Root;
 
 /**
  * Clase utilizada por los servicios web para devolver o recibir
@@ -12,8 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  * @author Marco Antonio Gomez Martin
  */
-@XmlRootElement(name="role")
-@XmlEnum
+@Root(name="role")
 public enum UserRoleWSType {
 
 	// IMPORTANTE: no deben cambiarse para que el marshalling

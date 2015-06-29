@@ -6,7 +6,10 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
-import javax.xml.bind.annotation.XmlElement;
+
+
+
+import org.simpleframework.xml.Element;
 
 /**
  * Clase genÃ©rica de lista que se devuelve en los servicios Web; tiene
@@ -24,7 +27,7 @@ import javax.xml.bind.annotation.XmlElement;
  * - AÃ±adir un mÃ©todo para acceder a la propiedad de la lista, indicando
  * con una anotaciÃ³n el nombre que tendrÃ¡ en el XML:
  * 
- * 	@XmlElement(name="submission")
+ * 	@Element(name="submission")
  * public List<X> getSubmissions() {
  * 		return internalList;
  * 	} 
@@ -122,7 +125,7 @@ public class ResponseList<T> {
 	
 	String prevLink;
 	
-	@XmlElement(name="nextLink")
+	@Element(name="nextLink")
 	public String getNextLink() {
 		return nextLink;
 	}
@@ -131,7 +134,7 @@ public class ResponseList<T> {
 		this.nextLink = nextLink;
 	}
 
-	@XmlElement(name="prevLink")
+	@Element(name="prevLink")
 	public String getPrevLink() {
 		return prevLink;
 	}

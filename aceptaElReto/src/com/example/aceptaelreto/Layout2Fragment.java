@@ -1,9 +1,9 @@
 package com.example.aceptaelreto;
 
-import WS.CallerWS;
-import WS.Traductor;
-import WS.WSquery;
-import WS.WebServiceTask;
+import ws.CallerWS;
+import ws.Traductor;
+import ws.WSquery;
+import ws.WebServiceTask;
 
 import java.util.ArrayList;
 import java.util.List;
