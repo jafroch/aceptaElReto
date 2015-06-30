@@ -1,6 +1,8 @@
 package ws;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -17,6 +19,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.cookie.Cookie;
+import org.apache.http.cookie.CookieOrigin;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -24,6 +27,7 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
@@ -33,6 +37,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 
 
 
@@ -53,10 +59,20 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
     private String processMessage = "Processing...";
     private ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
     private ProgressDialog pDlg = null;
-    private String Response;
+    
+    
+    public String getFileName() {
+		return FileName;
+	}
+	public void setFileName(String fileName) {
+		FileName = fileName;
+	}
+	private String Response;
     private LoginActivity activity;
 	private String  id = "2015-2015";
+	private String tokenSession;
     private URI uriInfo;
+    private String FileName;
 
     public WebServiceTask(int taskType, Context mContext, String processMessage) {
 
@@ -64,6 +80,7 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
         this.mContext = mContext;
         this.processMessage = processMessage;
     }
+    
 
     public void addNameValuePair(String name, String value) {
         params.add(new BasicNameValuePair(name, value));
@@ -138,7 +155,9 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
         // Create local HTTP context
         //HttpContext localContext = new BasicHttpContext();
         // Bind custom cookie store to the local context
-        //localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);        
+        //localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore); 
+        //CookieManager cookieManager= CookieManager.getInstance();
+     
         HttpResponse response = null;        
         try {
             switch (taskType) {
@@ -170,6 +189,11 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
                 break;
             case PUT_TASK:
                 HttpPut httpput = new HttpPut(url);
+                File file = new File(this.FileName);
+                InputStreamEntity reqEntity = new InputStreamEntity(new FileInputStream(file), -1);
+                reqEntity.setContentType("binary/octet-stream");
+                reqEntity.setChunked(true); // Send in multiple parts if needed
+                httpput.setEntity(reqEntity);
                 response = httpclient.execute(httpput);//response = httpclient.execute(httpput,localContext);
                 responseCode = response.getStatusLine().getStatusCode();
                 httpput.getRequestLine();

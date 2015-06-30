@@ -25,6 +25,7 @@ public class WSquery {
 	private String query;
 	private String str="?start=";
 	private String size="&size=";
+	private String file;
 	public enum type{
 		allproblems,
 		best,
@@ -83,5 +84,14 @@ public class WSquery {
 	}
 	public ArrayList<String> getParamsValues(){
 		return this.paramsValues;
+	}
+	public void setFile(String name){
+		this.file=name;
+	}
+	public String getFile(){
+		return this.file;
+	}
+	public void addFiletoPath(){
+		this.query=this.query+this.file+"/";
 	}
 }

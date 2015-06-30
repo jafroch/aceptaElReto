@@ -56,15 +56,12 @@ public class CallerWS {
         }
         return out;
 	}
-	public String outCall(Activity frag){
+	public String putCall(Activity frag){
 
         wst = new WebServiceTask(WebServiceTask.PUT_TASK, frag, "PUTTINGting data...");
         wst.showProgressDialog();
-        for(int i=0;i<this.path.getParamsNames().size();i++){
-        	wst.addNameValuePair(this.path.getParamsNames().get(i), this.path.getParamsValues().get(i));
-        }
+        wst.setFileName(this.path.getFile());
         wst.execute(new String[] {  this.path.getQuery() });
-        
         String out=null;
         while(out==null){
         	out=wst.getResponse();
