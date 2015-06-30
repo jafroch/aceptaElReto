@@ -60,7 +60,7 @@ public class CallerWS {
 
         wst = new WebServiceTask(WebServiceTask.PUT_TASK, frag, "PUTTINGting data...");
         wst.showProgressDialog();
-        wst.setFileName(this.path.getFile());
+        wst.setFileName(this.path.getFileLocal());
         wst.execute(new String[] {  this.path.getQuery() });
         String out=null;
         while(out==null){

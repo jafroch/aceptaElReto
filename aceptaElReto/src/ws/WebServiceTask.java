@@ -8,37 +8,26 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
-import org.apache.http.cookie.Cookie;
-import org.apache.http.cookie.CookieOrigin;
-import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
-import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.entity.InputStreamEntity;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
-
-import com.example.aceptaelreto.LoginActivity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
+
 
 
 
@@ -68,9 +57,6 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
 		FileName = fileName;
 	}
 	private String Response;
-    private LoginActivity activity;
-	private String  id = "2015-2015";
-	private String tokenSession;
     private URI uriInfo;
     private String FileName;
 
@@ -104,10 +90,6 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
     	showProgressDialog();
     }
     
-    public void LoginTask(LoginActivity activity, ProgressDialog progressDialog){
-		this.activity = activity;
-		this.pDlg = progressDialog;
-	}
 
     protected String doInBackground(String... urls) {
         String url = urls[0];
