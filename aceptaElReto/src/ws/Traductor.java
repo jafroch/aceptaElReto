@@ -8,7 +8,6 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
@@ -17,12 +16,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-
-
-
-
-
-
 
 import acr.estructuras.*;
 
@@ -54,7 +47,12 @@ public class Traductor {
 		// TODO Auto-generated constructor stub
 		this.JSON=json;
 	}
-
+	public UserWSType getUser(){
+		Gson gson = new GsonBuilder().create();
+    	JsonParser parser = new JsonParser();
+    	JsonObject data = parser.parse(this.JSON).getAsJsonObject();
+    	return gson.fromJson(data, UserWSType.class);
+	}
 	public NewSession getSession() throws Exception{
 		
 		Serializer serial = new Persister();
