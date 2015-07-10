@@ -23,15 +23,15 @@ public class InstitutionWSType {
 	public String name;
 	
 	// Pais
-	@Element
+	@Element(required = false)
 	public CountryWSType country;
 	
 	// URL
-	@Element(name="url")
+	@Element(name="url", required = false)
 	public String url;
 	
 	/** Ruta al fichero con el logo. */
-	@Element(name="logo")
+	@Element(name="logo", required = false)
 	public String logo;
 
 	/** Constructor sin parámetros. No inicializa nada...
