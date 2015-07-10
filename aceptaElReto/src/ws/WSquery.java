@@ -79,7 +79,6 @@ public class WSquery {
 		this.paramsNames.add(name);
 		this.paramsValues.add(value);
 	}
-	
 	public ArrayList<String> getParamsNames(){
 		return this.paramsNames;
 	}

@@ -47,53 +47,101 @@ public class Traductor {
 		// TODO Auto-generated constructor stub
 		this.JSON=json;
 	}
-	public UserWSType getUser(){
+	public UserWSType getUser() throws Exception{
+		if(this.JSON.startsWith("<?xml")){
+			Serializer serial = new Persister();
+			UserWSType data = serial.read(UserWSType.class, this.JSON);
+	    	return data;
+		}else{
 		Gson gson = new GsonBuilder().create();
     	JsonParser parser = new JsonParser();
     	JsonObject data = parser.parse(this.JSON).getAsJsonObject();
     	return gson.fromJson(data, UserWSType.class);
+		}
 	}
 	public NewSession getSession() throws Exception{
-		
-		Serializer serial = new Persister();
-		NewSession session = serial.read(NewSession.class, this.JSON);
-    	return session;
+		if(this.JSON.contains("<?xml")){
+			Serializer serial = new Persister();
+			NewSession data = serial.read(NewSession.class, this.JSON);
+	    	return data;
+		}else{
+			Gson gson = new GsonBuilder().create();
+	    	JsonParser parser = new JsonParser();
+	    	JsonObject data = parser.parse(this.JSON).getAsJsonObject();
+	    	return gson.fromJson(data, NewSession.class);
+		}
 	}
-	public CategoryWSType getCategoria(){
+	public CategoryWSType getCategoria() throws Exception{
+		if(this.JSON.contains("<?xml")){
+			Serializer serial = new Persister();
+			CategoryWSType data = serial.read(CategoryWSType.class, this.JSON);
+	    	return data;
+		}else{
 		Gson gson = new GsonBuilder().create();
     	JsonParser parser = new JsonParser();
     	JsonObject data = parser.parse(this.JSON).getAsJsonObject();
     	return gson.fromJson(data, CategoryWSType.class);
+		}
 	}
-	public CountryWSType getPais(){
+	public CountryWSType getPais() throws Exception{
+		if(this.JSON.contains("<?xml")){
+			Serializer serial = new Persister();
+			CountryWSType data = serial.read(CountryWSType.class, this.JSON);
+	    	return data;
+		}else{
 		Gson gson = new GsonBuilder().create();
     	JsonParser parser = new JsonParser();
     	JsonObject data = parser.parse(this.JSON).getAsJsonObject();
     	return gson.fromJson(data, CountryWSType.class);
 	}
-	public ProblemDetailsList getListaDetalles(){
+	}
+	public ProblemDetailsList getListaDetalles() throws Exception{
+		if(this.JSON.contains("<?xml")){
+			Serializer serial = new Persister();
+			ProblemDetailsList data = serial.read(ProblemDetailsList.class, this.JSON);
+	    	return data;
+		}else{
 		Gson gson = new GsonBuilder().create();
     	JsonParser parser = new JsonParser();
     	JsonObject data = parser.parse(this.JSON).getAsJsonObject();
     	return gson.fromJson(data, ProblemDetailsList.class);
+		}
 	}
-	public ProblemWSType getProblema(){
+	public ProblemWSType getProblema()throws Exception{
+		if(this.JSON.contains("<?xml")){
+			Serializer serial = new Persister();
+			ProblemWSType data = serial.read(ProblemWSType.class, this.JSON);
+	    	return data;
+		}else{
 		Gson gson = new GsonBuilder().create();
     	JsonParser parser = new JsonParser();
     	JsonObject data = parser.parse(this.JSON).getAsJsonObject();
     	return gson.fromJson(data, ProblemWSType.class);
+		}
 	}
-	public UserGenderWSType getGenero(){
+	public UserGenderWSType getGenero()throws Exception{
+		if(this.JSON.contains("<?xml")){
+			Serializer serial = new Persister();
+			UserGenderWSType data = serial.read(UserGenderWSType.class, this.JSON);
+	    	return data;
+		}else{
 		Gson gson = new GsonBuilder().create();
     	JsonParser parser = new JsonParser();
     	JsonObject data = parser.parse(this.JSON).getAsJsonObject();
     	return gson.fromJson(data, UserGenderWSType.class);
+		}
 	}
-	public UserRoleWSType getRol(){
+	public UserRoleWSType getRol()throws Exception{
+		if(this.JSON.contains("<?xml")){
+			Serializer serial = new Persister();
+			UserRoleWSType data = serial.read(UserRoleWSType.class, this.JSON);
+	    	return data;
+		}else{
 		Gson gson = new GsonBuilder().create();
     	JsonParser parser = new JsonParser();
     	JsonObject data = parser.parse(this.JSON).getAsJsonObject();
     	return gson.fromJson(data, UserRoleWSType.class);
+		}
 	}
 
 	public ArrayList<CategoryWSType> getCategorias(){
