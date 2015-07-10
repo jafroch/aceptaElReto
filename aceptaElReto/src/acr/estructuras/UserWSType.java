@@ -46,7 +46,7 @@ public class UserWSType {
 
 	// Institución a la que pertenece
 	@Element(name="institution",required = false)
-	public String institution;
+	public InstitutionWSType institution;
 		
 	// Tipo de notificación por mail utilizada
 	@Element(name="mailNotification",required = false)
