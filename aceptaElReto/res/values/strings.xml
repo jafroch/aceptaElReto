@@ -2,10 +2,11 @@
 <resources>
 
     <string name="app_name">aceptaElReto</string>
+    <string name="title_section0">Inicio</string>
     <string name="title_section1">Perfil</string>
-    <string name="title_section2">Subir</string>
+    <string name="title_section2">Últimos Envíos</string>
     <string name="title_section3">Problemas</string>
-    <string name="title_section4">Ultimos Enviados</string>
+    <string name="title_section4">Mis Problemas</string>
     <string name="title_section5">Estadisticas</string>
     <string name="title_section6">Documentacion</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -14,24 +15,22 @@
     <string name="action_settings">Settings</string>
     <string name="description_image_profile">Imagen del Usuario</string>
     <string-array name="perfil_atb">
-        <item>Email</item>
+        <item>Id</item>
         <item>Nick</item>
         <item>Nombre</item>
-        <item>Fecha de Nacimiento</item>
         <item>País</item>
-        <item>Género</item>
         <item>Institución</item>  
     </string-array>
     <string-array name="perfil_atb_values">
-        <item>Email</item>
+        <item>Id</item>
         <item>Nick</item>
         <item>Nombre</item>
-        <item>Fecha de Nacimiento</item>
         <item>País</item>
-        <item>Género</item>
-        <item>Institución</item>  
+        <item>Institución</item> 
     </string-array>
     <string name="id">Id</string>  
     <string name="valor">Valor</string>
+    <string name="AER">Acepta el Reto</string>
+    <string name="registrate">¡Registrate!</string>
 
 </resources>

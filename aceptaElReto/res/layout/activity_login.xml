@@ -8,9 +8,22 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/background"
     tools:context=".LoginActivity" >
 
     <!-- Login progress -->
+    
+    <TextView
+	        android:id="@+id/textReg"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="30dp"
+	        android:text="@string/AER"
+	        android:textColor="@color/white"
+	        android:gravity="center"
+	        android:textSize="40sp" />
+    
+    
 
     <ProgressBar
         android:id="@+id/login_progress"
@@ -38,7 +51,9 @@
                 android:hint="@string/prompt_email"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true" 
+                android:layout_marginTop="60dp"
+                style="@style/TextView.Black"/>
 
             <EditText
                 android:id="@+id/password"
@@ -50,17 +65,35 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true" 
+                android:layout_marginTop="10dp"
+                style="@style/TextView.Black"/>
 
             <Button
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/action_sign_in_short"
                 android:textStyle="bold" />
+            
+           <TextView
+	        android:id="@+id/textRegistrate"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="30dp"
+	        android:padding="5dp"
+	        android:ems="10"
+	        android:text="@string/registrate"
+	        android:textColor="@color/white"
+	        android:gravity="center"
+	        android:textSize="30sp" 
+	        />
+            
         </LinearLayout>
     </ScrollView>
 
+     
+    
 </LinearLayout>
