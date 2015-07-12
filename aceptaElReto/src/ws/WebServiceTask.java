@@ -80,9 +80,7 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
         pDlg.setCancelable(false);
         pDlg.show();
     }
-    public void setShowPDLG(){
-    	pDlg.show();
-    }
+    
 
     @Override
     protected void onPreExecute() {

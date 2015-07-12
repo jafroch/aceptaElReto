@@ -31,27 +31,22 @@ public class CallerWS {
 	public String getCall(Activity frag){
 
         wst = new WebServiceTask(WebServiceTask.GET_TASK, frag, "GETting data...");
-        wst.showProgressDialog();
         wst.execute(new String[] { this.path.getQuery() });
         String out=null;
         while(out==null){
         	out=wst.getResponse();
         }
         return out;
-        
 	}
 	public String postCall(Activity frag){
 
         wst = new WebServiceTask(WebServiceTask.POST_TASK, frag, "POSTINGting data...");
-        wst.showProgressDialog();
         for(int i=0;i<this.path.getParamsNames().size();i++){
         	wst.addNameValuePair(this.path.getParamsNames().get(i), this.path.getParamsValues().get(i));
         }
         wst.execute(new String[] {  this.path.getQuery() });
-        
         String out=null;
         while(out==null){
-        	
         	out=wst.getResponse();
         }
         return out;
@@ -59,7 +54,6 @@ public class CallerWS {
 	public String putCall(Activity frag){
 
         wst = new WebServiceTask(WebServiceTask.PUT_TASK, frag, "PUTTINGting data...");
-        wst.showProgressDialog();
         wst.setFileName(this.path.getFileLocal());
         wst.execute(new String[] {  this.path.getQuery() });
         String out=null;
