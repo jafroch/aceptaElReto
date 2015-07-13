@@ -9,24 +9,33 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
 
+import javax.ws.rs.core.Cookie;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
 import org.apache.http.entity.InputStreamEntity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 
 
 
@@ -49,6 +58,10 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
     private ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
     private ProgressDialog pDlg = null;
     
+    private HttpContext localContext=null;
+    private CookieStore cookieStore;
+    private String token="";
+    
     
     public String getFileName() {
 		return FileName;
@@ -60,11 +73,12 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
     private URI uriInfo;
     private String FileName;
 
-    public WebServiceTask(int taskType, Context mContext, String processMessage) {
+    public WebServiceTask(int taskType, Context mContext, String processMessage,String token) {
 
         this.taskType = taskType;
         this.mContext = mContext;
         this.processMessage = processMessage;
+        this.token=token;
     }
     
 
@@ -137,6 +151,10 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
         // Bind custom cookie store to the local context
         //localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore); 
         //CookieManager cookieManager= CookieManager.getInstance();
+        
+        Cookie c = new Cookie("acrsession", this.token);
+      
+        this.cookieStore.addCookie((org.apache.http.cookie.Cookie) c);
      
         HttpResponse response = null;        
         try {
@@ -152,7 +170,7 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
     				pDlg.setMessage("Logging in.. ("+(executeCount+1)+"/5)");
     				// Execute HTTP Post Request
     				executeCount++;
-    				response = httpclient.execute(httppost);//response = httpclient.execute(httppost,localContext);
+    				response = httpclient.execute(httppost,localContext);
     				responseCode = response.getStatusLine().getStatusCode();   			
     				// If you want to see the response code, you can Log it
     				// out here by calling:
@@ -162,7 +180,7 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
                 break;
             case GET_TASK:
                 HttpGet httpget = new HttpGet(url);
-                response = httpclient.execute(httpget);//response = httpclient.execute(httpget,localContext);
+                response = httpclient.execute(httpget,localContext);
                 responseCode = response.getStatusLine().getStatusCode();
                 httpget.getRequestLine();
                 uriInfo = httpget.getURI();                    
@@ -174,7 +192,7 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
                 reqEntity.setContentType("binary/octet-stream");
                 reqEntity.setChunked(true); // Send in multiple parts if needed
                 httpput.setEntity(reqEntity);
-                response = httpclient.execute(httpput);//response = httpclient.execute(httpput,localContext);
+               response = httpclient.execute(httpput,localContext);
                 responseCode = response.getStatusLine().getStatusCode();
                 httpput.getRequestLine();
                 uriInfo = httpput.getURI();                    
@@ -205,5 +223,16 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
     }
     public String getResponse(){
     	return this.Response;
+    }
+    public HttpContext getLocalContext()
+    {
+        
+		if (localContext == null)
+        {
+            localContext = new BasicHttpContext();
+            cookieStore = new BasicCookieStore();
+            localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);  // to make sure that cookies provided by the server can be reused
+        }
+        return localContext;
     }
 }
