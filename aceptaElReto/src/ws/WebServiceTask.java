@@ -22,6 +22,7 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
@@ -152,9 +153,9 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
         //localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore); 
         //CookieManager cookieManager= CookieManager.getInstance();
         
-        Cookie c = new Cookie("acrsession", this.token);
+       
       
-        this.cookieStore.addCookie((org.apache.http.cookie.Cookie) c);
+        this.cookieStore.addCookie(new BasicClientCookie("acrsession", this.token));
      
         HttpResponse response = null;        
         try {
