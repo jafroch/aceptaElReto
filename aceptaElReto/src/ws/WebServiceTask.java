@@ -152,7 +152,7 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
         // Bind custom cookie store to the local context
         //localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore); 
         //CookieManager cookieManager= CookieManager.getInstance();
-        
+        this.localContext= this.getLocalContext();
        
       
         this.cookieStore.addCookie(new BasicClientCookie("acrsession", this.token));
