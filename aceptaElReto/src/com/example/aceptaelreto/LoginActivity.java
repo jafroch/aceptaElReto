@@ -373,12 +373,15 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
          				// If you want to see the response code, you can Log it
          				// out here by calling:
          				// Log.d("256 Design", "statusCode: " + responseCode)
-         			} while (executeCount < 5 && responseCode == 408);          
+         			} while (executeCount < 5 && responseCode == 404);          
                      
              } catch (Exception e) {
                  Log.e(TAG, e.getLocalizedMessage(), e);
              }
              this.RealResponse=response;
+            		 if(responseCode==404){
+            			 return null;
+            		 }
              return response;
         }
         
