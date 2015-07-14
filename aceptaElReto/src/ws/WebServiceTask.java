@@ -181,6 +181,7 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
                 break;
             case GET_TASK:
                 HttpGet httpget = new HttpGet(url);
+                httpget.setHeader("acrsession", this.token);
                 response = httpclient.execute(httpget,localContext);
                 responseCode = response.getStatusLine().getStatusCode();
                 httpget.getRequestLine();
