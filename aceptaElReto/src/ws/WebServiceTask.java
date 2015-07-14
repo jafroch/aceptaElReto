@@ -152,7 +152,7 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
         // Bind custom cookie store to the local context
         //localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore); 
         //CookieManager cookieManager= CookieManager.getInstance();
-        this.localContext= this.getLocalContext();
+        this.getLocalContext();
        
       
         this.cookieStore.addCookie(new BasicClientCookie("acrsession", this.token));
@@ -181,8 +181,7 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
                 break;
             case GET_TASK:
                 HttpGet httpget = new HttpGet(url);
-                httpget.setHeader("acrsession", this.token);
-                response = httpclient.execute(httpget);//response = httpclient.execute(httpget,localContext);
+                response = httpclient.execute(httpget,localContext);
                 responseCode = response.getStatusLine().getStatusCode();
                 httpget.getRequestLine();
                 uriInfo = httpget.getURI();                    
@@ -233,7 +232,10 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
         {
             localContext = new BasicHttpContext();
             cookieStore = new BasicCookieStore();
-            localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);  // to make sure that cookies provided by the server can be reused
+            localContext.setAttribute(ClientContext.COOKIE_ORIGIN, cookieStore);
+            localContext.setAttribute(ClientContext.COOKIE_SPEC, cookieStore);
+            localContext.setAttribute(ClientContext.COOKIESPEC_REGISTRY, cookieStore);
+            localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);// to make sure that cookies provided by the server can be reused
         }
         return localContext;
     }
