@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 
 
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
@@ -30,6 +31,7 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.entity.InputStreamEntity;
+
 
 
 import android.app.ProgressDialog;
@@ -58,6 +60,9 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
     private String processMessage = "Processing...";
     private ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
     private ProgressDialog pDlg = null;
+    
+    private String Domain="acr2.programame.com";
+    private String path = "/";
     
     private HttpContext localContext=null;
     private CookieStore cookieStore;
@@ -153,9 +158,10 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
         //localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore); 
         //CookieManager cookieManager= CookieManager.getInstance();
         this.localContext=this.getLocalContext();
-       
-       
-        this.cookieStore.addCookie(new BasicClientCookie("acrsession", this.token));
+        BasicClientCookie cookie = new BasicClientCookie("acrsession", this.token);
+        cookie.setDomain(this.Domain);
+        cookie.setPath(this.path);
+        this.cookieStore.addCookie(cookie);
         localContext.setAttribute(ClientContext.COOKIE_STORE, this.cookieStore);
      
         HttpResponse response = null; 
