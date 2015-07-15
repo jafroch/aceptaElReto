@@ -34,7 +34,7 @@ public class WSquery {
 		code,
 		comment,
 		country,
-		currentuser,
+		currentUser,
 		institution,
 		login,
 		paths,

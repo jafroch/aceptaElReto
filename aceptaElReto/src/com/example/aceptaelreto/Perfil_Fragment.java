@@ -111,7 +111,7 @@ public class Perfil_Fragment extends Fragment{
 	
 	public void setPerfil(){
 		
-		path.addType(type.currentuser);
+		path.addType(type.currentUser);
 	    this.ws.setPath(path);
 	    String aux =token.getString("TOKEN");
 		String respuesta = ws.getCall(getActivity(),token.getString("TOKEN"));
