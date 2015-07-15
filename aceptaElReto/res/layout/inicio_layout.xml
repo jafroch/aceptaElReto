@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/defaultBackground">
+    
+   <LinearLayout
+        android:id="@+id/bfield"
+        android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+    	android:layout_marginTop="60dp"
+    	android:layout_centerHorizontal="true"
+    	android:orientation="horizontal">
+    	
+
+   <EditText
+    	android:id="@+id/info_buscar"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:hint="@string/buscarId"
+    	android:inputType="text"
+    	android:textColor="@color/background"/>
+   
+   <Spinner
+   		android:id="@+id/buscar"
+   		android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_toRightOf="@+id/info_buscar"
+    	android:layout_marginLeft="5dp"/>
+   
+   </LinearLayout> 
+   
+   <Button
+        android:id="@+id/bbuscar"
+        style="@style/TextView.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/bfield"
+        android:text="@string/buscar"
+        android:layout_marginTop="10dp"
+        android:visibility="visible" />
+   
+
+</RelativeLayout>

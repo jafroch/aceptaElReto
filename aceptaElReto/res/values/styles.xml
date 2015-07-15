@@ -16,6 +16,7 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    
     <!-- Stilo para la tabla -->
     <style name="etiqueta">  
         <item name="android:typeface">normal</item>  
@@ -23,7 +24,8 @@
         <item name="android:textSize">14dp</item>  
         <item name="android:textStyle">bold</item>  
     </style> 
-      <style name="TextView.Black" parent="@android:attr/textViewStyle">
+    
+    <style name="TextView.Black" parent="@android:attr/textViewStyle">
       <item name="android:layout_width">wrap_content</item>
 	  <item name="android:layout_height">wrap_content</item>
 	  <item name="android:padding">5dp</item>
@@ -32,6 +34,17 @@
 	  <item name="android:textColor">@color/background</item>
 	  <item name="android:textColorHint">@color/background</item>
 	  <item name="android:gravity">center</item>
-  </style> 
+   </style> 
+ 
+    <!-- 
+    <style name="CustomActionBarTheme" parent="@android:Theme.Holo">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:actionMenuTextColor">@color/black</item>
+    </style>
 
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/defaultBackground</item>
+    </style>
+ 	-->
+ 	
 </resources>

@@ -57,6 +57,8 @@ public class MainActivity extends ActionBarActivity implements
      ListView drawerList;
      GridView tablaPerfil;
      public String Token;
+     public static String myId;
+     Bundle args;
      
      //Problemas prueba
    //the images to display
@@ -89,24 +91,8 @@ public class MainActivity extends ActionBarActivity implements
 			String login = (String) myIntent.getExtras().get("LoginResponse");
 			Traductor trad = new Traductor(login);
 			this.Token= trad.getSession().token;
-			
-			//--------------------------------------------------------------------------------------------------------------
-		  
-				//URL Perfil
-			 	CallerWS perfil = new CallerWS();     
-			 	WSquery query = perfil.getPath();
-		       query.addType(type.user);
-		       query.addID(50);
-			   String respuesta = perfil.getCall(this);
-			   Traductor tradu = new Traductor(respuesta);
-			     
-			   opcperfil[0] = String.valueOf(trad.getUser().id);
-			   opcperfil[1] = tradu.getUser().nick;
-			   opcperfil[2] = tradu.getUser().name;
-			   opcperfil[3] = tradu.getUser().country.name;
-			   opcperfil[4] = query.getQuery();       
-			   Log.i("Ayuda",respuesta);
-		   	 //----------------------------------------------------------------------------------------------------------------
+			args = new Bundle();
+			args.putString("TOKEN",Token);
 			
 			
 		} catch (Exception e) {
@@ -115,7 +101,6 @@ public class MainActivity extends ActionBarActivity implements
 		}
 	}
 	
-
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 		  // update the main content by replacing fragments
@@ -127,12 +112,14 @@ public class MainActivity extends ActionBarActivity implements
 		      PlaceholderFragment.newInstance(position + 1)).commit();
 		      break;
 		    case 2:
-		      fragmentManager.beginTransaction().replace(R.id.container,
-		  	  Perfil_Fragment.newInstance(position + 1)).commit();
+		      Fragment profile = new Perfil_Fragment().newInstance(position + 1);
+		      profile.setArguments(args);
+		      fragmentManager.beginTransaction().add(R.id.container,
+		  	  profile).commit();
 		      break;
 		    case 3:
 		      fragmentManager.beginTransaction().replace(R.id.container,
-		      Layout1Fragment.newInstance(position + 1)).commit();
+		      Inicio_Fragment.newInstance(position + 1)).commit();
 		      break;
 		    case 4:
 			  fragmentManager.beginTransaction().replace(R.id.container,

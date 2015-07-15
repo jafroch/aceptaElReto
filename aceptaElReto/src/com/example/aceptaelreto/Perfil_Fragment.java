@@ -11,6 +11,7 @@ import ws.CallerWS;
 import ws.Traductor;
 import ws.WSquery;
 import ws.WSquery.type;
+//import com.example.aceptaelreto.MainActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -55,6 +56,7 @@ public class Perfil_Fragment extends Fragment{
 	private TextView txtInstitucion;
 	private Button btnEditProfile;
 	private NetworkImageView img;
+	private Bundle token;
 	
     public static Perfil_Fragment newInstance(int sectionNumber) {
         Perfil_Fragment fragment = new Perfil_Fragment();
@@ -72,7 +74,8 @@ public class Perfil_Fragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.perfil_info, container, false);
+		token = this.getArguments();
+		View rootView = inflater.inflate(R.layout.perfil_info, container, false);
         
         txtNick = (TextView)rootView.findViewById(R.id.txtNick);
         txtCorreo = (TextView)rootView.findViewById(R.id.txtCorreo);
@@ -82,8 +85,7 @@ public class Perfil_Fragment extends Fragment{
 		txtPais = (TextView)rootView.findViewById(R.id.txtPais);
 		txtInstitucion = (TextView)rootView.findViewById(R.id.txtInstitucion);
 		img = (NetworkImageView)rootView.findViewById(R.id.avatar);
-		
-		//btnEditProfile = (Button)rootView.findViewById(R.id.btnEditProfile);
+		btnEditProfile = (Button)rootView.findViewById(R.id.btnEditProfile);
 		/*btnEditProfile.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -109,10 +111,10 @@ public class Perfil_Fragment extends Fragment{
 	
 	public void setPerfil(){
 		
-		path.addType(type.user);
-	    path.addID(50);
+		path.addType(type.currentuser);
 	    this.ws.setPath(path);
-		String respuesta = ws.getCall(getActivity());
+	    String aux =token.getString("TOKEN");
+		String respuesta = ws.getCall(getActivity(),token.getString("TOKEN"));
 		Traductor tradu = new Traductor(respuesta);
 		UserWSType perfil = null;
 		try{
@@ -122,27 +124,25 @@ public class Perfil_Fragment extends Fragment{
 			e.printStackTrace();
 		}
 		
-		/*
-		if (perfil.role.name()!=null){
+		/* Problema con quedarme logueado mientras
+		
 			String DATE_FORMAT = "dd/MM/yyyy";
 			Date date = perfil.birthday;
 			SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
 			this.txtNacimiento.setText(sdf.format(date));
 			this.txtCorreo.setText("Correo: "+perfil.email);
-		}
-		else{
+		
 			this.txtNacimiento.setText(" ");
 			this.txtCorreo.setText(" ");
-		}*/
+		*/
 		RequestQueue requestQueueImagen = Volley.newRequestQueue(getActivity().getApplicationContext());
 		ImageLoader imageLoader = new ImageLoader(requestQueueImagen, new BitmapLRUCache());
 		img.setImageUrl(perfil.avatar, imageLoader);
 		this.txtNacimiento.setText("Fecha de Nacimiento: ");
-		this.txtCorreo.setText("Correo: ");
-		this.txtGenero.setText("Género: ");
+		this.txtCorreo.setText("Correo: "+perfil.email);
 		this.txtNick.setText("Nick: "+perfil.nick);	
 		this.txtNombreCompleto.setText("Nombre: "+perfil.name);
-		//this.txtGenero.setText("Genero: "+perfil.gender.name());
+		//this.txtGenero.setText("Genero: "+perfil.gender);
 		this.txtPais.setText("País: "+perfil.country.name);
 		this.txtInstitucion.setText("Institución: "+perfil.institution.name);
 		

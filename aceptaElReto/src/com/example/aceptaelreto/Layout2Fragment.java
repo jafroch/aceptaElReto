@@ -78,7 +78,7 @@ public class Layout2Fragment extends Fragment {
        this.ws.setPath(path);
       
        
-       String salida = this.ws.postCall(this.getActivity());
+      /* String salida = this.ws.postCall(this.getActivity());
        Traductor traductor = new Traductor(salida);
        NewSession sesion = null;
       try {
@@ -89,7 +89,7 @@ public class Layout2Fragment extends Fragment {
       }
        this.textoSalida.setText(salida);
 	
-       
+       */
         
     }
  

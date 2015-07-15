@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/defaultBackground"
+    tools:context="com.example.aceptaelreto.Perfil_Fragment">
     
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/avatar"
@@ -80,7 +81,7 @@
         android:textSize="18sp"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black" />
-    <!--  
+      
     <Button
         android:id="@+id/btnEditProfile"
         android:layout_width="20dp"
@@ -89,6 +90,6 @@
         android:visibility="visible"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true" />
-	-->
+	
     
 </RelativeLayout>

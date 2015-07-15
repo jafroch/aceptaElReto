@@ -21,16 +21,15 @@
         <item>País</item>
         <item>Institución</item>  
     </string-array>
-    <string-array name="perfil_atb_values">
-        <item>Id</item>
-        <item>Nick</item>
-        <item>Nombre</item>
-        <item>País</item>
-        <item>Institución</item> 
+    <string-array name="buscar_opc">
+        <item>Problema</item>
+        <item>Usuario</item>
     </string-array>
     <string name="id">Id</string>  
     <string name="valor">Valor</string>
     <string name="AER">Acepta el Reto</string>
     <string name="registrate">¡Registrate!</string>
+    <string name="buscarId">Id Problema o Usuario</string>
+    <string name="buscar">Buscar</string>
 
 </resources>
