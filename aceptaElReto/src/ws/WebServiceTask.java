@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
 
-import javax.ws.rs.core.Cookie;
+
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -31,12 +31,12 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.entity.InputStreamEntity;
 
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
+
 
 
 
@@ -157,7 +157,7 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
       
         this.cookieStore.addCookie(new BasicClientCookie("acrsession", this.token));
      
-        HttpResponse response = null;        
+        HttpResponse response = null; 
         try {
             switch (taskType) {
 
