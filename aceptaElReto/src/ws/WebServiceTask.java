@@ -154,8 +154,9 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
         //CookieManager cookieManager= CookieManager.getInstance();
         this.localContext=this.getLocalContext();
        
-      
+       
         this.cookieStore.addCookie(new BasicClientCookie("acrsession", this.token));
+        localContext.setAttribute(ClientContext.COOKIE_STORE, this.cookieStore);
      
         HttpResponse response = null; 
         try {
