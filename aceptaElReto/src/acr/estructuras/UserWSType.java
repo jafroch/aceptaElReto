@@ -65,7 +65,7 @@ public class UserWSType {
 	public Date registrationDate;
 	
 	// Lista de permisos
-	@ElementList(name = "accessList",required = false)
+	@ElementListUnion(value = { @ElementList })
 	public List<String> accessList;
 	
 	/** Ruta (URL) al fichero con el logo. */

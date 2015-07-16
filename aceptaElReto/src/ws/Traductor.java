@@ -2,14 +2,19 @@ package ws;
 
 import java.io.StringReader;
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.transform.RegistryMatcher;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -31,6 +36,7 @@ public class Traductor {
 	 * queremos.
 	 */
 		String JSON;
+		private RegistryMatcher m;
 		
 		
 	public String getJSON() {
@@ -45,11 +51,17 @@ public class Traductor {
 
 	public Traductor(String json) {
 		// TODO Auto-generated constructor stub
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZ", Locale.US);
+		m = new RegistryMatcher();
+		m.bind(Date.class, new DateFormatTransformer(format));
+		
+		
 		this.JSON=json;
+		
 	}
 	public UserWSType getUser() throws Exception{
 		if(this.JSON.startsWith("<?xml")){
-			Serializer serial = new Persister();
+			Serializer serial = new Persister(m);
 			UserWSType data = serial.read(UserWSType.class, this.JSON);
 	    	return data;
 		}else{
@@ -61,7 +73,7 @@ public class Traductor {
 	}
 	public NewSession getSession() throws Exception{
 		if(this.JSON.contains("<?xml")){
-			Serializer serial = new Persister();
+			Serializer serial = new Persister(m);
 			NewSession data = serial.read(NewSession.class, this.JSON);
 	    	return data;
 		}else{
@@ -73,7 +85,7 @@ public class Traductor {
 	}
 	public CategoryWSType getCategoria() throws Exception{
 		if(this.JSON.contains("<?xml")){
-			Serializer serial = new Persister();
+			Serializer serial = new Persister(m);
 			CategoryWSType data = serial.read(CategoryWSType.class, this.JSON);
 	    	return data;
 		}else{
@@ -85,7 +97,7 @@ public class Traductor {
 	}
 	public CountryWSType getPais() throws Exception{
 		if(this.JSON.contains("<?xml")){
-			Serializer serial = new Persister();
+			Serializer serial = new Persister(m);
 			CountryWSType data = serial.read(CountryWSType.class, this.JSON);
 	    	return data;
 		}else{
@@ -97,7 +109,7 @@ public class Traductor {
 	}
 	public ProblemDetailsList getListaDetalles() throws Exception{
 		if(this.JSON.contains("<?xml")){
-			Serializer serial = new Persister();
+			Serializer serial = new Persister(m);
 			ProblemDetailsList data = serial.read(ProblemDetailsList.class, this.JSON);
 	    	return data;
 		}else{
@@ -109,7 +121,7 @@ public class Traductor {
 	}
 	public ProblemWSType getProblema()throws Exception{
 		if(this.JSON.contains("<?xml")){
-			Serializer serial = new Persister();
+			Serializer serial = new Persister(m);
 			ProblemWSType data = serial.read(ProblemWSType.class, this.JSON);
 	    	return data;
 		}else{
@@ -121,7 +133,7 @@ public class Traductor {
 	}
 	public UserGenderWSType getGenero()throws Exception{
 		if(this.JSON.contains("<?xml")){
-			Serializer serial = new Persister();
+			Serializer serial = new Persister(m);
 			UserGenderWSType data = serial.read(UserGenderWSType.class, this.JSON);
 	    	return data;
 		}else{
@@ -133,7 +145,7 @@ public class Traductor {
 	}
 	public UserRoleWSType getRol()throws Exception{
 		if(this.JSON.contains("<?xml")){
-			Serializer serial = new Persister();
+			Serializer serial = new Persister(m);
 			UserRoleWSType data = serial.read(UserRoleWSType.class, this.JSON);
 	    	return data;
 		}else{

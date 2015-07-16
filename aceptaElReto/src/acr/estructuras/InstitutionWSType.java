@@ -15,15 +15,15 @@ import org.simpleframework.xml.Root;
 public class InstitutionWSType {
 	
 	// Identificador para referenciarlo rápidamente
-	@Element
+	@Element(name="id")
 	public int id;
 	
 	// Nombre de la institución
-	@Element
+	@Element(name="name")
 	public String name;
 	
 	// Pais
-	@Element(required = false)
+	@Element(name="country",required = false)
 	public CountryWSType country;
 	
 	// URL
