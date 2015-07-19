@@ -1,6 +1,8 @@
 package acr.estructuras;
 
 import java.util.List;
+
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 /**
@@ -42,9 +44,28 @@ public class CategoryWSType {
 	public String desc;
 	
 	/** Lista de categorías hijas */
-	public List<CategoryWSType> subcats;
+	public List<CategoryWSType> subcats_lista;
+	//public CategoryWSType[] subcats;
+
+	public List<CategoryWSType> getSubcats() {
+		return subcats_lista;
+	}
+
+	public void setSubcats(List<CategoryWSType> subcats) {
+		this.subcats_lista = subcats;
+	}
+
+	public List<CategoryWSType> getPath() {
+		return path_lista;
+	}
+
+	public void setPath(List<CategoryWSType> path) {
+		this.path_lista = path;
+	}
+
 
 	/** Lista de problemas directamente pertenecientes a la categoría. */
+	@Element(name="problems", required = false)
 	public ProblemDetailsList problems;
 	
 	/** 
@@ -52,8 +73,9 @@ public class CategoryWSType {
 	 * El primer elemento es la categoría raíz. El último es la
 	 * categoría PADRE al objeto. Contienen únicamente id y name.
 	 */
-	public List<CategoryWSType> path;
-	
+	@Element(name="path", required = false)
+	public List<CategoryWSType> path_lista;
+	//public CategoryWSType[] path;
 
 	// ////
 	// Estadísticas. Son mantenidas por un proceso en segundo plano.
@@ -132,4 +154,165 @@ public class CategoryWSType {
 	 * Está para que funcione el marshall/unmarshall.
 	 */
 	public CategoryWSType() {}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public ProblemDetailsList getProblems() {
+		return problems;
+	}
+
+	public void setProblems(ProblemDetailsList problems) {
+		this.problems = problems;
+	}
+
+	public Integer getNumOfProblems() {
+		return numOfProblems;
+	}
+
+	public void setNumOfProblems(Integer numOfProblems) {
+		this.numOfProblems = numOfProblems;
+	}
+
+	public Integer getNumOfAllProblems() {
+		return numOfAllProblems;
+	}
+
+	public void setNumOfAllProblems(Integer numOfAllProblems) {
+		this.numOfAllProblems = numOfAllProblems;
+	}
+
+	public Integer getTotalSubs() {
+		return totalSubs;
+	}
+
+	public void setTotalSubs(Integer totalSubs) {
+		this.totalSubs = totalSubs;
+	}
+
+	public Integer getAc() {
+		return ac;
+	}
+
+	public void setAc(Integer ac) {
+		this.ac = ac;
+	}
+
+	public Integer getPe() {
+		return pe;
+	}
+
+	public void setPe(Integer pe) {
+		this.pe = pe;
+	}
+
+	public Integer getWa() {
+		return wa;
+	}
+
+	public void setWa(Integer wa) {
+		this.wa = wa;
+	}
+
+	public Integer getTl() {
+		return tl;
+	}
+
+	public void setTl(Integer tl) {
+		this.tl = tl;
+	}
+
+	public Integer getMl() {
+		return ml;
+	}
+
+	public void setMl(Integer ml) {
+		this.ml = ml;
+	}
+
+	public Integer getOl() {
+		return ol;
+	}
+
+	public void setOl(Integer ol) {
+		this.ol = ol;
+	}
+
+	public Integer getRf() {
+		return rf;
+	}
+
+	public void setRf(Integer rf) {
+		this.rf = rf;
+	}
+
+	public Integer getRte() {
+		return rte;
+	}
+
+	public void setRte(Integer rte) {
+		this.rte = rte;
+	}
+
+	public Integer getCe() {
+		return ce;
+	}
+
+	public void setCe(Integer ce) {
+		this.ce = ce;
+	}
+
+	public Integer getIr() {
+		return ir;
+	}
+
+	public void setIr(Integer ir) {
+		this.ir = ir;
+	}
+
+	public Integer getC() {
+		return c;
+	}
+
+	public void setC(Integer c) {
+		this.c = c;
+	}
+
+	public Integer getCpp() {
+		return cpp;
+	}
+
+	public void setCpp(Integer cpp) {
+		this.cpp = cpp;
+	}
+
+	public Integer getJava() {
+		return java;
+	}
+
+	public void setJava(Integer java) {
+		this.java = java;
+	}
+	
 }

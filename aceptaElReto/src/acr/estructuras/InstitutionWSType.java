@@ -6,7 +6,7 @@ import org.simpleframework.xml.Root;
 
 
 /**
- * Clase que representa un pa√≠s.
+ * Clase que representa un paÌs.
  *
  * @author Marco Antonio Gomez Martin
  */
@@ -14,11 +14,11 @@ import org.simpleframework.xml.Root;
 
 public class InstitutionWSType {
 	
-	// Identificador para referenciarlo r√°pidamente
+	// Identificador para referenciarlo r·pidamente
 	@Element(name="id")
 	public int id;
 	
-	// Nombre de la instituci√≥n
+	// Nombre de la instituciÛn
 	@Element(name="name")
 	public String name;
 	
@@ -34,8 +34,8 @@ public class InstitutionWSType {
 	@Element(name="logo", required = false)
 	public String logo;
 
-	/** Constructor sin par√°metros. No inicializa nada...
-	 * Est√° para que funcione el marshall/unmarshall.
+	/** Constructor sin par·metros. No inicializa nada...
+	 * Est· para que funcione el marshall/unmarshall.
 	 */
 	public InstitutionWSType() {}
 }

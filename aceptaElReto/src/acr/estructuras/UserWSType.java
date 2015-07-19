@@ -11,8 +11,8 @@ import org.simpleframework.xml.Root;
 
 
 /**
- * Clase utilizada por los WS para devolver informaci√≥n de un usuario.
- * Dependiendo del WS concreto, rellenar√° m√°s o menos informaci√≥n.
+ * Clase utilizada por los WS para devolver informaciÛn de un usuario.
+ * Dependiendo del WS concreto, rellenar· m·s o menos informaciÛn.
  *
  * @author Marco Antonio Gomez Martin
  */
@@ -28,7 +28,7 @@ public class UserWSType {
 	@Element(name="nick")
 	public String nick;
 
-	// Direcci√≥n de correo electr√≥nico
+	// DirecciÛn de correo electrÛnico
 	@Element(name="email", required = false)
 	public String email;
 	
@@ -36,19 +36,19 @@ public class UserWSType {
 	@Element(name="name",required = false)
 	public String name;
 	
-	// G√©nero
+	// GÈnero
 	@Element(name="gender",required = false)
 	public UserGenderWSType gender;	
 		
-	// Pa√≠s
+	// PaÌs
 	@Element(name="country",required = false)
 	public CountryWSType country;
 
-	// Instituci√≥n a la que pertenece
+	// InstituciÛn a la que pertenece
 	@Element(name="institution",required = false)
 	public InstitutionWSType institution;
 		
-	// Tipo de notificaci√≥n por mail utilizada
+	// Tipo de notificaciÛn por mail utilizada
 	@Element(name="mailNotification",required = false)
 	public MailNotificationWSType mailNotification;
 	
