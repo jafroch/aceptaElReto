@@ -34,7 +34,6 @@ public class WSquery {
 		code,
 		comment,
 		country,
-		currentuser,
 		institution,
 		login,
 		paths,
@@ -44,6 +43,7 @@ public class WSquery {
 		submission,
 		user,
 		volume,
+		currentuser,
 	}
 	
 	public WSquery() {
@@ -62,7 +62,7 @@ public class WSquery {
 		this.query=this.query+this.str+Integer.toString(start)+this.size+Integer.toString(size)+"/";
 	}
 	public void addNumSubCat(int md){
-		this.query=this.query+"?md="+Integer.toString(md)+"/";
+		this.query=this.query+"?md="+Integer.toString(md);
 	}
 	public void addFree(String str){
 		this.query=this.query+str+"/";
@@ -100,5 +100,8 @@ public class WSquery {
 	}
 	public String getFileWS(){
 		return this.fileWS;
+	}
+	public void cleanQuery(){
+		this.query=this.url; 
 	}
 }
