@@ -39,13 +39,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-
-
-
-
-
  @SuppressWarnings("deprecation")
-public class WebServiceTask extends AsyncTask<String, Integer, String> {
+public class WebServiceTask  {
 	 
     public static final int POST_TASK = 1;
     public static final int GET_TASK = 2; 
@@ -56,8 +51,6 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
     // socket timeout, in milliseconds (waiting for data)
     private static final int SOCKET_TIMEOUT = 5000;
     private int taskType = GET_TASK;
-    private Context mContext = null;
-    private String processMessage = "Processing...";
     private ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
     private ProgressDialog pDlg = null;
     
@@ -79,11 +72,8 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
     private URI uriInfo;
     private String FileName;
 
-    public WebServiceTask(int taskType, Context mContext, String processMessage,String token) {
-
+    public WebServiceTask(int taskType, String processMessage,String token) {
         this.taskType = taskType;
-        this.mContext = mContext;
-        this.processMessage = processMessage;
         this.token=token;
     }
     
@@ -91,23 +81,11 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
     public void addNameValuePair(String name, String value) {
         params.add(new BasicNameValuePair(name, value));
     }
-
-    public void showProgressDialog() {  
-        pDlg = new ProgressDialog(mContext);
-        pDlg.setMessage(processMessage);
-        pDlg.setProgressDrawable(mContext.getWallpaper());
-        pDlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        pDlg.setCancelable(false);
-        pDlg.show();
-    }
     
-
-    @Override
-    protected void onPreExecute() {
-        //hideKeyboard();
-    	showProgressDialog();
+    public void Execute(String... urls){
+    	this.Response=this.doInBackground(urls);
     }
-    
+
 
     protected String doInBackground(String... urls) {
         String url = urls[0];
@@ -130,12 +108,6 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
         
         return result;
     }
-
-    @Override
-    protected void onPostExecute(String response) { 	
-        this.Response=response;
-    	pDlg.dismiss();
-    }
      
     // Establish connection and socket (data retrieval) timeouts
     private HttpParams getHttpParams() {   
@@ -150,6 +122,7 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
         // DefaultHttpClient
         HttpClient httpclient = new DefaultHttpClient(getHttpParams());
         int responseCode=0;
+       
         // Create a local instance of cookie store
         //CookieStore cookieStore = new BasicCookieStore();     
         // Create local HTTP context
@@ -170,6 +143,7 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
 
             case POST_TASK:
                 HttpPost httppost = new HttpPost(url);
+                httppost.addHeader("accept", "application/json");
                 // Add parameters
                 httppost.setEntity(new UrlEncodedFormEntity(params));
                 int executeCount = 0;
@@ -188,6 +162,7 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
                 break;
             case GET_TASK:
                 HttpGet httpget = new HttpGet(url);
+                httpget.addHeader("accept", "application/json");
                 response = httpclient.execute(httpget,localContext);
                 responseCode = response.getStatusLine().getStatusCode();
                 httpget.getRequestLine();
@@ -195,6 +170,7 @@ public class WebServiceTask extends AsyncTask<String, Integer, String> {
                 break;
             case PUT_TASK:
                 HttpPut httpput = new HttpPut(url);
+                httpput.addHeader("accept", "application/json");
                 File file = new File(this.FileName);
                 InputStreamEntity reqEntity = new InputStreamEntity(new FileInputStream(file), -1);
                 reqEntity.setContentType("binary/octet-stream");

@@ -28,39 +28,28 @@ public class CallerWS {
 		this.path = path;
 	}
 
-	public String getCall(Activity frag,String token){
+	public String getCall(String token){
 
-        wst = new WebServiceTask(WebServiceTask.GET_TASK, frag, "GETting data...",token);
-        wst.execute(new String[] { this.path.getQuery() });
-        String out=null;
-        while(out==null){
-        	out=wst.getResponse();
-        }
-        return out;
+        wst = new WebServiceTask(WebServiceTask.GET_TASK, "GETting data...",token);
+        wst.Execute(new String[] { this.path.getQuery() });
+        
+        return wst.getResponse();
 	}
-	public String postCall(Activity frag,String token){
+	public String postCall(String token){
 
-        wst = new WebServiceTask(WebServiceTask.POST_TASK, frag, "POSTINGting data...",token);
+        wst = new WebServiceTask(WebServiceTask.POST_TASK, "POSTINGting data...",token);
         for(int i=0;i<this.path.getParamsNames().size();i++){
         	wst.addNameValuePair(this.path.getParamsNames().get(i), this.path.getParamsValues().get(i));
         }
-        wst.execute(new String[] {  this.path.getQuery() });
-        String out=null;
-        while(out==null){
-        	out=wst.getResponse();
-        }
-        return out;
+        wst.Execute(new String[] {  this.path.getQuery() });
+        return wst.getResponse();
 	}
-	public String putCall(Activity frag,String token){
+	public String putCall(String token){
 
-        wst = new WebServiceTask(WebServiceTask.PUT_TASK, frag, "PUTTINGting data...",token);
+        wst = new WebServiceTask(WebServiceTask.PUT_TASK, "PUTTINGting data...",token);
         wst.setFileName(this.path.getFileLocal());
-        wst.execute(new String[] {  this.path.getQuery() });
-        String out=null;
-        while(out==null){
-        	out=wst.getResponse();
-        }
-        return out;
+        wst.Execute(new String[] {  this.path.getQuery() });
+        return wst.getResponse();
 	}
 	
 	public String getResponse(){
