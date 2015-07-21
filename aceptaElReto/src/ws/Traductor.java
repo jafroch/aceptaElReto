@@ -76,7 +76,7 @@ public class Traductor {
 			UserWSType data = serial.read(UserWSType.class, this.JSON);
 	    	return data;
 		}else{
-		Gson gson = new GsonBuilder().create();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZ").create();
     	JsonParser parser = new JsonParser();
     	JsonObject data = parser.parse(this.JSON).getAsJsonObject();
     	return gson.fromJson(data, UserWSType.class);
