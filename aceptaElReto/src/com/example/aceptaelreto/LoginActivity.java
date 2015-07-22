@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -27,6 +28,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -67,23 +69,31 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
+    public static final String PREFS_NAME = "ACRpreference";
+    private static final String PREF_USERNAME = "username";
+    private static final String PREF_PASSWORD = "password";
+    private static final String PREF_REMEMBERME = "false";
 
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private CheckBox recuerdame;
     private final String URL="http://acr2.programame.com/ws/session";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        SharedPreferences pref = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+        String username = pref.getString(PREF_USERNAME, null);
+        String password = pref.getString(PREF_PASSWORD, null);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
-
+        recuerdame = (CheckBox) findViewById(R.id.checkBox1);
+       
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -95,12 +105,22 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
                 return false;
             }
         });
-
+        if(username!=null && password!=null){
+        	mEmailView.setText(username);
+        	mPasswordView.setText(password);
+        }
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+                if(recuerdame.isChecked()){
+                	getSharedPreferences(PREFS_NAME,MODE_PRIVATE)
+                    .edit()
+                    .putString(PREF_USERNAME, mEmailView.getText().toString())
+                    .putString(PREF_PASSWORD, mPasswordView.getText().toString())
+                    .commit();
+                }
             }
         });
 
