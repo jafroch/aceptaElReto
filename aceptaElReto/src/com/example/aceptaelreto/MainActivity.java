@@ -56,7 +56,7 @@ public class MainActivity extends ActionBarActivity implements
      DrawerLayout drawerLayout;
      ListView drawerList;
      GridView tablaPerfil;
-     public String Token;
+     public static String Token;
      public static String myId;
      Bundle args;
      
@@ -112,30 +112,28 @@ public class MainActivity extends ActionBarActivity implements
 		      PlaceholderFragment.newInstance(position + 1)).commit();
 		      break;
 		    case 2:
-		      Fragment profile = new Perfil_Fragment().newInstance(position + 1);
-		      profile.setArguments(args);
-		      fragmentManager.beginTransaction().add(R.id.container,
-		  	  profile).commit();
-		      break;
+		      fragmentManager.beginTransaction().replace(R.id.container,
+		   	  Perfil_Fragment.newInstance(position + 1,Token)).commit();
+		   	  break;
 		    case 3:
 		      fragmentManager.beginTransaction().replace(R.id.container,
-		      Inicio_Fragment.newInstance(position + 1)).commit();
+		      Inicio_Fragment.newInstance(position + 1,Token)).commit();
 		      break;
 		    case 4:
 			  fragmentManager.beginTransaction().replace(R.id.container,
-			  Layout3Fragment.newInstance(position + 1)).commit();
+			  Enviar_Fragment.newInstance(position + 1,Token)).commit();
 			  break;
 		    case 5:
 			  fragmentManager.beginTransaction().replace(R.id.container,
-			  Layout4Fragment.newInstance(position + 1)).commit();
+			  ProbListFragment.newInstance(position + 1,Token)).commit();
 			  break;
 		    case 6:
 			  fragmentManager.beginTransaction().replace(R.id.container,
-			  Layout5Fragment.newInstance(position + 1)).commit();
+			  ProblemsActivity.newInstance(position + 1)).commit();
 			  break;
 		    case 7:
 		      fragmentManager.beginTransaction().replace(R.id.container,
-			  Layout6Fragment.newInstance(position + 1)).commit();
+		      ProblemsActivity.newInstance(position + 1)).commit();
 			  break;
 		  }
 		  

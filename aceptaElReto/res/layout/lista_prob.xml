@@ -1,7 +1,24 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment_listado"
-    android:name="lista_prob"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp" />
+    android:background="@color/defaultBackground">
+
+	 <TextView
+    	android:id="@+id/pb"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:textSize="18sp"
+    	android:textColor="@color/defaultBackground"
+    	android:background="@color/background"
+    	android:textStyle="bold"
+    	android:padding="5dp"/>
+
+	<ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/pb"
+    	android:id="@+id/listap"/>
+
+</RelativeLayout>

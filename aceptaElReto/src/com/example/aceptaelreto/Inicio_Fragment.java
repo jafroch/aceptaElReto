@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,11 +44,13 @@ public class Inicio_Fragment extends Fragment {
     private EditText txtbuscar;
     private CallerWS ws;
     private WSquery path;
+    Bundle token;
  
-    public static Inicio_Fragment newInstance(int sectionNumber) {
+    public static Inicio_Fragment newInstance(int sectionNumber, String tk) {
         Inicio_Fragment fragment = new Inicio_Fragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        args.putString("TOKEN", tk);
         fragment.setArguments(args);
         return fragment;
     }
@@ -61,7 +64,7 @@ public class Inicio_Fragment extends Fragment {
             Bundle savedInstanceState) {
     	
         View rootView = inflater.inflate(R.layout.inicio_layout, container, false);
-        
+        token = this.getArguments();
         this.txtbuscar = (EditText)rootView.findViewById(R.id.info_buscar);
         this.sp = (Spinner)rootView.findViewById(R.id.buscar);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -72,16 +75,27 @@ public class Inicio_Fragment extends Fragment {
         // Apply the adapter to the spinner
         sp.setAdapter(adapter);
         buscar = (Button)rootView.findViewById(R.id.bbuscar);
-        /* Iniciar Fragment con Usuario o Problema
+        // Iniciar Fragment con Usuario o Problema
         buscar.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				
+				// Falta controlar cuando no existe
+				
 				String info = txtbuscar.getText().toString();
-				Intent intent = new Intent(getActivity(), EditInfoActivity.class);
-				intent.putExtra("WALKER", walker);
-				startActivityForResult(intent, Constants.RESULT_EDIT);
+				int infoSearch = Integer.parseInt(info); 
+				String text = sp.getSelectedItem().toString();
+				if (text.equals("Problema")){
+					 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
+							  Enviar_Fragment.newInstance(infoSearch,token.getString("TOKEN"))).addToBackStack(null).commit();
+				}
+				else{
+					getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
+							  Usuario_Fragment.newInstance(infoSearch,token.getString("TOKEN"))).addToBackStack(null).commit();
+				}
+
 			}
-		});*/
+		});
         this.ws= new CallerWS();
         path = this.ws.getPath();
         return rootView;

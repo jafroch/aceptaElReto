@@ -111,7 +111,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
     private void populateAutoComplete() {
         if (VERSION.SDK_INT >= 14) {
             // Use ContactsContract.Profile (API 14+)
-            getLoaderManager().initLoader(0, null, this);
+           // getLoaderManager().initLoader(0, null, this);
+            new SetupEmailAutoCompleteTask().execute(null, null);
         } else if (VERSION.SDK_INT >= 8) {
             // Use AccountManager (API 8+)
             new SetupEmailAutoCompleteTask().execute(null, null);
