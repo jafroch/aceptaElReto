@@ -82,6 +82,18 @@ public class Traductor {
     	return gson.fromJson(data, UserWSType.class);
 		}
 	}
+	public SubmissionsListWSType getSubmissionList() throws Exception{
+		if(this.JSON.startsWith("<?xml")){
+			Serializer serial = new Persister(m);
+			SubmissionsListWSType data = serial.read(SubmissionsListWSType.class, this.JSON);
+	    	return data;
+		}else{
+			Gson gson = this.getGsonbuilderAdapterSubmissionList();
+	    	JsonParser parser = new JsonParser();
+	    	JsonObject data = parser.parse(this.JSON).getAsJsonObject();
+	    	return gson.fromJson(data, SubmissionsListWSType.class);
+		}
+	}
 	public SubmissionWSType getSubmission() throws Exception{
 		if(this.JSON.startsWith("<?xml")){
 			Serializer serial = new Persister(m);
@@ -354,6 +366,39 @@ public class Traductor {
 		        a.setTotalSubs(g.fromJson(appleObj.get("TotalSubs"), Integer.class));
 		        a.setWa(g.fromJson(appleObj.get("Wa"), Integer.class));
 		        */
+		        return a;
+		    }
+		});
+		return b.create();
+	}
+	private Gson getGsonbuilderAdapterSubmissionList(){
+		GsonBuilder b = new GsonBuilder();
+		b.registerTypeAdapter(CategoryWSType.class, new JsonDeserializer<CategoryWSType>() {
+		    @Override
+		    public CategoryWSType deserialize(JsonElement arg0, Type arg1,
+		        JsonDeserializationContext arg2) throws JsonParseException {
+		        JsonObject appleObj = arg0.getAsJsonObject();
+		        Gson g = new Gson();
+		        // Construct an apple (this shouldn't try to parse the seeds stuff
+		        CategoryWSType a = g.fromJson(arg0, CategoryWSType.class);
+		        if(appleObj.has("submission")){
+		        List<CategoryWSType> subcats = null;
+		        // Check to see if we were given a list or a single seed
+		        if (appleObj.get("ssubmission").isJsonArray()) {
+		            // if it's a list, just parse that from the JSON
+		        	subcats = g.fromJson(appleObj.get("subcats"),
+		                    new TypeToken<List<CategoryWSType>>() {
+		                    }.getType());
+		        } else {
+		            // otherwise, parse the single seed,
+		            // and add it to the list
+		        	CategoryWSType single = g.fromJson(appleObj.get("subcats"), CategoryWSType.class);
+		        	subcats = new ArrayList<CategoryWSType>();
+		        	subcats.add(single);
+		        }
+		        // set the correct subcats list
+		        a.setSubcats(subcats);
+		        }
 		        return a;
 		    }
 		});
