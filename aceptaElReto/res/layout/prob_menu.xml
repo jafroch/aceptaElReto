@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+      	
+  
+   <TextView
+    	android:id="@+id/num_prob"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_centerHorizontal="true"
+    	android:layout_marginTop="15dp"
+    	android:textSize="22sp"
+    	android:textColor="@color/black"/>
+   
+    <TextView
+    	android:id="@+id/nom_prob"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_centerHorizontal="true"
+    	android:layout_marginTop="10dp"
+		android:textSize="22sp"
+		android:layout_below="@+id/num_prob"
+    	android:textColor="@color/black"/>
+    
+    <Button
+        android:id="@+id/b_enunciado"
+        style="@style/TextView.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/nom_prob"
+        android:text="Enunciado"
+        android:drawableLeft="@drawable/enun_ic"
+        android:layout_marginTop="20dp"
+        android:visibility="visible" />
+    
+     <Button
+        android:id="@+id/b_enviar"
+        style="@style/TextView.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/b_enunciado"
+        android:text="Enviar"
+        android:drawableLeft="@drawable/env_ic"
+        android:layout_marginTop="10dp"
+        android:visibility="visible" />
+     
+     <Button
+        android:id="@+id/b_estadisticas"
+        style="@style/TextView.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/b_enviar"
+        android:text="Estadísticas"
+        android:drawableLeft="@drawable/estad_ic"
+        android:layout_marginTop="10dp"
+        android:visibility="visible" />
+   
+	 <Button
+        android:id="@+id/b_creditos"
+        style="@style/TextView.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/b_estadisticas"
+        android:text="Créditos"
+        android:drawableLeft="@drawable/cred_ic"
+        android:layout_marginTop="10dp"
+        android:visibility="visible" />
+   
+	 <Button
+        android:id="@+id/b_mis_envios"
+        style="@style/TextView.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/b_creditos"
+        android:text="Mis envíos"
+        android:layout_marginTop="10dp"
+        android:visibility="visible" />
+
+</RelativeLayout>
+

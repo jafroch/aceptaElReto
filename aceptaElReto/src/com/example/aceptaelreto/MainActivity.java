@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 
-import com.example.aceptaelreto.MainActivity.PlaceholderFragment;
 
 import ws.CallerWS;
 import ws.Traductor;
@@ -66,25 +65,19 @@ public class MainActivity extends ActionBarActivity implements
      R.drawable.problem1,
      R.drawable.problem2,
      };
-    
- 
-     public static String[] opcperfil = new String[5];    
    
      
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 		mTitle = getTitle();
+		
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,(DrawerLayout) findViewById(R.id.drawer_layout));
-		
-		//Imagen
-		
-		
-		
-		//fImagen
 		
 		try {
 			Intent myIntent = getIntent(); 
@@ -94,11 +87,12 @@ public class MainActivity extends ActionBarActivity implements
 			args = new Bundle();
 			args.putString("TOKEN",Token);
 			
-			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 	}
 	
 	@Override
@@ -109,31 +103,31 @@ public class MainActivity extends ActionBarActivity implements
 		  switch (position+1) {
 		    case 1:
 		      fragmentManager.beginTransaction().replace(R.id.container,
-		      PlaceholderFragment.newInstance(position + 1)).commit();
+		      Inicio_Fragment.newInstance(position + 1,Token)).addToBackStack(null).commit();
 		      break;
 		    case 2:
 		      fragmentManager.beginTransaction().replace(R.id.container,
-		   	  Perfil_Fragment.newInstance(position + 1,Token)).commit();
+		   	  Perfil_Fragment.newInstance(position + 1,Token,0)).addToBackStack(null).commit();
 		   	  break;
 		    case 3:
 		      fragmentManager.beginTransaction().replace(R.id.container,
-		      Inicio_Fragment.newInstance(position + 1,Token)).commit();
+		      Inicio_Fragment.newInstance(position + 1,Token)).addToBackStack(null).commit();
 		      break;
 		    case 4:
-			  fragmentManager.beginTransaction().replace(R.id.container,
-			  Enviar_Fragment.newInstance(position + 1,Token)).commit();
+		      fragmentManager.beginTransaction().replace(R.id.container,
+		  	  ProbListFragment.newInstance(position + 1,Token)).addToBackStack(null).commit();
 			  break;
 		    case 5:
 			  fragmentManager.beginTransaction().replace(R.id.container,
-			  ProbListFragment.newInstance(position + 1,Token)).commit();
+			  ProbMenuFragment.newInstance(position + 1,Token)).addToBackStack(null).commit();
 			  break;
 		    case 6:
 			  fragmentManager.beginTransaction().replace(R.id.container,
-			  ProblemsActivity.newInstance(position + 1)).commit();
+			  ProbListFragment.newInstance(position + 1,Token)).addToBackStack(null).commit();
 			  break;
 		    case 7:
 		      fragmentManager.beginTransaction().replace(R.id.container,
-		      ProblemsActivity.newInstance(position + 1)).commit();
+		      Doc_Fragment.newInstance(position + 1,Token)).addToBackStack(null).commit();
 			  break;
 		  }
 		  
@@ -151,7 +145,6 @@ public class MainActivity extends ActionBarActivity implements
 		case 3:
 			mTitle = getString(R.string.title_section2);
 			break;
-			//AÑADIDO NUEVOS APARTADOS DE MENU
 		case 4:
 			mTitle = getString(R.string.title_section3);
 			break;
@@ -199,154 +192,14 @@ public class MainActivity extends ActionBarActivity implements
 		return super.onOptionsItemSelected(item);
 	}
 
-	
-
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
-		 */		
-		
-		
-		
-		private static final String ARG_SECTION_NUMBER = "section_number";
-		
-		 GridView tablaPerfil;
-		/**
-		 * Returns a new instance of this fragment for the given section number.
-		 */
-		public static PlaceholderFragment newInstance(int sectionNumber) {
-			PlaceholderFragment fragment = new PlaceholderFragment();
-			Bundle args = new Bundle();
-			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-			fragment.setArguments(args);
-			return fragment;
-			
-			
-			
-			
-		}
-
-		public PlaceholderFragment() {
-			
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
-			
-			
-			tablaPerfil=(GridView) rootView.findViewById(R.id.gridView1);
-			tablaPerfil.setAdapter(new VivzAdapter(getActivity().getApplicationContext(), MainActivity.opcperfil));
-			
-			return rootView;
-		}
-
-		@Override
-		public void onAttach(Activity activity) {
-			super.onAttach(activity);
-			((MainActivity) activity).onSectionAttached(getArguments().getInt(
-					ARG_SECTION_NUMBER));
-		}
-	}
-
-}
-
-class VivzAdapter extends BaseAdapter{
-	ArrayList<String> atb;
-	ArrayList<String> values;
-	Context mContext;
-	
-	
-	
-	public VivzAdapter(Context context, String[] opcperfil) {
-		// TODO Auto-generated constructor stub
-		this.atb=new ArrayList<String>();
-		this.values=new ArrayList<String>();
-		this.mContext=context;
-		Resources res = context.getResources();
-		
-		
-		
-		String[] temp = res.getStringArray(R.array.perfil_atb);	
-		for(int i=0;i<temp.length;i++){
-			this.atb.add(temp[i]);
-		}
-		//temp = res.getStringArray(R.array.perfil_atb);	
-		temp = opcperfil;
-		for(int i=0;i<temp.length;i++){
-			this.values.add(temp[i]);
-		}
-	}
-	public void setValues(ArrayList<String> val){
-		values=val;	
-	}
-	public void setItemVal(String value, int pos){
-		values.set(pos, value);
-	}
 	@Override
-	public int getCount() {
-		// TODO Auto-generated method stub
-		return atb.size()+values.size();
-	}
-
-	@Override
-	public String getItem(int position) {
-		// TODO Auto-generated method stub
-		int i=0;
-		if(position%2==0){
-			if(position>0){
-				i=position/2;
-			}
-			return this.atb.get(i);
-		}else{
-			i= (position-1)/2;
-			return this.values.get(i);
-		}
-		
-	}
-
-	@Override
-	public long getItemId(int position) {
-		// TODO Auto-generated method stub
-		return position;
-	}
-	class ViewHolder{
-		TextView text;
-		public ViewHolder(View v) {
-			// TODO Auto-generated constructor stub
-			text=(TextView) v.findViewById(R.id.textView);
-		}
-		public void setText(String T){
-			this.text.setText(T);
-		}
-	}
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
-		
-		View row = convertView;
-		ViewHolder holder = null;
-		if(row==null){
-			 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			 row=inflater.inflate(R.layout.single_item,parent,false);
-			 holder=new ViewHolder(row);
-			 row.setTag(holder);
-			 
-		}else{
-			holder = (ViewHolder) row.getTag();
-			
-		}
-		
-	    holder.setText(this.getItem(position));
-	    
-	      
-	     return  row; 
-	}
+    public void onBackPressed() {
+    	if (getFragmentManager().getBackStackEntryCount() != 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+            
+        }
+    }
 	
 }

@@ -68,13 +68,13 @@
                 android:singleLine="true" 
                 android:layout_marginTop="10dp"
                 style="@style/TextView.Black"/>
-
-            <CheckBox
+            
+             <CheckBox
                 android:id="@+id/checkBox1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Recuerdame" />
-
+ 
             <Button
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"

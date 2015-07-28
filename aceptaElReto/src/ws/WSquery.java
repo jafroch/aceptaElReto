@@ -40,7 +40,7 @@ public class WSquery {
 		problems,
 		problem,
 		ranking,
-		submission,
+		submissions,
 		user,
 		volume,
 		currentuser,

@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+      	
+  
+   <TextView
+    	android:id="@+id/doc"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_centerHorizontal="true"
+    	android:layout_marginTop="15dp"
+    	android:textSize="22sp"
+    	android:textColor="@color/defaultBackground"/>
+   
+   
+    <Button
+        android:id="@+id/b_faq"
+        style="@style/TextView.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/doc"
+        android:text="FAQ"
+        android:layout_marginTop="20dp"
+        android:visibility="visible" />
+    
+     <Button
+        android:id="@+id/b_veredictos"
+        style="@style/TextView.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/b_faq"
+        android:text="Veredictos"
+        android:layout_marginTop="10dp"
+        android:visibility="visible" />
+     
+     <Button
+        android:id="@+id/b_historia"
+        style="@style/TextView.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/b_veredictos"
+        android:text="Historia"
+        android:layout_marginTop="10dp"
+        android:visibility="visible" />
+   
+	 <Button
+        android:id="@+id/b_quienes_somos"
+        style="@style/TextView.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/b_historia"
+        android:text="Quiénes somos"
+        android:layout_marginTop="10dp"
+        android:visibility="visible" />
+   
+
+
+</RelativeLayout>

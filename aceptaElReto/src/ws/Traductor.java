@@ -82,6 +82,18 @@ public class Traductor {
     	return gson.fromJson(data, UserWSType.class);
 		}
 	}
+	public SubmissionWSType getSubmission() throws Exception{
+		if(this.JSON.startsWith("<?xml")){
+			Serializer serial = new Persister(m);
+			SubmissionWSType data = serial.read(SubmissionWSType.class, this.JSON);
+	    	return data;
+		}else{
+			Gson gson = new GsonBuilder().create();
+	    	JsonParser parser = new JsonParser();
+	    	JsonObject data = parser.parse(this.JSON).getAsJsonObject();
+	    	return gson.fromJson(data, SubmissionWSType.class);
+		}
+	}
 	public NewSession getSession() throws Exception{
 		if(this.JSON.contains("<?xml")){
 			Serializer serial = new Persister(m);
@@ -184,6 +196,7 @@ public class Traductor {
     	List<CategoryWSType> List = new Gson().fromJson(jsonArray.toString(), listType);
     	return (ArrayList<CategoryWSType>) List;
 	}
+	
 	public ArrayList<CountryWSType> getPaises(){
 		JSONObject jsonobject;
     	JSONArray jsonArray = null;
@@ -201,6 +214,7 @@ public class Traductor {
     	List<CountryWSType> List = new Gson().fromJson(jsonArray.toString(), listType);
     	return (ArrayList<CountryWSType>) List;
 	}
+	
 	public ArrayList<ProblemDetailsList> getListasDetalles(){
 		JSONObject jsonobject;
     	JSONArray jsonArray = null;
@@ -218,6 +232,7 @@ public class Traductor {
     	List<ProblemDetailsList> List = new Gson().fromJson(jsonArray.toString(), listType);
     	return (ArrayList<ProblemDetailsList>) List;
 	}
+	
 	public ArrayList<ProblemWSType> getProblemas(){
 		JSONObject jsonobject;
     	JSONArray jsonArray = null;
@@ -235,6 +250,7 @@ public class Traductor {
     	List<ProblemWSType> List = new Gson().fromJson(jsonArray.toString(), listType);
     	return (ArrayList<ProblemWSType>) List;
 	}
+	
 	public ArrayList<UserGenderWSType> getGeneros(){
 		JSONObject jsonobject;
     	JSONArray jsonArray = null;
@@ -252,6 +268,7 @@ public class Traductor {
     	List<UserGenderWSType> List = new Gson().fromJson(jsonArray.toString(), listType);
     	return (ArrayList<UserGenderWSType>) List;
 	}
+	
 	public ArrayList<UserRoleWSType> getRoles(){
 		JSONObject jsonobject;
     	JSONArray jsonArray = null;
@@ -269,6 +286,7 @@ public class Traductor {
     	List<UserRoleWSType> List = new Gson().fromJson(jsonArray.toString(), listType);
     	return (ArrayList<UserRoleWSType>) List;
 	}
+	
 	private Gson getGsonbuilderAdapterCategory(){
 		GsonBuilder b = new GsonBuilder();
 		b.registerTypeAdapter(CategoryWSType.class, new JsonDeserializer<CategoryWSType>() {

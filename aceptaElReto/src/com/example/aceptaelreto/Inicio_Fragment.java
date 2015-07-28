@@ -91,7 +91,7 @@ public class Inicio_Fragment extends Fragment {
 				}
 				else{
 					getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
-							  Usuario_Fragment.newInstance(infoSearch,token.getString("TOKEN"))).addToBackStack(null).commit();
+							  Perfil_Fragment.newInstance(infoSearch,token.getString("TOKEN"),infoSearch)).addToBackStack(null).commit();
 				}
 
 			}

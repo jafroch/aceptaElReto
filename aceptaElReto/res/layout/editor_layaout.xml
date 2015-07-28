@@ -50,7 +50,7 @@
     
     <LinearLayout
         android:id="@+id/campoComentario"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
      	android:layout_height="wrap_content"
      	android:layout_below="@+id/campoLenguaje"
     	android:layout_marginTop="10dp"
@@ -106,7 +106,7 @@
      
     <LinearLayout
         android:id="@+id/campoCode"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
      	android:layout_height="wrap_content"
      	android:layout_below="@+id/campoCF"
     	android:layout_marginTop="10dp"
@@ -125,6 +125,7 @@
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:inputType="text"
+    	android:hint="Empieza a programar!"
     	android:textColor="@color/background"
     	android:layout_toRightOf="@+id/Code"
     	android:layout_marginLeft="5dp"/>

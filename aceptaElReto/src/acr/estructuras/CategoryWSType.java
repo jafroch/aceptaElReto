@@ -7,10 +7,10 @@ import org.simpleframework.xml.Root;
 
 /**
  * Clase usada por los WS cuando tienen que responder con
- * informaciÃ³n de una categorÃ­a.
+ * información de una categoría.
  * 
- * Tiene todos los atributos imaginables sobre categorÃ­as,
- * aunque dependiendo del WS concreto, se rellenarÃ¡n mÃ¡s
+ * Tiene todos los atributos imaginables sobre categorías,
+ * aunque dependiendo del WS concreto, se rellenarán más
  * o menos.
  *
  * @author Marco Antonio Gomez Martin
@@ -19,9 +19,9 @@ import org.simpleframework.xml.Root;
 public class CategoryWSType {
 	
 	/**
-	 * VacÃ­a todos los campos (los pone a null), excepto
-	 * las subcategorÃ­as. Ãštil para WS que utilizan una
-	 * categorÃ­a dummy para devolver una lista de categorÃ­as.
+	 * Vacía todos los campos (los pone a null), excepto
+	 * las subcategorías. Útil para WS que utilizan una
+	 * categoría dummy para devolver una lista de categorías.
 	 */
 	public void vaciaInfo() {
 		this.id = null;
@@ -34,16 +34,16 @@ public class CategoryWSType {
 	}
 	
 	
-	/** Identificador de la categorÃ­a */
+	/** Identificador de la categoría */
 	public Integer id;
 	
-	/** Nombre de la categorÃ­a */
+	/** Nombre de la categoría */
 	public String name;
 	
-	/** DescripciÃ³n de la categorÃ­a */
+	/** Descripción de la categoría */
 	public String desc;
 	
-	/** Lista de categorÃ­as hijas */
+	/** Lista de categorías hijas */
 	public List<CategoryWSType> subcats_lista;
 	//public CategoryWSType[] subcats;
 
@@ -64,94 +64,94 @@ public class CategoryWSType {
 	}
 
 
-	/** Lista de problemas directamente pertenecientes a la categorÃ­a. */
+	/** Lista de problemas directamente pertenecientes a la categoría. */
 	@Element(name="problems", required = false)
 	public ProblemDetailsList problems;
 	
 	/** 
-	 * Ruta desde la raÃ­z del Ã¡rbol hasta esta categorÃ­a.
-	 * El primer elemento es la categorÃ­a raÃ­z. El Ãºltimo es la
-	 * categorÃ­a PADRE al objeto. Contienen Ãºnicamente id y name.
+	 * Ruta desde la raíz del árbol hasta esta categoría.
+	 * El primer elemento es la categoría raíz. El último es la
+	 * categoría PADRE al objeto. Contienen únicamente id y name.
 	 */
 	@Element(name="path", required = false)
 	public List<CategoryWSType> path_lista;
 	//public CategoryWSType[] path;
 
 	// ////
-	// EstadÃ­sticas. Son mantenidas por un proceso en segundo plano.
+	// Estadísticas. Son mantenidas por un proceso en segundo plano.
 	// Por tanto, deben verse como un dato "volatil" y que puede
-	// no estar actualizado. Incluso el nÃºmero de problemas puede
-	// ser incorrecto, si se aÃ±adieron mÃ¡s problemas tras la
-	// Ãºltima actualizaciÃ³n de las estadÃ­sticas.
+	// no estar actualizado. Incluso el número de problemas puede
+	// ser incorrecto, si se añadieron más problemas tras la
+	// última actualización de las estadísticas.
 	// ////
 	
 	// ////
-	// EstadÃ­sticas de la categorÃ­a (sin incluir subcategorÃ­as)
+	// Estadísticas de la categoría (sin incluir subcategorías)
 	// ////
 	
-	/** NÃºmero de problemas pertenecientes directamente a
-	la categorÃ­a */
+	/** Número de problemas pertenecientes directamente a
+	la categoría */
 	public Integer numOfProblems;
 	
 	// ////
-	// EstadÃ­sticas de la categorÃ­a y subcategorÃ­as
+	// Estadísticas de la categoría y subcategorías
 	// ////
 	
-	/** NÃºmero de problemas en la categorÃ­a y subcategorÃ­as. */
+	/** Número de problemas en la categoría y subcategorías. */
 	public Integer numOfAllProblems;
 
 	// ///
-	// EstadÃ­sticas de veredictos
+	// Estadísticas de veredictos
 	// ///
 	
-	/** EnvÃ­os totales del problema */
+	/** Envíos totales del problema */
 	public Integer totalSubs;
 
-	/** NÃºmero de envÃ­os aceptados */
+	/** Número de envíos aceptados */
 	public Integer ac;
 
-	/** NÃºmero de envÃ­os con PE */
+	/** Número de envíos con PE */
 	public Integer pe;
 
-	/** NÃºmero de envÃ­os con WA */
+	/** Número de envíos con WA */
 	public Integer wa;
 
-	/** NÃºmero de envÃ­os con TL */
+	/** Número de envíos con TL */
 	public Integer tl;
 
-	/** NÃºmero de envÃ­os con ML */
+	/** Número de envíos con ML */
 	public Integer ml;
 
-	/** NÃºmero de envÃ­os con OL */
+	/** Número de envíos con OL */
 	public Integer ol;
 
-	/** NÃºmero de envÃ­os con RF */
+	/** Número de envíos con RF */
 	public Integer rf;
 
-	/** NÃºmero de envÃ­os con RTE */
+	/** Número de envíos con RTE */
 	public Integer rte;
 
-	/** NÃºmero de envÃ­os con CE */
+	/** Número de envíos con CE */
 	public Integer ce;
 
-	/** NÃºmero de envÃ­os con IR */
+	/** Número de envíos con IR */
 	public Integer ir;
 
 	// ////
-	// EstadÃ­sticas de lenguajes
+	// Estadísticas de lenguajes
 	// ////
 	
-	/** NÃºmero de envÃ­os en C */
+	/** Número de envíos en C */
 	public Integer c;
 	
-	/** NÃºmero de envÃ­os en C++ */
+	/** Número de envíos en C++ */
 	public Integer cpp;
 	
-	/** NÃºmero de envÃ­os en Java */
+	/** Número de envíos en Java */
 	public Integer java;	
 
-	/** Constructor sin parÃ¡metros. No inicializa nada...
-	 * EstÃ¡ para que funcione el marshall/unmarshall.
+	/** Constructor sin parámetros. No inicializa nada...
+	 * Está para que funcione el marshall/unmarshall.
 	 */
 	public CategoryWSType() {}
 

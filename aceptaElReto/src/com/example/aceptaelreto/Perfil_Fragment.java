@@ -5,6 +5,7 @@ package com.example.aceptaelreto;
 import java.io.InputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import ws.CallerWS;
@@ -12,6 +13,15 @@ import ws.Traductor;
 import ws.WSquery;
 import ws.WSquery.type;
 //import com.example.aceptaelreto.MainActivity;
+
+
+
+
+
+
+
+
+
 
 
 
@@ -40,8 +50,19 @@ import com.android.volley.toolbox.Volley;
 
 
 
+
+
+
+
+
+
+
+
+
+import acr.estructuras.SubmissionWSType;
 import acr.estructuras.UserWSType;
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -53,8 +74,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -63,8 +86,6 @@ public class Perfil_Fragment extends Fragment{
 	
 	private static final String ARG_SECTION_NUMBER = "section_number";
 	
-	private CallerWS ws;
-    private WSquery path;
     
 	private TextView txtNick;
 	private TextView txtCorreo;
@@ -76,12 +97,19 @@ public class Perfil_Fragment extends Fragment{
 	private Button btnEditProfile;
 	private NetworkImageView img;
 	private Bundle token;
+	private static int idUserSearch;
+	private ListView list;
+	private ArrayList<String> probEnv;
+	private ArrayAdapter adaptador;
+	private ArrayList<Info_Envios> info;
 	
-    public static Perfil_Fragment newInstance(int sectionNumber, String tk) {
+    public static Perfil_Fragment newInstance(int sectionNumber, String tk, int id) {
         Perfil_Fragment fragment = new Perfil_Fragment();
+        idUserSearch = id;
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         args.putString("TOKEN", tk);
+        args.putInt("IdUserSearch", id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -89,12 +117,16 @@ public class Perfil_Fragment extends Fragment{
     public Perfil_Fragment() {
     	 
     }
-		
+    
+    
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 		token = this.getArguments();
+		probEnv = new ArrayList<String>();
+		info =new ArrayList<Info_Envios>();
+		
 		View rootView = inflater.inflate(R.layout.perfil_info, container, false);  
         txtNick = (TextView)rootView.findViewById(R.id.txtNick);
         txtCorreo = (TextView)rootView.findViewById(R.id.txtCorreo);
@@ -104,6 +136,9 @@ public class Perfil_Fragment extends Fragment{
 		txtPais = (TextView)rootView.findViewById(R.id.txtPais);
 		txtInstitucion = (TextView)rootView.findViewById(R.id.txtInstitucion);
 		img = (NetworkImageView)rootView.findViewById(R.id.avatar);
+		list = (ListView)rootView.findViewById(R.id.listProbEnv);
+		//adaptador = new MyArrayAdapter(getActivity(),);
+		
 		btnEditProfile = (Button)rootView.findViewById(R.id.btnEditProfile);
 		/*btnEditProfile.setOnClickListener(new OnClickListener() {
 			@Override
@@ -114,10 +149,11 @@ public class Perfil_Fragment extends Fragment{
 			}
 		});
 		*/
+
+	    MyAsyncTask task = new MyAsyncTask(getActivity(),"GETting data...");
+		task.execute();	
+
 		
-		
-		MyAsyncTask task = new MyAsyncTask(getActivity(),"GETting data...");
-	    task.execute();	
         return rootView;
     }
 	
@@ -127,38 +163,6 @@ public class Perfil_Fragment extends Fragment{
 	        ((MainActivity) activity).onSectionAttached(getArguments().getInt(
 	                ARG_SECTION_NUMBER));
 	 }
-	
-	public void setPerfil(){
-		
-		path.addType(type.currentuser);
-	    this.ws.setPath(path);
-		String respuesta = ws.getCall(token.getString("TOKEN"));
-		Traductor tradu = new Traductor(respuesta);
-		UserWSType perfil = null;
-		try{
-			perfil = tradu.getUser();		
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		RequestQueue requestQueueImagen = Volley.newRequestQueue(getActivity().getApplicationContext());
-		ImageLoader imageLoader = new ImageLoader(requestQueueImagen, new BitmapLRUCache());
-		
-		String DATE_FORMAT = "dd/MM/yyyy";
-		Date date = perfil.birthday;
-		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-		this.txtNacimiento.setText("Fecha de Nacimiento: "+sdf.format(date));	
-		
-		
-		img.setImageUrl(perfil.avatar, imageLoader); 	
-		this.txtCorreo.setText("Correo: "+perfil.email);
-		this.txtNick.setText("Nick: "+perfil.nick);	
-		this.txtNombreCompleto.setText("Nombre: "+perfil.name);
-		this.txtGenero.setText("Genero: "+perfil.gender);
-		this.txtPais.setText("País: "+perfil.country.name);
-		this.txtInstitucion.setText("Institución: "+perfil.institution.name);
-		
-	}
 	
 	public static Drawable LoadImageFromWebOperations(String url) {
 	    try {
@@ -170,7 +174,7 @@ public class Perfil_Fragment extends Fragment{
 	    }
 	}
 	
-	private class MyAsyncTask extends AsyncTask<Void, Void, UserWSType>{
+	private class MyAsyncTask extends AsyncTask<String, Void, UserWSType>{
 		
 		private ProgressDialog pDlg = null;
 		private Context mContext = null;
@@ -179,6 +183,10 @@ public class Perfil_Fragment extends Fragment{
 	    private ImageLoader imageLoader;
 	    private CallerWS ws;
 	    private WSquery path;
+	    private SimpleDateFormat format;
+	    private String[] estrucType;
+	    private UserWSType perfil = null;
+	    private SubmissionWSType subs = null;
 	    
 		public MyAsyncTask(Context mContext, String processMessage) {
 
@@ -205,32 +213,73 @@ public class Perfil_Fragment extends Fragment{
 	    }
 		
 		@Override
-		protected UserWSType doInBackground(Void... params) {
+		protected UserWSType doInBackground(String... params) {
 			
-			path.addType(type.currentuser);
+			estrucType = params;
+			if (idUserSearch != 0){
+				path.addType(type.user);
+				path.addID(idUserSearch);
+			}
+			else{
+				path.addType(type.currentuser);
+			}
 		    this.ws.setPath(path);
 			String respuesta = ws.getCall(token.getString("TOKEN"));
 			Traductor tradu = new Traductor(respuesta);
-			UserWSType perfil = null;
 			try{
-				perfil = tradu.getUser();		
+				perfil = tradu.getUser();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			//submission WS
+			path.addType(type.submissions);
+			this.ws.setPath(path);
+			respuesta = ws.getCall(token.getString("TOKEN"));
+			tradu = new Traductor(respuesta);
+			try{
+				subs = tradu.getSubmission();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			requestQueueImagen = Volley.newRequestQueue(getActivity().getApplicationContext());
 			imageLoader = new ImageLoader(requestQueueImagen, new BitmapLRUCache());
+			format = new SimpleDateFormat("dd/MM/yyyy");
 			return perfil;
 		}
 		
-	    protected void onPostExecute(UserWSType perfil) { 	
-	        img.setImageUrl(perfil.avatar, imageLoader); 	
-			txtCorreo.setText("Correo: "+perfil.email);
-			txtNick.setText("Nick: "+perfil.nick);	
-			txtNombreCompleto.setText("Nombre: "+perfil.name);
-			txtGenero.setText("Genero: "+perfil.gender);
-			txtPais.setText("País: "+perfil.country.name);
-			txtInstitucion.setText("Institución: "+perfil.institution.name);
+		@Override
+	    protected void onPostExecute(UserWSType perfil) { 
+	    	
+			if (perfil.email == null){
+		    	txtNacimiento.setVisibility(View.GONE);
+		    	txtCorreo.setVisibility(View.GONE);
+		    	txtGenero.setVisibility(View.GONE);
+		    	img.setImageUrl(perfil.avatar, imageLoader);
+		    	txtNick.setText("Nick: "+perfil.nick);	
+		    	txtNombreCompleto.setText("Nombre: "+perfil.name);
+		    	txtPais.setText("País: "+perfil.country.name);
+		    	txtInstitucion.setText("Institución: "+perfil.institution.name);
+		    }else{
+		    	Date date = perfil.birthday;
+		    	String nac = format.format(date);		
+		    	txtNacimiento.setText("Fecha de Nacimiento: "+nac);
+		    	img.setImageUrl(perfil.avatar, imageLoader); 	
+		    	txtCorreo.setText("Correo: "+perfil.email);
+		    	txtNick.setText("Nick: "+perfil.nick);	
+		    	txtNombreCompleto.setText("Nombre: "+perfil.name);
+		    	txtGenero.setText("Genero: "+perfil.gender);
+		    	txtPais.setText("País: "+perfil.country.name);
+		    	txtInstitucion.setText("Institución: "+perfil.institution.name);
+		    }
+			
+			if(subs != null){
+				
+			}
+	    	
 	    	pDlg.dismiss();
 	    }
 		
