@@ -31,6 +31,7 @@ import ws.WSquery.type;
 
 
 
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -59,7 +60,9 @@ import com.android.volley.toolbox.Volley;
 
 
 
+
 import acr.estructuras.SubmissionWSType;
+import acr.estructuras.SubmissionsListWSType;
 import acr.estructuras.UserWSType;
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -186,7 +189,7 @@ public class Perfil_Fragment extends Fragment{
 	    private SimpleDateFormat format;
 	    private String[] estrucType;
 	    private UserWSType perfil = null;
-	    private SubmissionWSType subs = null;
+	    private SubmissionsListWSType subs = null;
 	    
 		public MyAsyncTask(Context mContext, String processMessage) {
 
@@ -239,7 +242,7 @@ public class Perfil_Fragment extends Fragment{
 			respuesta = ws.getCall(token.getString("TOKEN"));
 			tradu = new Traductor(respuesta);
 			try{
-				subs = tradu.getSubmission();
+				subs = tradu.getSubmissionList();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
