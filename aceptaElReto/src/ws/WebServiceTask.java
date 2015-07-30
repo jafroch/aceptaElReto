@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 
 
+
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
@@ -30,9 +32,12 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.InputStreamEntity;
 
 
+
+import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -61,8 +66,17 @@ public class WebServiceTask  {
     private CookieStore cookieStore;
     private String token="";
     
+    private JSONObject json=null;
     
-    public String getFileName() {
+    
+    
+    public JSONObject getJson() {
+		return json;
+	}
+	public void setJson(JSONObject json) {
+		this.json = json;
+	}
+	public String getFileName() {
 		return FileName;
 	}
 	public void setFileName(String fileName) {
@@ -171,11 +185,16 @@ public class WebServiceTask  {
             case PUT_TASK:
                 HttpPut httpput = new HttpPut(url);
                 httpput.addHeader("accept", "application/json");
+                if(this.FileName!=null){
                 File file = new File(this.FileName);
                 InputStreamEntity reqEntity = new InputStreamEntity(new FileInputStream(file), -1);
                 reqEntity.setContentType("binary/octet-stream");
                 reqEntity.setChunked(true); // Send in multiple parts if needed
                 httpput.setEntity(reqEntity);
+                }
+                if(this.json!=null){
+                httpput.setEntity(new ByteArrayEntity(this.json.toString().getBytes("UTF8")));
+                }
                response = httpclient.execute(httpput,localContext);
                 responseCode = response.getStatusLine().getStatusCode();
                 httpput.getRequestLine();

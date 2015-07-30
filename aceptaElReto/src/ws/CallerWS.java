@@ -48,6 +48,7 @@ public class CallerWS {
 
         wst = new WebServiceTask(WebServiceTask.PUT_TASK, "PUTTINGting data...",token);
         wst.setFileName(this.path.getFileLocal());
+        wst.setJson(this.path.getJson());
         wst.Execute(new String[] {  this.path.getQuery() });
         return wst.getResponse();
 	}

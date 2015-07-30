@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import javax.ws.rs.core.UriBuilder;
 
+import org.json.JSONObject;
+
 import android.R.string;
 
 
@@ -27,6 +29,7 @@ public class WSquery {
 	private String size="&size=";
 	private String fileLocal;
 	private String fileWS;
+	private JSONObject json;
 	public enum type{
 		allproblems,
 		best,
@@ -51,6 +54,13 @@ public class WSquery {
 		this.paramsNames= new ArrayList<String>();
 		this.paramsValues= new ArrayList<String>();
 		this.query=this.url;
+		this.json=null;
+	}
+	public JSONObject getJson() {
+		return json;
+	}
+	public void setJson(JSONObject json) {
+		this.json = json;
 	}
 	public void addType(type tipo){
 		this.query=this.query+tipo.toString()+"/";
