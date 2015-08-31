@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textColor="@color/black" />
 
     <TextView
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtProblemName"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black" />
 	
@@ -28,23 +28,23 @@
         android:layout_width="wrap_content"
      	android:layout_height="wrap_content"
      	android:layout_below="@+id/txtProblemNum"
-    	android:layout_marginTop="10dp"
-    	android:layout_centerHorizontal="true"
-    	android:textSize="18sp"
-    	android:orientation="horizontal">   	
+    	android:layout_marginTop="20dp"
+    	android:layout_marginLeft="10dp"
+    	android:textSize="20sp"
+    	android:orientation="horizontal">  
 
-   	<TextView
-    	android:id="@+id/txtLenguaje"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:textColor="@color/background"/>
-   
-   	<Spinner
-   		android:id="@+id/lenguaje"
-   		android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:layout_toRightOf="@+id/txtLenguaje"
-    	android:layout_marginLeft="5dp"/>
+	   	<TextView
+	    	android:id="@+id/txtLenguaje"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:textColor="@color/background"/>
+	   
+	   	<Spinner
+	   		android:id="@+id/lenguaje"
+	   		android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_toRightOf="@+id/txtLenguaje"
+	    	android:layout_marginLeft="5dp"/>
    
     </LinearLayout> 
     
@@ -54,25 +54,28 @@
      	android:layout_height="wrap_content"
      	android:layout_below="@+id/campoLenguaje"
     	android:layout_marginTop="10dp"
-    	android:layout_centerHorizontal="true"
-    	android:textSize="18sp"
+    	android:layout_marginLeft="10dp"
+    	android:layout_marginRight="10dp"
+    	android:textSize="20sp"
     	android:orientation="horizontal">   	
 
-   	<TextView
-    	android:id="@+id/txtComentario"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:textColor="@color/background"/>
-    
-     <EditText
-    	android:id="@+id/Comentario"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:hint="@string/comentario"
-    	android:inputType="text"
-    	android:textColor="@color/background"
-    	android:layout_toRightOf="@+id/Comentario"
-    	android:layout_marginLeft="5dp"/>
+	   	<TextView
+	    	android:id="@+id/txtComentario"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:textColor="@color/background"/>
+	    
+	     <EditText
+	    	android:id="@+id/Comentario"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:hint="@string/comentario"
+	    	android:inputType="textCapSentences|textMultiLine"
+	    	android:maxLines ="5" 
+	    	android:scrollHorizontally="false"
+	    	android:textColor="@color/background"
+	    	android:layout_toRightOf="@+id/Comentario"
+	    	android:layout_marginLeft="5dp"/>
      
      </LinearLayout> 
      
@@ -82,25 +85,25 @@
      	android:layout_height="wrap_content"
      	android:layout_below="@+id/campoComentario"
     	android:layout_marginTop="10dp"
-    	android:layout_centerHorizontal="true"
-    	android:textSize="18sp"
+    	android:layout_marginLeft="10dp"
+    	android:textSize="20sp"
     	android:orientation="horizontal">   	
 
-   	<TextView
-    	android:id="@+id/txtCF"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:textColor="@color/background"/>
-   		
-    <Button
-       	android:id="@+id/bChooseFile"
-       	style="?android:textAppearanceSmall"
-       	android:layout_width="wrap_content"
-       	android:layout_height="wrap_content"
-       	android:text="@string/ChooseFile"
-       	android:textStyle="bold" 
-       	android:layout_toRightOf="@+id/CF"
-    	android:layout_marginLeft="5dp"/>
+	   	<TextView
+	    	android:id="@+id/txtCF"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:textColor="@color/background"/>
+	   		
+	    <Button
+	       	android:id="@+id/bChooseFile"
+	       	style="?android:textAppearanceSmall"
+	       	android:layout_width="wrap_content"
+	       	android:layout_height="wrap_content"
+	       	android:text="@string/ChooseFile"
+	       	android:textStyle="bold" 
+	       	android:layout_toRightOf="@+id/CF"
+	    	android:layout_marginLeft="5dp"/>
      	
      </LinearLayout>
      
@@ -110,25 +113,30 @@
      	android:layout_height="wrap_content"
      	android:layout_below="@+id/campoCF"
     	android:layout_marginTop="10dp"
-    	android:layout_centerHorizontal="true"
-    	android:textSize="18sp"
+    	android:layout_marginLeft="10dp"
+    	android:layout_marginRight="10dp"
+    	android:textSize="20sp"
     	android:orientation="horizontal">   	
 
-   	<TextView
-    	android:id="@+id/txtCode"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:textColor="@color/background"/>
-   		
-   	<EditText
-    	android:id="@+id/Code"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:inputType="text"
-    	android:hint="Empieza a programar!"
-    	android:textColor="@color/background"
-    	android:layout_toRightOf="@+id/Code"
-    	android:layout_marginLeft="5dp"/>
+	   	<TextView
+	    	android:id="@+id/txtCode"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:textColor="@color/background"/>
+	   		
+	   	<EditText
+	    	android:id="@+id/Code"
+	    	android:layout_width ="wrap_content" 
+	   		android:layout_height ="wrap_content" 
+	    	android:layout_weight ="1" 
+	    	android:inputType="textCapSentences|textMultiLine"
+	    	android:maxLines ="20" 
+	    	android:maxLength ="2000" 
+	    	android:scrollHorizontally="false"
+	    	android:hint="Empieza a programar!\n\n\n"
+	    	android:textColor="@color/background"
+	    	android:layout_toRightOf="@+id/Code"
+	    	android:layout_marginLeft="5dp"/>
     
      </LinearLayout>
      

@@ -2,4 +2,10 @@
 <declare-styleable name="MyGallery">
 <attr name="android:galleryItemBackground" />
 </declare-styleable>
+
+<declare-styleable name="PieGraph">
+        <attr name="pieInnerCircleRatio" format="integer"/>
+        <attr name="pieSlicePadding" format="dimension"/>
+    </declare-styleable>
+
 </resources>

@@ -166,6 +166,18 @@ public class Traductor {
     	return gson.fromJson(data, ProblemWSType.class);
 		}
 	}
+	public ProblemListWSType getProblemaList() throws Exception{
+		if(this.JSON.startsWith("<?xml")){
+			Serializer serial = new Persister(m);
+			ProblemListWSType data = serial.read(ProblemListWSType.class, this.JSON);
+	    	return data;
+		}else{
+			Gson gson = this.getGsonbuilderAdapterProblemList();
+	    	JsonParser parser = new JsonParser();
+	    	JsonObject data = parser.parse(this.JSON).getAsJsonObject();
+	    	return gson.fromJson(data, ProblemListWSType.class);
+		}
+	}
 	public UserGenderWSType getGenero()throws Exception{
 		if(this.JSON.contains("<?xml")){
 			Serializer serial = new Persister(m);
@@ -215,7 +227,7 @@ public class Traductor {
 		try {
 			jsonobject = new JSONObject(this.JSON);
 			//ponemos country ya que el obj tiene un campo que es la lista de elems llamado country.
-			jsonArray = jsonobject.getJSONArray("country");
+			jsonArray = jsonobject.getJSONArray("countries");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -225,6 +237,24 @@ public class Traductor {
     	Type listType = new TypeToken<List<CountryWSType>>(){}.getType();
     	List<CountryWSType> List = new Gson().fromJson(jsonArray.toString(), listType);
     	return (ArrayList<CountryWSType>) List;
+	}
+	
+	public ArrayList<InstitutionWSType> getInstituciones(){
+		JSONObject jsonobject;
+    	JSONArray jsonArray = null;
+		try {
+			jsonobject = new JSONObject(this.JSON);
+			//ponemos country ya que el obj tiene un campo que es la lista de elems llamado country.
+			jsonArray = jsonobject.getJSONArray("institutions");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    	//then get the type for list and parse using gson as
+    	Type listType = new TypeToken<List<InstitutionWSType>>(){}.getType();
+    	List<InstitutionWSType> List = new Gson().fromJson(jsonArray.toString(), listType);
+    	return (ArrayList<InstitutionWSType>) List;
 	}
 	
 	public ArrayList<ProblemDetailsList> getListasDetalles(){
@@ -386,7 +416,7 @@ public class Traductor {
 		        // Check to see if we were given a list or a single seed
 		        if (appleObj.get("submission").isJsonArray()) {
 		            // if it's a list, just parse that from the JSON
-		        	subcats = g.fromJson(appleObj.get("subcats"),
+		        	subcats = g.fromJson(appleObj.get("submission"),
 		                    new TypeToken<List<SubmissionWSType>>() {
 		                    }.getType());
 		        } else {
@@ -394,6 +424,39 @@ public class Traductor {
 		            // and add it to the list
 		        	SubmissionWSType single = g.fromJson(appleObj.get("submission"), SubmissionWSType.class);
 		        	subcats = new ArrayList<SubmissionWSType>();
+		        	subcats.add(single);
+		        }
+		        // set the correct subcats list
+		        a.setSubmissionlist(subcats);
+		        }
+		        return a;
+		    }
+		});
+		return b.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZ").create();
+	}
+	private Gson getGsonbuilderAdapterProblemList(){
+		GsonBuilder b = new GsonBuilder();
+		b.registerTypeAdapter(ProblemListWSType.class, new JsonDeserializer<ProblemListWSType>() {
+		    @Override
+		    public ProblemListWSType deserialize(JsonElement arg0, Type arg1,
+		        JsonDeserializationContext arg2) throws JsonParseException {
+		        JsonObject appleObj = arg0.getAsJsonObject();
+		        Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZ").create();
+		        // Construct an apple (this shouldn't try to parse the seeds stuff
+		        ProblemListWSType a = g.fromJson(arg0, ProblemListWSType.class);
+		        if(appleObj.has("problem")){
+		        List<ProblemWSType> subcats = null;
+		        // Check to see if we were given a list or a single seed
+		        if (appleObj.get("problem").isJsonArray()) {
+		            // if it's a list, just parse that from the JSON
+		        	subcats = g.fromJson(appleObj.get("problem"),
+		                    new TypeToken<List<ProblemWSType>>() {
+		                    }.getType());
+		        } else {
+		            // otherwise, parse the single seed,
+		            // and add it to the list
+		        	ProblemWSType single = g.fromJson(appleObj.get("problem"), ProblemWSType.class);
+		        	subcats = new ArrayList<ProblemWSType>();
 		        	subcats.add(single);
 		        }
 		        // set the correct subcats list

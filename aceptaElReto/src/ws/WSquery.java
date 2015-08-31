@@ -27,11 +27,12 @@ public class WSquery {
 	private String query;
 	private String str="?start=";
 	private String size="&size=";
-	private String fileLocal;
-	private String fileWS;
+	private String fileLocal = null;
+	private String fileWS = null;
 	private JSONObject json;
 	public enum type{
 		allproblems,
+		avatar,
 		best,
 		cat,
 		code,
@@ -42,7 +43,9 @@ public class WSquery {
 		paths,
 		problems,
 		problem,
+		profile,
 		ranking,
+		submission,
 		submissions,
 		user,
 		volume,
@@ -56,15 +59,19 @@ public class WSquery {
 		this.query=this.url;
 		this.json=null;
 	}
+	
 	public JSONObject getJson() {
-		return json;
+			return json;
 	}
+	
 	public void setJson(JSONObject json) {
 		this.json = json;
 	}
+	
 	public void addType(type tipo){
 		this.query=this.query+tipo.toString()+"/";
 	}
+	
 	public void addID(int id){
 		this.query=this.query+Integer.toString(id)+"/";
 	}

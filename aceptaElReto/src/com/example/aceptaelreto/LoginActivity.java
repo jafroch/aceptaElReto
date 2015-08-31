@@ -19,7 +19,9 @@ import android.os.Build.VERSION;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.Html;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -79,6 +81,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
     private View mProgressView;
     private View mLoginFormView;
     private CheckBox recuerdame;
+    private TextView registrate;
     private final String URL="http://acr2.programame.com/ws/session";
 
     @Override
@@ -92,7 +95,12 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
         recuerdame = (CheckBox) findViewById(R.id.checkBox1);
-       
+        registrate = (TextView) findViewById(R.id.textRegistrate);
+        registrate.setClickable(true);
+        registrate.setMovementMethod(LinkMovementMethod.getInstance());
+        String text = "<a href='https://www.aceptaelreto.com/user/signup.php'> ¡Registrate! </a>";
+        registrate.setText(Html.fromHtml(text));
+        
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -105,6 +113,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
             }
         });
         if(username!=null && password!=null){
+        	recuerdame.setChecked(true);
         	mEmailView.setText(username);
         	mPasswordView.setText(password);
         }

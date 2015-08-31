@@ -3,14 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/defaultBackground">
+       
+    <ExpandableListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="10dp"
+        android:textColor="@color/background"
+	    android:gravity="center">
+    </ExpandableListView>
+    
+   <TextView
+	    android:id="@+id/AER"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textSize="24dp"
+	    android:text="¿Aceptas el Reto?"
+	    android:layout_marginTop="20dp"
+	    android:textColor="@color/background"
+	    android:layout_below="@+id/list"
+	    android:layout_centerHorizontal="true"/> 
     
    <LinearLayout
         android:id="@+id/bfield"
         android:layout_width="wrap_content"
      	android:layout_height="wrap_content"
-    	android:layout_marginTop="60dp"
+    	android:layout_marginTop="40dp"
     	android:layout_centerHorizontal="true"
-    	android:orientation="horizontal">
+    	android:orientation="horizontal"
+    	android:layout_below="@+id/AER">
     	
 
    <EditText
@@ -18,7 +39,7 @@
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:hint="@string/buscarId"
-    	android:inputType="text"
+    	android:inputType="number"
     	android:textColor="@color/background"/>
    
    <Spinner

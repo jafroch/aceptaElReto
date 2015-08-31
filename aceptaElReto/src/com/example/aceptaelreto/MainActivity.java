@@ -5,16 +5,21 @@ import java.net.URL;
 import java.util.ArrayList;
 
 
+
+
+
 import ws.CallerWS;
 import ws.Traductor;
 import ws.WSquery;
 import ws.WSquery.type;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -58,26 +63,12 @@ public class MainActivity extends ActionBarActivity implements
      public static String Token;
      public static String myId;
      Bundle args;
-     
-     //Problemas prueba
-   //the images to display
-     Integer[] imageIDs = {
-     R.drawable.problem1,
-     R.drawable.problem2,
-     };
-   
+      
      
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		
-		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-		mTitle = getTitle();
-		
-		// Set up the drawer.
-		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,(DrawerLayout) findViewById(R.id.drawer_layout));
 		
 		try {
 			Intent myIntent = getIntent(); 
@@ -92,7 +83,12 @@ public class MainActivity extends ActionBarActivity implements
 			e.printStackTrace();
 		}
 		
+		setContentView(R.layout.activity_main);
+		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+		mTitle = getTitle();
 		
+		// Set up the drawer.
+		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,(DrawerLayout) findViewById(R.id.drawer_layout));
 	}
 	
 	@Override
@@ -100,6 +96,7 @@ public class MainActivity extends ActionBarActivity implements
 		  // update the main content by replacing fragments
 		 
 		  FragmentManager fragmentManager = getSupportFragmentManager();
+		  fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		  switch (position+1) {
 		    case 1:
 		      fragmentManager.beginTransaction().replace(R.id.container,
@@ -111,7 +108,7 @@ public class MainActivity extends ActionBarActivity implements
 		   	  break;
 		    case 3:
 		      fragmentManager.beginTransaction().replace(R.id.container,
-		      Inicio_Fragment.newInstance(position + 1,Token)).addToBackStack(null).commit();
+		      UltEnv_Fragment.newInstance(position + 1,Token,true)).addToBackStack(null).commit();
 		      break;
 		    case 4:
 		      fragmentManager.beginTransaction().replace(R.id.container,
@@ -119,13 +116,9 @@ public class MainActivity extends ActionBarActivity implements
 			  break;
 		    case 5:
 			  fragmentManager.beginTransaction().replace(R.id.container,
-			  ProbMenuFragment.newInstance(position + 1,Token)).addToBackStack(null).commit();
+			  UltEnv_Fragment.newInstance(position + 1,Token,false)).addToBackStack(null).commit();
 			  break;
 		    case 6:
-			  fragmentManager.beginTransaction().replace(R.id.container,
-			  ProbListFragment.newInstance(position + 1,Token)).addToBackStack(null).commit();
-			  break;
-		    case 7:
 		      fragmentManager.beginTransaction().replace(R.id.container,
 		      Doc_Fragment.newInstance(position + 1,Token)).addToBackStack(null).commit();
 			  break;
@@ -153,9 +146,6 @@ public class MainActivity extends ActionBarActivity implements
 			break;
 		case 6:
 			mTitle = getString(R.string.title_section5);
-			break;
-		case 7:
-			mTitle = getString(R.string.title_section6);
 			break;
 		}
 	}
@@ -186,20 +176,25 @@ public class MainActivity extends ActionBarActivity implements
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		if (id == R.id.action_settings) {	
+			Intent myIntent = new Intent(this, LoginActivity.class);
+	        startActivity(myIntent);
+	        finish();
+	        return true;		
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
-    public void onBackPressed() {
+	public void onBackPressed() {
+		int aux = getFragmentManager().getBackStackEntryCount();
     	if (getFragmentManager().getBackStackEntryCount() != 0) {
             getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
             
         }
-    }
+	}
+    
 	
 }

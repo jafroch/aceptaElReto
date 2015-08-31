@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" 
+    android:textStyle="bold" >
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/h_Id"
+        android:text="Id"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/h_prob"
+        android:text="Título"
+        android:layout_toEndOf="@+id/h_Id"
+        android:layout_toStartOf="@+id/h_env"
+        android:gravity="center_horizontal"/>
+    
+     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/h_env"
+        android:text="AC/Envíos"
+        android:layout_toLeftOf="@+id/h_user"
+        android:layout_marginRight="5dp"/>
+     
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/h_user"
+        android:text="AC/Usuarios"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="5dp"/>
+
+</RelativeLayout>

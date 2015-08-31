@@ -1,8 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:background="@color/defaultBackground"
+    tools:context="com.example.aceptaelreto.Perfil_Fragment">
     
+    <TextView
+        android:id="@+id/usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:textSize="22sp"
+        android:text="Editar usuario:"
+        android:textColor="@color/black" />
+    
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/avatar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/usuario" />
+	
+    <Button
+        android:id="@+id/btnEditPhoto"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/ic_action_edit"
+        android:visibility="visible"
+		android:layout_toEndOf="@+id/avatar"
+		android:layout_alignBottom="@+id/avatar" />
+        
+    <TextView
+        android:id="@+id/txtNick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/avatar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textColor="@color/black" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/txtCorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtNick"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black" />
+    
+	<LinearLayout
+        android:id="@+id/editNombreCompleto"
+        android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+        android:layout_below="@+id/txtCorreo"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black" 
+    	android:orientation="horizontal"> 	
+
+	    <TextView
+	    	android:id="@+id/txtNombreCompleto"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:hint="@string/buscarId"
+	    	android:textColor="@color/background"/>
+	   
+	    <EditText
+	        android:id="@+id/editTxtNombreCompleto"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:inputType="text"/>
+   
+   </LinearLayout> 
+    
+    <LinearLayout
+        android:id="@+id/editNacimiento"
+        android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+        android:layout_below="@+id/editNombreCompleto"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black" 
+    	android:orientation="horizontal"> 	
+
+	    <TextView
+	    	android:id="@+id/txtNacimiento"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:hint="@string/buscarId"
+	    	android:textColor="@color/background"/>
+	   
+	    <EditText
+	        android:id="@+id/editTxtNacimineto"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:inputType="text"
+	        android:hint="dd/mm/aaaa"/>
+   
+   </LinearLayout>    
+   
+    <LinearLayout
+        android:id="@+id/editGenero"
+        android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+        android:layout_below="@+id/editNacimiento"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black" 
+    	android:orientation="horizontal">
+    	
+
+   		<TextView
+	    	android:id="@+id/txtGenero"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:hint="@string/buscarId"
+	    	android:textColor="@color/background"/>
+   
+       <Spinner
+	        android:id="@+id/spinGenero"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"/>
+   
+   </LinearLayout> 
+
+	<LinearLayout
+        android:id="@+id/editPais"
+        android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+        android:layout_below="@+id/editNacimiento"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black" 
+    	android:orientation="horizontal">
+    	
+	     <TextView
+	    	android:id="@+id/txtPais"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:hint="@string/buscarId"
+	    	android:textColor="@color/background"/>
+	   
+	      <Spinner
+	        android:id="@+id/spinPais"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"/>
+   
+   </LinearLayout> 
+    
+    <LinearLayout
+        android:id="@+id/editInstitucion"
+        android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+        android:layout_below="@+id/editNacimiento"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black" 
+    	android:orientation="horizontal">  	
+
+	   <TextView
+	    	android:id="@+id/txtInstitucion"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:hint="@string/buscarId"
+	    	android:textColor="@color/background"/>
+	   
+	   <Spinner
+	        android:id="@+id/spinInstitucion"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"/>
+   
+   </LinearLayout> 
+   
+     <Button
+		android:id="@+id/btnActualizar"
+	    style="?android:textAppearanceSmall"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Actualizar Perfil"
+	    android:textStyle="bold" 
+		android:layout_below="@+id/editInstitucion"
+	    android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

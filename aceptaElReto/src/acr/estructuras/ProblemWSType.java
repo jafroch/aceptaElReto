@@ -37,6 +37,9 @@ public class ProblemWSType {
 	// Fichero con el html "embebible" con los créditos
 	public String htmlEmCreditsLink;
 	
+	// Fichero con el html "embebible" con los créditos
+	public String previewLink;
+	
 	// Directorio 'base' de todos los ficheros
 	// de los enunciados. Solo es establecido en situaciones
 	// muy concretas (cuando el problema está 'naciendo'

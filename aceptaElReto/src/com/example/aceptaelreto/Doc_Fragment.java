@@ -77,7 +77,7 @@ public class Doc_Fragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
-						  Faq_Fragment.newInstance(0,token.getString("TOKEN"))).addToBackStack(null).commit();
+						Doc_List_Fragment.newInstance(0,token.getString("TOKEN"),1)).addToBackStack(null).commit();
 			}
 		});
         
@@ -87,7 +87,7 @@ public class Doc_Fragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
-						  Faq_Fragment.newInstance(0,token.getString("TOKEN"))).addToBackStack(null).commit();
+						  Doc_List_Fragment.newInstance(0,token.getString("TOKEN"),2)).addToBackStack(null).commit();
 			}
 		});
         
@@ -97,7 +97,7 @@ public class Doc_Fragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
-						  Faq_Fragment.newInstance(0,token.getString("TOKEN"))).addToBackStack(null).commit();
+						Doc_List_Fragment.newInstance(0,token.getString("TOKEN"),3)).addToBackStack(null).commit();
 			}
 		});
         
@@ -107,7 +107,7 @@ public class Doc_Fragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
-						  Faq_Fragment.newInstance(0,token.getString("TOKEN"))).addToBackStack(null).commit();
+						Doc_List_Fragment.newInstance(0,token.getString("TOKEN"),4)).addToBackStack(null).commit();
 			}
 		});
 

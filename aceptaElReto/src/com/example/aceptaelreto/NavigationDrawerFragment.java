@@ -115,7 +115,6 @@ public class NavigationDrawerFragment extends Fragment {
 						//AÑADIDO PARA QUE META MAS APARTADOS EN EL MENU
 						getString(R.string.title_section4),
 						getString(R.string.title_section5),
-						getString(R.string.title_section6),
 			}));
 		mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 		
@@ -278,11 +277,6 @@ public class NavigationDrawerFragment extends Fragment {
 			return true;
 		}
 
-		if (item.getItemId() == R.id.action_example) {
-			Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT)
-					.show();
-			return true;
-		}
 
 		return super.onOptionsItemSelected(item);
 	}

@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/defaultBackground">
+     
+   <TextView 
+        android:id="@+id/txtEstad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:text="Estadísticas:"
+       	android:textSize="20sp"
+        android:textColor="@color/black"/>    
+    
+    <TextView 
+        android:id="@+id/txtLeng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Lenguajes:"
+        android:layout_below="@id/txtEstad"
+       	android:textSize="14sp"
+        android:textColor="@color/black"/> 
+    
+    <!-- Gráfica Lenguaje  -->
+    
+    <LinearLayout 
+        android:id="@+id/graphSpace1"
+        android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+    	android:layout_marginTop="10dp"
+		android:layout_marginLeft="10dp"
+		android:layout_below="@+id/txtLeng"
+    	android:orientation="horizontal">
+        
+    <Tools.PieGraph
+        android:id="@+id/graph1"
+        android:layout_width="220dp"
+        android:layout_height="220dp"/>
+    
+    <LinearLayout 
+    	android:id="@+id/graph1Legend"
+        android:layout_width="match_parent"
+     	android:layout_height="match_parent"
+		android:paddingLeft="10dp"
+		android:layout_marginTop="70dp"
+    	android:orientation="vertical">
+    	    
+    	<LinearLayout 
+    	    android:id="@+id/graph1Legend1"
+       		android:layout_width="match_parent"
+     		android:layout_height="wrap_content"
+    		android:orientation="horizontal">
+    		
+    	        <TextView 
+        			android:id="@+id/Csquare"
+        			android:layout_width="10dp"
+        			android:layout_height="10dp"
+        			android:layout_marginTop="5dp"
+        			android:background="@color/leg1"/>
+    	        
+    			<TextView 
+        			android:id="@+id/C"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:paddingLeft="10dp"
+        			android:text="C"
+       		 		android:textSize="12sp"
+        			android:textColor="@color/black"/>
+    	
+    	 </LinearLayout>
+    		
+    	 <LinearLayout 
+    	    android:id="@+id/graph1Legend2"
+       		android:layout_width="wrap_content"
+     		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:layout_below="@+id/graph1Legend1">
+    		
+    	        <TextView 
+        			android:id="@+id/Cppsquare"
+        			android:layout_width="10dp"
+        			android:layout_height="10dp"
+        			android:layout_marginTop="5dp"
+        			android:background="@color/leg2"/>
+    	        
+    			<TextView 
+        			android:id="@+id/Cpp"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:paddingLeft="10dp"
+        			android:text="C++"
+       		 		android:textSize="12sp"
+        			android:textColor="@color/black"/>
+    	
+    		</LinearLayout>
+    		
+    	    <LinearLayout 
+    	    android:id="@+id/graph1Legend3"
+       		android:layout_width="wrap_content"
+     		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:layout_below="@+id/graph1Legend2">
+    		
+    	        <TextView 
+        			android:id="@+id/Javasquare"
+        			android:layout_width="10dp"
+        			android:layout_height="10dp"
+        			android:layout_marginTop="5dp"
+        			android:background="@color/leg3"/>
+    	        
+    			<TextView 
+        			android:id="@+id/Java"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:paddingLeft="10dp"
+        			android:text="Java"
+       		 		android:textSize="12sp"
+        			android:textColor="@color/black"/>
+    	
+    		</LinearLayout>
+    		
+    		
+    	</LinearLayout>
+    	    
+    </LinearLayout>
+    
+    
+    <!-- Gráfica Resultado  -->
+    
+    <TextView 
+        android:id="@+id/txtEnv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:text="Envíos:"
+       	android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_below="@+id/graphSpace1"/> 
+    
+     
+    <LinearLayout 
+        android:id="@+id/graphSpace2"
+        android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+    	android:layout_marginTop="10dp"
+    	android:layout_marginBottom="10dp"
+    	android:layout_marginLeft="10dp"
+    	android:layout_below="@+id/txtEnv"
+    	android:orientation="horizontal">
+        
+    <Tools.PieGraph
+        android:id="@+id/graph2"
+        android:layout_width="220dp"
+        android:layout_height="220dp" 
+        android:paddingLeft="15dp"/>/>
+    
+    <LinearLayout 
+    	android:id="@+id/graph2Legend"
+        android:layout_width="match_parent"
+     	android:layout_height="match_parent"
+		android:paddingLeft="10dp"
+    	android:orientation="vertical">
+    	    
+    	<LinearLayout 
+    	    android:id="@+id/graph2Legend1"
+       		android:layout_width="wrap_content"
+     		android:layout_height="wrap_content"
+    		android:orientation="horizontal">
+    		
+    	        <TextView 
+        			android:id="@+id/ACsquare"
+        			android:layout_width="10dp"
+        			android:layout_height="10dp"
+        			android:layout_marginTop="5dp"
+        			android:background="@color/leg1"/>
+
+    	        <TextView
+    	            android:id="@+id/AC"
+    	            android:layout_width="wrap_content"
+    	            android:layout_height="wrap_content"
+    	            android:paddingLeft="10dp"
+    	            android:text="Accepted"
+    	            android:textColor="@color/black"
+    	            android:textSize="12sp" />
+    	
+    	 </LinearLayout>
+    		
+    	    <LinearLayout 
+    	    android:id="@+id/graph2Legend2"
+       		android:layout_width="wrap_content"
+     		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:layout_below="@+id/graph2Legend1">
+    		
+    	        <TextView 
+        			android:id="@+id/PEsquare"
+        			android:layout_width="10dp"
+        			android:layout_height="10dp"
+        			android:layout_marginTop="5dp"
+        			android:background="@color/leg2"/>
+    	        
+    			<TextView 
+        			android:id="@+id/PE"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:paddingLeft="10dp"
+        			android:text="Presentation error"
+       		 		android:textSize="12sp"
+        			android:textColor="@color/black"/>
+    	
+    		</LinearLayout>
+    		
+    		<LinearLayout 
+    	    android:id="@+id/graph2Legend3"
+       		android:layout_width="wrap_content"
+     		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:layout_below="@+id/graph2Legend2">
+    		
+    	        <TextView 
+        			android:id="@+id/WAsquare"
+        			android:layout_width="10dp"
+        			android:layout_height="10dp"
+        			android:layout_marginTop="5dp"
+        			android:background="@color/leg3"/>
+    	        
+    			<TextView 
+        			android:id="@+id/WA"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:paddingLeft="10dp"
+        			android:text="Wrong answer"
+       		 		android:textSize="12sp"
+        			android:textColor="@color/black"/>
+    	
+    		</LinearLayout>
+    		
+    		<LinearLayout 
+    	    android:id="@+id/graph2Legend4"
+       		android:layout_width="wrap_content"
+     		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:layout_below="@+id/graph2Legend3">
+    		
+    	        <TextView 
+        			android:id="@+id/TLsquare"
+        			android:layout_width="10dp"
+        			android:layout_height="10dp"
+        			android:layout_marginTop="5dp"
+        			android:background="@color/leg4"/>
+    	        
+    			<TextView 
+        			android:id="@+id/TL"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:paddingLeft="10dp"
+        			android:text="Time limit exceeded"
+       		 		android:textSize="12sp"
+        			android:textColor="@color/black"/>
+    	
+    		</LinearLayout>
+    		
+    		<LinearLayout 
+    	    android:id="@+id/graph2Legend5"
+       		android:layout_width="wrap_content"
+     		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:layout_below="@+id/graph2Legend4">
+    		
+    	        <TextView 
+        			android:id="@+id/MLsquare"
+        			android:layout_width="10dp"
+        			android:layout_height="10dp"
+        			android:layout_marginTop="5dp"
+        			android:background="@color/leg5"/>
+    	        
+    			<TextView 
+        			android:id="@+id/ML"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:paddingLeft="10dp"
+        			android:text="Memory limit exceeded"
+       		 		android:textSize="12sp"
+        			android:textColor="@color/black"/>
+    	
+    		</LinearLayout>
+    		
+    		<LinearLayout 
+    	    android:id="@+id/graph2Legend6"
+       		android:layout_width="wrap_content"
+     		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:layout_below="@+id/graph2Legend5">
+    		
+    	        <TextView 
+        			android:id="@+id/OLsquare"
+        			android:layout_width="10dp"
+        			android:layout_height="10dp"
+        			android:layout_marginTop="5dp"
+        			android:background="@color/leg6"/>
+    	        
+    			<TextView 
+        			android:id="@+id/OL"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:paddingLeft="10dp"
+        			android:text="Output limit exceeded"
+       		 		android:textSize="12sp"
+        			android:textColor="@color/black"/>
+    	
+    		</LinearLayout>
+    		
+    		<LinearLayout 
+    	    android:id="@+id/graph2Legend7"
+       		android:layout_width="wrap_content"
+     		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:layout_below="@+id/graph2Legend6">
+    		
+    	        <TextView 
+        			android:id="@+id/RFsquare"
+        			android:layout_width="10dp"
+        			android:layout_height="10dp"
+        			android:layout_marginTop="5dp"
+        			android:background="@color/leg7"/>
+    	        
+    			<TextView 
+        			android:id="@+id/RF"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:paddingLeft="10dp"
+        			android:text="Restricted function"
+       		 		android:textSize="12sp"
+        			android:textColor="@color/black"/>
+    	
+    		</LinearLayout>
+    		
+    		<LinearLayout 
+    	    android:id="@+id/graph2Legend8"
+       		android:layout_width="wrap_content"
+     		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:layout_below="@+id/graph2Legend7">
+    		
+    	        <TextView 
+        			android:id="@+id/RTEsquare"
+        			android:layout_width="10dp"
+        			android:layout_height="10dp"
+        			android:layout_marginTop="5dp"
+        			android:background="@color/leg8"/>
+    	        
+    			<TextView 
+        			android:id="@+id/RTE"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:paddingLeft="10dp"
+        			android:text="Run-time error"
+       		 		android:textSize="12sp"
+        			android:textColor="@color/black"/>
+    	
+    		</LinearLayout>
+    		
+    		<LinearLayout 
+    	    android:id="@+id/graph2Legend9"
+       		android:layout_width="wrap_content"
+     		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:layout_below="@+id/graph2Legend8">
+    		
+    	        <TextView 
+        			android:id="@+id/CEsquare"
+        			android:layout_width="10dp"
+        			android:layout_height="10dp"
+        			android:layout_marginTop="5dp"
+        			android:background="@color/leg9"/>
+    	        
+    			<TextView 
+        			android:id="@+id/CE"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:paddingLeft="10dp"
+        			android:text="Compilation error"
+       		 		android:textSize="12sp"
+        			android:textColor="@color/black"/>
+    	
+    		</LinearLayout>
+    		
+    		<LinearLayout 
+    	    android:id="@+id/graph2Legend10"
+       		android:layout_width="wrap_content"
+     		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:layout_below="@+id/graph2Legen9">
+    		
+    	        <TextView 
+        			android:id="@+id/IRsquare"
+        			android:layout_width="10dp"
+        			android:layout_height="10dp"
+        			android:layout_marginTop="5dp"
+        			android:background="@color/leg10"/>
+    	        
+    			<TextView 
+        			android:id="@+id/IR"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:paddingLeft="10dp"
+        			android:text="Internal error"
+       		 		android:textSize="12sp"
+        			android:textColor="@color/black"/>
+    	
+    		</LinearLayout>
+    		 
+    	</LinearLayout>
+    	    
+    </LinearLayout> 
+    
+    <!-- Tabla Estadísticas -->
+    
+    <TableLayout
+    android:id="@+id/tableLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" 
+    android:layout_below="@+id/graphSpace2"
+    android:layout_marginTop="10dp"
+    android:layout_centerHorizontal="true">
+
+
+	    <TableRow
+	        android:id="@+id/table1Row1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:padding="2dip" >
+	
+	        <TextView
+	            android:id="@+id/textRow11"
+	            android:text="Número de envíos:"
+	            android:textSize="18sp"
+	            android:gravity="center"
+	            android:background="@color/background" 
+	            android:textColor="@color/white"/>
+	        
+	        <TextView
+	            android:id="@+id/textRow12"
+	            android:layout_width="wrap_content"
+	            android:background="@drawable/rounded_edittext"
+	            android:textColor="@color/background"
+	            android:textSize="18sp"
+	            android:gravity="center"/>
+	        	        
+	    </TableRow>
+	    
+	    <TableRow
+	        android:id="@+id/table1Row2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:padding="2dip" >
+	
+	        <TextView
+	            android:id="@+id/textRow21"
+	            android:text="Usuarios que lo han intentado:"
+	            android:gravity="center"
+	            android:textSize="18sp"
+	            android:background="@color/background" 
+	            android:textColor="@color/white" />
+	        
+	        <TextView
+	            android:id="@+id/textRow22"
+	            android:layout_width="wrap_content"
+	            android:background="@drawable/rounded_edittext"
+	            android:textColor="@color/background"
+	            android:textSize="18sp"
+	            android:gravity="center"/>
+	        	        
+	    </TableRow>
+	    
+	     <TableRow
+	        android:id="@+id/table1Row3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:padding="2dip" >
+	
+	        <TextView
+	            android:id="@+id/textRow31"
+	            android:text=" Usuarios que lo han conseguido: "
+	            android:gravity="center"
+	            android:textSize="18sp"
+	            android:background="@color/background" 
+	            android:textColor="@color/white" />
+	        
+	        <TextView
+	            android:id="@+id/textRow32"
+	            android:layout_width="wrap_content"
+	            android:background="@drawable/rounded_edittext"
+	            android:textColor="@color/background"
+	            android:textSize="18sp"
+	            android:gravity="center"/>
+	        
+	        
+	    </TableRow>
+	    
+    </TableLayout>
+	    
+    <!-- Clasificación -->
+    
+    <TextView 
+        android:id="@+id/txtClas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:text="Clasificación:"
+       	android:textSize="20sp"
+       	android:layout_below="@+id/tableLayout1"
+        android:textColor="@color/black"/>
+    
+    <TableLayout 
+        android:id="@+id/tableC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:divider="?android:attr/dividerHorizontal"
+		android:showDividers="middle"
+        android:layout_below="@+id/txtClas"/>
+
+    <!-- Últimos Envíos -->
+    
+    <TextView 
+        android:id="@+id/txtUlEnv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:text="Últimos Envíos:"
+       	android:textSize="20sp"
+       	android:layout_below="@+id/tableC"
+        android:textColor="@color/black"/>
+    
+    <TableLayout 
+        android:id="@+id/tableUE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        android:divider="?android:attr/dividerHorizontal"
+		android:showDividers="middle"
+        android:layout_below="@+id/txtUlEnv"/>
+    
+</RelativeLayout>
+</ScrollView>

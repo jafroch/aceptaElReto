@@ -1,9 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/defaultBackground"
-    tools:context="com.example.aceptaelreto.Perfil_Fragment">
+    android:background="@color/defaultBackground">
     
     
     <TextView
@@ -30,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/avatar"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:textColor="@color/black" />
@@ -42,7 +43,7 @@
         android:layout_below="@+id/txtNick"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/black" />
 
     <TextView
@@ -52,7 +53,7 @@
         android:layout_below="@+id/txtCorreo"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/black" />
 
     <TextView
@@ -62,7 +63,7 @@
         android:layout_below="@+id/txtNombreCompleto"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/black" />
 
     <TextView
@@ -72,7 +73,7 @@
         android:layout_below="@+id/txtNacimiento"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/black" />
 
     <TextView
@@ -82,7 +83,7 @@
         android:layout_below="@+id/txtGenero"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/black" />
         
     <TextView
@@ -92,23 +93,26 @@
         android:layout_below="@+id/txtPais"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/black" />
-      
+    
     <Button
-        android:id="@+id/btnEditProfile"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:background="@drawable/ic_action_edit"
-        android:visibility="visible"
-		android:layout_toEndOf="@+id/avatar"
-		android:layout_alignBottom="@+id/avatar" />
+		android:id="@+id/btnEditProfile"
+	    style="?android:textAppearanceSmall"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Editar Perfil"
+	    android:textStyle="bold" 
+		android:layout_below="@+id/txtInstitucion"
+	    android:layout_centerHorizontal="true"/>
+      
+
     
     <TextView
         android:id="@+id/probEnvios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtInstitucion"
+        android:layout_below="@+id/btnEditProfile"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
@@ -116,11 +120,30 @@
         android:text="Problemas Enviados:"
         android:textColor="@color/black" />
     
-    <ListView 
-        android:id="@+id/listProbEnv"
+    <TableLayout 
+        android:id="@+id/tableE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        android:divider="?android:attr/dividerHorizontal"
+		android:showDividers="middle"
         android:layout_below="@+id/probEnvios"/>
+    
+    <TextView
+        android:id="@+id/noEnvios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_below="@+id/tableE"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:textSize="18sp"
+        android:text="No hay envíos"
+        android:textColor="@color/black"/>
 	
+
     
 </RelativeLayout>
+</ScrollView>

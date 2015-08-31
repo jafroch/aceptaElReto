@@ -36,15 +36,7 @@
 	  <item name="android:gravity">center</item>
    </style> 
  
-    <!-- 
-    <style name="CustomActionBarTheme" parent="@android:Theme.Holo">
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
-        <item name="android:actionMenuTextColor">@color/black</item>
-    </style>
-
-    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@color/defaultBackground</item>
-    </style>
- 	-->
+    
+ 	
  	
 </resources>

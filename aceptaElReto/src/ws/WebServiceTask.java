@@ -163,7 +163,7 @@ public class WebServiceTask  {
                 int executeCount = 0;
     			do
     			{
-    				pDlg.setMessage("Logging in.. ("+(executeCount+1)+"/5)");
+    				//pDlg.setMessage("Logging in.. ("+(executeCount+1)+"/5)");
     				// Execute HTTP Post Request
     				executeCount++;
     				response = httpclient.execute(httppost,localContext);
@@ -193,9 +193,9 @@ public class WebServiceTask  {
                 httpput.setEntity(reqEntity);
                 }
                 if(this.json!=null){
-                httpput.setEntity(new ByteArrayEntity(this.json.toString().getBytes("UTF8")));
+                httpput.setEntity(new ByteArrayEntity(this.json.toString().getBytes()));
                 }
-               response = httpclient.execute(httpput,localContext);
+                response = httpclient.execute(httpput,localContext);
                 responseCode = response.getStatusLine().getStatusCode();
                 httpput.getRequestLine();
                 uriInfo = httpput.getURI();                    
