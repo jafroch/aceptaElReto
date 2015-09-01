@@ -1,39 +1,13 @@
 package com.example.aceptaelreto;
 
-import ws.CallerWS;
-import ws.Traductor;
-import ws.WSquery;
-import ws.WebServiceTask;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import acr.estructuras.CountryWSType;
-import acr.estructuras.NewSession;
-import acr.estructuras.ResponseList;
-
-import org.json.JSONObject;
-
+import Tools.ExpandableListAdapter;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ExpandableListView;
-import android.widget.Spinner;
-import android.widget.TextView;
  /*
   * clase que genera el fragment de 
   */

@@ -1,44 +1,20 @@
 package com.example.aceptaelreto;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 
 import ws.CallerWS;
 import ws.Traductor;
 import ws.WSquery;
 import ws.WSquery.type;
-
-import com.squareup.picasso.Picasso;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.Volley;
-import com.example.aceptaelreto.R.color;
-
-import Tools.BitmapLRUCache;
 import Tools.PieGraph;
 import Tools.PieSlice;
-import Tools.PieGraph.OnSliceClickedListener;
-import acr.estructuras.CategoryWSType;
 import acr.estructuras.ProblemWSType;
 import acr.estructuras.SubmissionWSType;
 import acr.estructuras.SubmissionsListWSType;
-import acr.estructuras.UserWSType;
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -46,18 +22,10 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Estad_Fragment extends Fragment{
 
@@ -378,115 +346,121 @@ private class MyAsyncTask extends AsyncTask<Integer, Void, ArrayList<SubmissionW
 		Resources resource = mContext.getResources();
 		
 		//Tabla Clasificación
-		
 		int max = 6;
-		if (max > list.size()) max = list.size()+1;
+		if (list!=null){
 		
-		for(int i = 0; i < max; i++){
-			TableRow tr =  new TableRow(mContext);
-		    TextView c1  = new TextView(mContext);
-		    TextView c2  = new TextView(mContext);
-		    TextView c3  = new TextView(mContext);
-		    TextView c4  = new TextView(mContext);
-		    TextView c5 = new TextView(mContext);
-		    TextView c6 = new TextView(mContext);
-		    
-			if (i==0){
-				c1.setText("Pos"); 
-				c1.setTextColor(resource.getColor(R.color.white));
-			    c2.setText("Envío");
-			    c2.setTextColor(resource.getColor(R.color.white));
-			    c3.setText("Usuario");
-			    c3.setTextColor(resource.getColor(R.color.white));
-			    c4.setText("Leng");
-			    c4.setTextColor(resource.getColor(R.color.white));
-			    c5.setText("Tiempo");
-			    c5.setTextColor(resource.getColor(R.color.white));
-			    c6.setText("Mem");
-			    c6.setTextColor(resource.getColor(R.color.white));
-			    tr.setBackgroundColor(resource.getColor(R.color.background));			    
+			if (max > list.size()) max = list.size()+1;
+			
+			for(int i = 0; i < max; i++){
+				TableRow tr =  new TableRow(mContext);
+			    TextView c1  = new TextView(mContext);
+			    TextView c2  = new TextView(mContext);
+			    TextView c3  = new TextView(mContext);
+			    TextView c4  = new TextView(mContext);
+			    TextView c5 = new TextView(mContext);
+			    TextView c6 = new TextView(mContext);
 			    
-			}else{
-				c1.setText(Integer.toString(i));  
-			    c2.setText(String.valueOf(envs.get(i-1)));
-			    c3.setText(users.get(i-1));
-			    if (lengs.get(i-1).equals("CPP")) c4.setText("C++");
-			    else c4.setText(lengs2.get(i-1));
-			    c5.setText(String.valueOf(temps.get(i-1)));
-			    c6.setText(String.valueOf(mems.get(i-1)));
+				if (i==0){
+					c1.setText("Pos"); 
+					c1.setTextColor(resource.getColor(R.color.white));
+				    c2.setText("Envío");
+				    c2.setTextColor(resource.getColor(R.color.white));
+				    c3.setText("Usuario");
+				    c3.setTextColor(resource.getColor(R.color.white));
+				    c4.setText("Leng");
+				    c4.setTextColor(resource.getColor(R.color.white));
+				    c5.setText("Tiempo");
+				    c5.setTextColor(resource.getColor(R.color.white));
+				    c6.setText("Mem");
+				    c6.setTextColor(resource.getColor(R.color.white));
+				    tr.setBackgroundColor(resource.getColor(R.color.background));			    
+				    
+				}else{
+					c1.setText(Integer.toString(i));  
+				    c2.setText(String.valueOf(envs.get(i-1)));
+				    c3.setText(users.get(i-1));
+				    if (lengs.get(i-1).equals("CPP")) c4.setText("C++");
+				    else c4.setText(lengs2.get(i-1));
+				    c5.setText(String.valueOf(temps.get(i-1)));
+				    c6.setText(String.valueOf(mems.get(i-1)));
+				}
+			   	
+			    c1.setGravity(Gravity.CENTER);
+			    c2.setGravity(Gravity.CENTER);
+			    c3.setGravity(Gravity.CENTER);
+			    c4.setGravity(Gravity.CENTER);
+			    c5.setGravity(Gravity.CENTER);
+			    c6.setGravity(Gravity.CENTER);
+			    tr.addView(c1);
+			    tr.addView(c2);
+			    tr.addView(c3);
+			    tr.addView(c4);
+			    tr.addView(c5);
+			    tr.addView(c6);
+			    tr.setPadding(1, 1, 1, 1);
+			    clasif.addView(tr);
 			}
-		   	
-		    c1.setGravity(Gravity.CENTER);
-		    c2.setGravity(Gravity.CENTER);
-		    c3.setGravity(Gravity.CENTER);
-		    c4.setGravity(Gravity.CENTER);
-		    c5.setGravity(Gravity.CENTER);
-		    c6.setGravity(Gravity.CENTER);
-		    tr.addView(c1);
-		    tr.addView(c2);
-		    tr.addView(c3);
-		    tr.addView(c4);
-		    tr.addView(c5);
-		    tr.addView(c6);
-		    tr.setPadding(1, 1, 1, 1);
-		    clasif.addView(tr);
 		}
+			
 		
 		//Tabla Últimos Envíos
-				
-		for(int i = 0; i < max; i++){
-			TableRow tr =  new TableRow(mContext);
-		    TextView c1  = new TextView(mContext);
-		    TextView c2  = new TextView(mContext);
-		    TextView c3  = new TextView(mContext);
-		    TextView c4  = new TextView(mContext);
-		    TextView c5 = new TextView(mContext);
-		    TextView c6 = new TextView(mContext);
-		    
-			if (i==0){
-				c1.setText("Usuario"); 
-				c1.setTextColor(resource.getColor(R.color.white));
-			    c2.setText("Res");
-			    c2.setTextColor(resource.getColor(R.color.white));
-			    c3.setText("Leng");
-			    c3.setTextColor(resource.getColor(R.color.white));
-			    c4.setText("Tiempo");
-			    c4.setTextColor(resource.getColor(R.color.white));
-			    c5.setText("Mem");
-			    c5.setTextColor(resource.getColor(R.color.white));
-			    c6.setText("Pos");
-			    c6.setTextColor(resource.getColor(R.color.white));
-			    tr.setBackgroundColor(resource.getColor(R.color.background));			    
+		if (sublist2!=null){
+			max = 6;
+			if (max > sublist2.size()) max = sublist2.size()+1;
+			
+			for(int i = 0; i < max; i++){
+				TableRow tr =  new TableRow(mContext);
+			    TextView c1  = new TextView(mContext);
+			    TextView c2  = new TextView(mContext);
+			    TextView c3  = new TextView(mContext);
+			    TextView c4  = new TextView(mContext);
+			    TextView c5 = new TextView(mContext);
+			    TextView c6 = new TextView(mContext);
 			    
-			}else{
-				c1.setText(users2.get(i-1));  
-			    c2.setText(res2.get(i-1));
-			    if (lengs2.get(i-1).equals("CPP")) c3.setText("C++");
-			    else c3.setText(lengs2.get(i-1));
-			    if (temps2.get(i-1) == null) c4.setText("-");
-			    else c4.setText(String.valueOf(temps2.get(i-1)));
-			    if (mems2.get(i-1) == null) c5.setText("-");
-			    else c5.setText(String.valueOf(mems2.get(i-1)));
-			    if (pos2.get(i-1) == null) c6.setText("-");
-			    else c6.setText(String.valueOf(pos2.get(i-1)));
+				if (i==0){
+					c1.setText("Usuario"); 
+					c1.setTextColor(resource.getColor(R.color.white));
+				    c2.setText("Res");
+				    c2.setTextColor(resource.getColor(R.color.white));
+				    c3.setText("Leng");
+				    c3.setTextColor(resource.getColor(R.color.white));
+				    c4.setText("Tiempo");
+				    c4.setTextColor(resource.getColor(R.color.white));
+				    c5.setText("Mem");
+				    c5.setTextColor(resource.getColor(R.color.white));
+				    c6.setText("Pos");
+				    c6.setTextColor(resource.getColor(R.color.white));
+				    tr.setBackgroundColor(resource.getColor(R.color.background));			    
+				    
+				}else{
+					c1.setText(users2.get(i-1));  
+				    c2.setText(res2.get(i-1));
+				    if (lengs2.get(i-1).equals("CPP")) c3.setText("C++");
+				    else c3.setText(lengs2.get(i-1));
+				    if (temps2.get(i-1) == null) c4.setText("-");
+				    else c4.setText(String.valueOf(temps2.get(i-1)));
+				    if (mems2.get(i-1) == null) c5.setText("-");
+				    else c5.setText(String.valueOf(mems2.get(i-1)));
+				    if (pos2.get(i-1) == null) c6.setText("-");
+				    else c6.setText(String.valueOf(pos2.get(i-1)));
+				}
+			   	
+			    c1.setGravity(Gravity.CENTER);
+			    c2.setGravity(Gravity.CENTER);
+			    c3.setGravity(Gravity.CENTER);
+			    c4.setGravity(Gravity.CENTER);
+			    c5.setGravity(Gravity.CENTER);
+			    c6.setGravity(Gravity.CENTER);
+			    tr.addView(c1);
+			    tr.addView(c2);
+			    tr.addView(c3);
+			    tr.addView(c4);
+			    tr.addView(c5);
+			    tr.addView(c6);
+			    tr.setPadding(1, 1, 1, 1);
+			    ultEnv.addView(tr);
 			}
-		   	
-		    c1.setGravity(Gravity.CENTER);
-		    c2.setGravity(Gravity.CENTER);
-		    c3.setGravity(Gravity.CENTER);
-		    c4.setGravity(Gravity.CENTER);
-		    c5.setGravity(Gravity.CENTER);
-		    c6.setGravity(Gravity.CENTER);
-		    tr.addView(c1);
-		    tr.addView(c2);
-		    tr.addView(c3);
-		    tr.addView(c4);
-		    tr.addView(c5);
-		    tr.addView(c6);
-		    tr.setPadding(1, 1, 1, 1);
-		    ultEnv.addView(tr);
-		}
-
+		}		
     }
 	
 }

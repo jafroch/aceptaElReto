@@ -26,75 +26,187 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/usuario" />
 	
-    <TextView
-        android:id="@+id/txtNick"
+    <LinearLayout 
+        android:id="@+id/lNick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/avatar"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:textColor="@color/black" />
-
-    <TextView
-        android:id="@+id/txtCorreo"
+        android:layout_marginLeft="20dp">
+    
+	    <TextView
+	        android:id="@+id/etiqNick"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+			android:text="Nick: "
+			android:textStyle="bold"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+	    <TextView
+	        android:id="@+id/txtNick"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/lCorreo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtNick"
+        android:layout_below="@+id/lNick"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/black" />
+        android:layout_marginLeft="20dp">
+    
+	    <TextView
+	        android:id="@+id/etiqCorreo"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+			android:text="Correo: "
+			android:textStyle="bold"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+	    <TextView
+	        android:id="@+id/txtCorreo"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+	</LinearLayout>
 
-    <TextView
-        android:id="@+id/txtNombreCompleto"
+    <LinearLayout 
+        android:id="@+id/lNombreCompleto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtCorreo"
+        android:layout_below="@+id/lCorreo"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/black" />
+        android:layout_marginLeft="20dp">
+    
+	    <TextView
+	        android:id="@+id/etiqNombreCompleto"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+			android:text="Nombre: "
+			android:textStyle="bold"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+	    <TextView
+	        android:id="@+id/txtNombreCompleto"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+	</LinearLayout>
 
-    <TextView
-        android:id="@+id/txtNacimiento"
+    <LinearLayout 
+        android:id="@+id/lNacimiento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtNombreCompleto"
+        android:layout_below="@+id/lNombreCompleto"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/black" />
+        android:layout_marginLeft="20dp">
+    
+	    <TextView
+	        android:id="@+id/etiqNacimiento"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+			android:text="Fecha de Nacimiento: "
+			android:textStyle="bold"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+	    <TextView
+	        android:id="@+id/txtNacimiento"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+	</LinearLayout>
 
-    <TextView
-        android:id="@+id/txtGenero"
+    <LinearLayout 
+        android:id="@+id/lGenero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtNacimiento"
+        android:layout_below="@+id/lNacimiento"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/black" />
+        android:layout_marginLeft="20dp">
+    
+	    <TextView
+	        android:id="@+id/etiqGenero"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+			android:text="Género: "
+			android:textStyle="bold"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+	    <TextView
+	        android:id="@+id/txtGenero"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+	</LinearLayout>
 
-    <TextView
-        android:id="@+id/txtPais"
+    <LinearLayout 
+        android:id="@+id/lPais"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtGenero"
+        android:layout_below="@+id/lGenero"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp">
+    
+	    <TextView
+	        android:id="@+id/etiqPais"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+			android:text="País: "
+			android:textStyle="bold"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+	    <TextView
+	        android:id="@+id/txtPais"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+	</LinearLayout>
+     
+    <LinearLayout 
+        android:id="@+id/lInstitucion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lPais"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp">
+    
+    <TextView
+        android:id="@+id/etiqInstitucion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:text="Institución: "
+		android:textStyle="bold"
         android:textSize="18sp"
-        android:layout_marginLeft="20dp"
         android:textColor="@color/black" />
         
     <TextView
         android:id="@+id/txtInstitucion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtPais"
-        android:layout_marginTop="10dp"
         android:textSize="18sp"
-        android:layout_marginLeft="20dp"
         android:textColor="@color/black" />
+    
+    </LinearLayout>
     
     <Button
 		android:id="@+id/btnEditProfile"
@@ -102,8 +214,9 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:text="Editar Perfil"
+	     android:layout_marginTop="10dp"
 	    android:textStyle="bold" 
-		android:layout_below="@+id/txtInstitucion"
+		android:layout_below="@+id/lInstitucion"
 	    android:layout_centerHorizontal="true"/>
       
 
@@ -115,7 +228,7 @@
         android:layout_below="@+id/btnEditProfile"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:textSize="22sp"
         android:text="Problemas Enviados:"
         android:textColor="@color/black" />

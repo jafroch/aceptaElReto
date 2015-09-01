@@ -3,41 +3,24 @@ package com.example.aceptaelreto;
 import ws.CallerWS;
 import ws.Traductor;
 import ws.WSquery;
-import ws.WebServiceTask;
 import ws.WSquery.type;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import acr.estructuras.CountryWSType;
-import acr.estructuras.NewSession;
+import Tools.ExpandableListAdapter;
 import acr.estructuras.ProblemWSType;
-import acr.estructuras.ResponseList;
 import acr.estructuras.UserWSType;
-
-import org.json.JSONObject;
-
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.InputMethodManager;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
  /*
   * clase que genera el fragment de 
@@ -77,6 +60,7 @@ public class Inicio_Fragment extends Fragment {
     	
     	
         View rootView = inflater.inflate(R.layout.inicio_layout, container, false);
+        
         token = getArguments();
         p = false;
         txtbuscar = (EditText)rootView.findViewById(R.id.info_buscar);
@@ -210,12 +194,14 @@ public class Inicio_Fragment extends Fragment {
 
 	    	if(!b && p) Toast.makeText(getActivity(),"No existe problema con id: "+id, Toast.LENGTH_LONG).show();
 	    	if(b && p){
+	    		MainActivity.numTransaction += 1;
 	    		getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
 						  ProbMenuFragment.newInstance(prob,tk)).addToBackStack(null).commit();
 	    	}
 	    	
 	    	if(!b && !p) Toast.makeText(getActivity(),"No existe usuario con id: "+id, Toast.LENGTH_LONG).show();
 	    	if(b && !p){
+	    		MainActivity.numTransaction += 1;
 	    		getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
 						  Perfil_Fragment.newInstance(perfil,tk)).addToBackStack(null).commit();
 	    	}

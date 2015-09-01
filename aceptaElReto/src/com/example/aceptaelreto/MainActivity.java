@@ -1,43 +1,16 @@
 package com.example.aceptaelreto;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
-
-
-
-
-
-import ws.CallerWS;
 import ws.Traductor;
-import ws.WSquery;
-import ws.WSquery.type;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity implements
@@ -62,6 +35,8 @@ public class MainActivity extends ActionBarActivity implements
      GridView tablaPerfil;
      public static String Token;
      public static String myId;
+     public static int numTransaction;
+     public static boolean probList;
      Bundle args;
       
      
@@ -97,6 +72,8 @@ public class MainActivity extends ActionBarActivity implements
 		 
 		  FragmentManager fragmentManager = getSupportFragmentManager();
 		  fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+		  numTransaction = 0;
+		  probList = false;
 		  switch (position+1) {
 		    case 1:
 		      fragmentManager.beginTransaction().replace(R.id.container,
@@ -112,7 +89,7 @@ public class MainActivity extends ActionBarActivity implements
 		      break;
 		    case 4:
 		      fragmentManager.beginTransaction().replace(R.id.container,
-		  	  ProbListFragment.newInstance(position + 1,Token)).addToBackStack(null).commit();
+		  	  Problemas_Fragment.newInstance(position + 1,Token)).addToBackStack(null).commit();
 			  break;
 		    case 5:
 			  fragmentManager.beginTransaction().replace(R.id.container,
@@ -187,10 +164,20 @@ public class MainActivity extends ActionBarActivity implements
 
 	@Override
 	public void onBackPressed() {
-		int aux = getFragmentManager().getBackStackEntryCount();
-    	if (getFragmentManager().getBackStackEntryCount() != 0) {
-            getFragmentManager().popBackStack();
+    	if (numTransaction == 0) {
+    		if (probList){
+        		probList=false;
+        		getSupportFragmentManager().beginTransaction().replace(R.id.container,
+        			  	  Problemas_Fragment.newInstance(1,Token)).addToBackStack(null).commit();
+        	}else{
+        		Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+        	}
+    		
         } else {
+        	numTransaction -= 1;
             super.onBackPressed();
             
         }

@@ -6,7 +6,6 @@ import ws.CallerWS;
 import ws.Traductor;
 import ws.WSquery;
 import ws.WSquery.type;
-import acr.estructuras.ProblemWSType;
 import acr.estructuras.SubmissionWSType;
 import acr.estructuras.SubmissionsListWSType;
 import android.app.Activity;
@@ -19,13 +18,8 @@ import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ExpandableListView;
-import android.widget.Spinner;
+import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -190,13 +184,16 @@ public class UltEnv_Fragment  extends Fragment {
 
 		    		for(int i = 0; i < problem.size()+1; i++){
 		    			TableRow tr =  new TableRow(mContext);
-		    			final int aux= i;
+		    			final int aux= i-1;
 						tr.setOnClickListener(new OnClickListener(){
 	
 							@Override
 							public void onClick(View v) {
-								if (aux>0) getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
-										  ProbMenuFragment.newInstance(problem.get(aux).problem.num,token.getString("TOKEN"))).addToBackStack(null).commit();
+								if (aux>=0){ 
+									MainActivity.numTransaction += 1;
+									getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
+											ProbMenuFragment.newInstance(problem.get(aux).problem.num,token.getString("TOKEN"))).addToBackStack(null).commit();
+								}
 			
 							}
 						});
@@ -253,7 +250,7 @@ public class UltEnv_Fragment  extends Fragment {
 		    		    tr.addView(c5);
 		    		    tr.addView(c6);
 		    		    tr.addView(c7);
-		    		    tr.setPadding(1, 1, 1, 1);
+		    		    tr.setPadding(1, 2, 1, 2);
 		    		    tableEnv.addView(tr);
 		    		}
 		    		
@@ -263,13 +260,16 @@ public class UltEnv_Fragment  extends Fragment {
 	    			
 	    			for(int i = 0; i < 11; i++){
 		    			TableRow tr =  new TableRow(mContext);
-		    			final int aux= i;
+		    			final int aux= i-1;
 						tr.setOnClickListener(new OnClickListener(){
 	
 							@Override
 							public void onClick(View v) {
-								if (aux>0) getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
-										  ProbMenuFragment.newInstance(problem.get(aux).problem.num,token.getString("TOKEN"))).addToBackStack(null).commit();
+								if (aux>=0){
+									MainActivity.numTransaction += 1;
+									getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
+											  ProbMenuFragment.newInstance(problem.get(aux).problem.num,token.getString("TOKEN"))).addToBackStack(null).commit();
+								}
 			
 							}
 						});
@@ -332,7 +332,7 @@ public class UltEnv_Fragment  extends Fragment {
 		    		    tr.addView(c6);
 		    		    tr.addView(c7);
 		    		    tr.addView(c8);
-		    		    tr.setPadding(1, 1, 1, 1);
+		    		    tr.setPadding(1, 2, 1, 2);
 		    		    tableEnv.addView(tr);
 		    		}
 		    		

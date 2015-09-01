@@ -1,38 +1,20 @@
 package com.example.aceptaelreto;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
 import ws.CallerWS;
 import ws.Traductor;
 import ws.WSquery;
 import ws.WSquery.type;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
 import acr.estructuras.ProblemWSType;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -53,7 +35,7 @@ public class ProbMenuFragment extends Fragment{
    private CallerWS ws;
    private WSquery path;
    private MyAsyncTask task;
-   private static ProblemWSType infoProblem = null;
+   private static ProblemWSType infoProblem;
    private String urlImage;
    Bundle token;
    
@@ -63,6 +45,7 @@ public class ProbMenuFragment extends Fragment{
        args.putString("TOKEN", tk);
        fragment.setArguments(args);
        idSearch = id;
+       infoProblem = null;
        return fragment;
    }
    
@@ -95,6 +78,7 @@ public class ProbMenuFragment extends Fragment{
        enunc.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				MainActivity.numTransaction += 1;
 				getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
 						Enunc_Fragment.newInstance(idSearch,token.getString("TOKEN"),urlImage)).addToBackStack(null).commit();
 			}
@@ -105,6 +89,7 @@ public class ProbMenuFragment extends Fragment{
        enviar.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				MainActivity.numTransaction += 1;
 				getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
 						  Enviar_Fragment.newInstance(idSearch,token.getString("TOKEN"))).addToBackStack(null).commit();
 			}
@@ -115,20 +100,12 @@ public class ProbMenuFragment extends Fragment{
        estad.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				MainActivity.numTransaction += 1;
 				getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
 						 Estad_Fragment.newInstance(0,token.getString("TOKEN"),infoProblem)).addToBackStack(null).commit();
 			}
 		});
        
-       //Créditos
-       cred = (Button)rootView.findViewById(R.id.b_creditos);
-       cred.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
-						 Doc_List_Fragment.newInstance(0,token.getString("TOKEN"),1)).addToBackStack(null).commit();
-			}
-		});
 
   
        

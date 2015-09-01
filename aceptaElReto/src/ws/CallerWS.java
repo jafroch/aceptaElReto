@@ -38,9 +38,11 @@ public class CallerWS {
 	public String postCall(String token){
 
         wst = new WebServiceTask(WebServiceTask.POST_TASK, "POSTINGting data...",token);
-        for(int i=0;i<this.path.getParamsNames().size();i++){
+        /*for(int i=0;i<this.path.getParamsNames().size();i++){
         	wst.addNameValuePair(this.path.getParamsNames().get(i), this.path.getParamsValues().get(i));
-        }
+        }*/
+        wst.setFileName(this.path.getFileLocal());
+        wst.setJson(this.path.getJson());
         wst.Execute(new String[] {  this.path.getQuery() });
         return wst.getResponse();
 	}

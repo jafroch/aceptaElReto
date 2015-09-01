@@ -178,6 +178,18 @@ public class Traductor {
 	    	return gson.fromJson(data, ProblemListWSType.class);
 		}
 	}
+	public ListCountryWSType getCountryList() throws Exception{
+		if(this.JSON.startsWith("<?xml")){
+			Serializer serial = new Persister(m);
+			ListCountryWSType data = serial.read(ListCountryWSType.class, this.JSON);
+	    	return data;
+		}else{
+			Gson gson = this.getGsonbuilderAdapterProblemList();
+	    	JsonParser parser = new JsonParser();
+	    	JsonObject data = parser.parse(this.JSON).getAsJsonObject();
+	    	return gson.fromJson(data, ListCountryWSType.class);
+		}
+	}
 	public UserGenderWSType getGenero()throws Exception{
 		if(this.JSON.contains("<?xml")){
 			Serializer serial = new Persister(m);
@@ -227,7 +239,7 @@ public class Traductor {
 		try {
 			jsonobject = new JSONObject(this.JSON);
 			//ponemos country ya que el obj tiene un campo que es la lista de elems llamado country.
-			jsonArray = jsonobject.getJSONArray("countries");
+			jsonArray = jsonobject.getJSONArray("country");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -245,7 +257,7 @@ public class Traductor {
 		try {
 			jsonobject = new JSONObject(this.JSON);
 			//ponemos country ya que el obj tiene un campo que es la lista de elems llamado country.
-			jsonArray = jsonobject.getJSONArray("institutions");
+			jsonArray = jsonobject.getJSONArray("institution");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

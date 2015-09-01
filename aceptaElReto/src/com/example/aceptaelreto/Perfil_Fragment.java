@@ -7,64 +7,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-
 import ws.CallerWS;
 import ws.Traductor;
 import ws.WSquery;
 import ws.WSquery.type;
-
-
-
-
-
-
-
-
-
-
-
-//import com.example.aceptaelreto.MainActivity;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import Tools.BitmapLRUCache;
-import acr.estructuras.CategoryWSType;
 import acr.estructuras.SubmissionWSType;
 import acr.estructuras.SubmissionsListWSType;
 import acr.estructuras.UserWSType;
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -72,16 +27,19 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.ProgressBar;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.Volley;
+//import com.example.aceptaelreto.MainActivity;
 
 
 public class Perfil_Fragment extends Fragment{
@@ -97,12 +55,14 @@ public class Perfil_Fragment extends Fragment{
 	private TextView txtPais;
 	private TextView txtInstitucion;
 	private TextView noEnvios;
+	private LinearLayout lNacimiento;
+	private LinearLayout lCorreo;
+	private LinearLayout lGenero;
 	private Button btnEditProfile;
 	private NetworkImageView img;
 	private TableLayout tableEnv;
 	private Bundle token;
 	private static int idUserSearch;
-	private int myId;
 
 	
 	
@@ -157,12 +117,15 @@ public class Perfil_Fragment extends Fragment{
 		tableEnv = (TableLayout)rootView.findViewById(R.id.tableE);
 		tableEnv.setStretchAllColumns(true);
 		tableEnv.bringToFront();
-		
+		lNacimiento = (LinearLayout)rootView.findViewById(R.id.lNacimiento);
+		lCorreo = (LinearLayout)rootView.findViewById(R.id.lCorreo);
+		lGenero = (LinearLayout)rootView.findViewById(R.id.lGenero);
 		
 		btnEditProfile = (Button)rootView.findViewById(R.id.btnEditProfile);
 		btnEditProfile.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				MainActivity.numTransaction += 1;
 				getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
 						PerfilEdit_Fragment.newInstance(idUserSearch,token.getString("TOKEN"))).addToBackStack(null).commit();
 			}
@@ -235,7 +198,7 @@ public class Perfil_Fragment extends Fragment{
 					
 				String respuesta;
 				Traductor tradu;
-				
+			
 				if(perfil==null){
 					path.cleanQuery();
 					if (idUserSearch != 0){
@@ -294,28 +257,26 @@ public class Perfil_Fragment extends Fragment{
 	    	
 			if(perfil !=null){
 				if (perfil.email == null){
-			    	txtNacimiento.setVisibility(View.GONE);
-			    	txtCorreo.setVisibility(View.GONE);
-			    	txtGenero.setVisibility(View.GONE);
-			    	btnEditProfile.setVisibility(View.GONE);
-			    	img.setImageUrl(perfil.avatar, imageLoader);
-			    	txtNick.setText("Nick: "+perfil.nick);	
-			    	txtNombreCompleto.setText("Nombre: "+perfil.name);
-			    	txtPais.setText("País: "+perfil.country.name);
-			    	txtInstitucion.setText("Institución: "+perfil.institution.name);
+			    	lNacimiento.setVisibility(View.GONE);
+			    	lCorreo.setVisibility(View.GONE);
+			    	lGenero.setVisibility(View.GONE);
+			    	btnEditProfile.setVisibility(View.GONE);		    	
 			    }else{
-			    	Date date = perfil.birthday;
-			    	String nac = format.format(date);		
-			    	txtNacimiento.setText("Fecha de Nacimiento: "+nac);
-			    	img.setImageUrl(perfil.avatar, imageLoader); 	
-			    	txtCorreo.setText("Correo: "+perfil.email);
-			    	txtNick.setText("Nick: "+perfil.nick);	
-			    	txtNombreCompleto.setText("Nombre: "+perfil.name);
-			    	txtGenero.setText("Genero: "+perfil.gender);
-			    	txtPais.setText("País: "+perfil.country.name);
-			    	txtInstitucion.setText("Institución: "+perfil.institution.name);
-			    	myId = perfil.id;
+			    	if (perfil.birthday!=null){
+			    		Date date = perfil.birthday;
+				    	String nac = format.format(date);
+				    	txtNacimiento.setText(nac);
+			    	}else txtNacimiento.setText("Sin establecer");  	 	
+			    	txtCorreo.setText(perfil.email);
+			    	if ((""+perfil.gender).equals("FEMALE")) txtGenero.setText("Mujer");
+			    	else txtGenero.setText("Hombre");
+			    	idUserSearch = perfil.id;
 			    }
+				img.setImageUrl(perfil.avatar, imageLoader);
+		    	txtNick.setText(perfil.nick);	
+		    	txtNombreCompleto.setText(perfil.name);
+		    	txtPais.setText(perfil.country.name);
+		    	txtInstitucion.setText(perfil.institution.name);
 				
 				if(sublist != null){
 					noEnvios.setVisibility(View.GONE);
@@ -329,8 +290,12 @@ public class Perfil_Fragment extends Fragment{
 
 							@Override
 							public void onClick(View v) {
-								if (aux>0) getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
-										  ProbMenuFragment.newInstance(numProb.get(aux-1),token.getString("TOKEN"))).addToBackStack(null).commit();
+								if (aux>0){
+									MainActivity.numTransaction += 1;
+									getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container,
+											ProbMenuFragment.newInstance(numProb.get(aux-1),token.getString("TOKEN"))).addToBackStack(null).commit();
+								}
+										  
 			
 							}
 						});

@@ -1,9 +1,11 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/defaultBackground"
-    tools:context="com.example.aceptaelreto.Perfil_Fragment">
+    android:background="@color/defaultBackground">
     
     <TextView
         android:id="@+id/usuario"
@@ -28,39 +30,72 @@
         android:id="@+id/btnEditPhoto"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_marginLeft="5dp"
         android:background="@drawable/ic_action_edit"
         android:visibility="visible"
 		android:layout_toEndOf="@+id/avatar"
 		android:layout_alignBottom="@+id/avatar" />
         
-    <TextView
-        android:id="@+id/txtNick"
+    <LinearLayout 
+        android:id="@+id/lNick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/avatar"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:textColor="@color/black" />
+        android:layout_marginLeft="20dp">
+    
+	    <TextView
+	        android:id="@+id/etiqNick"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+			android:text="Nick: "
+			android:textStyle="bold"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+	    <TextView
+	        android:id="@+id/txtNick"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/txtCorreo"
+    <LinearLayout 
+        android:id="@+id/lCorreo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtNick"
+        android:layout_below="@+id/lNick"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/black" />
+        android:layout_marginLeft="20dp">
+    
+	    <TextView
+	        android:id="@+id/etiqCorreo"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+			android:text="Correo: "
+			android:textStyle="bold"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+	    <TextView
+	        android:id="@+id/txtCorreo"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="18sp"
+	        android:textColor="@color/black" />
+	    
+	</LinearLayout>
     
 	<LinearLayout
         android:id="@+id/editNombreCompleto"
         android:layout_width="wrap_content"
      	android:layout_height="wrap_content"
-        android:layout_below="@+id/txtCorreo"
+        android:layout_below="@+id/lCorreo"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/black" 
     	android:orientation="horizontal"> 	
 
@@ -68,8 +103,9 @@
 	    	android:id="@+id/txtNombreCompleto"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
-	    	android:hint="@string/buscarId"
-	    	android:textColor="@color/background"/>
+	    	android:textSize="18sp"
+	    	android:textStyle="bold"
+	    	android:textColor="@color/black"/>
 	   
 	    <EditText
 	        android:id="@+id/editTxtNombreCompleto"
@@ -86,7 +122,7 @@
         android:layout_below="@+id/editNombreCompleto"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/black" 
     	android:orientation="horizontal"> 	
 
@@ -94,15 +130,15 @@
 	    	android:id="@+id/txtNacimiento"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
-	    	android:hint="@string/buscarId"
-	    	android:textColor="@color/background"/>
+	    	android:textSize="18sp"
+	    	android:textStyle="bold"
+	    	android:textColor="@color/black"/>
 	   
 	    <EditText
 	        android:id="@+id/editTxtNacimineto"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:inputType="text"
-	        android:hint="dd/mm/aaaa"/>
+	        android:inputType="date"/>
    
    </LinearLayout>    
    
@@ -113,7 +149,7 @@
         android:layout_below="@+id/editNacimiento"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/black" 
     	android:orientation="horizontal">
     	
@@ -122,8 +158,9 @@
 	    	android:id="@+id/txtGenero"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
-	    	android:hint="@string/buscarId"
-	    	android:textColor="@color/background"/>
+	    	android:textSize="18sp"
+	    	android:textStyle="bold"
+	    	android:textColor="@color/black"/>
    
        <Spinner
 	        android:id="@+id/spinGenero"
@@ -136,10 +173,10 @@
         android:id="@+id/editPais"
         android:layout_width="wrap_content"
      	android:layout_height="wrap_content"
-        android:layout_below="@+id/editNacimiento"
+        android:layout_below="@+id/editGenero"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/black" 
     	android:orientation="horizontal">
     	
@@ -147,13 +184,15 @@
 	    	android:id="@+id/txtPais"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
-	    	android:hint="@string/buscarId"
-	    	android:textColor="@color/background"/>
+	    	android:textSize="18sp"
+	    	android:textStyle="bold"
+	    	android:textColor="@color/black"/>
 	   
 	      <Spinner
 	        android:id="@+id/spinPais"
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"/>
+	        android:layout_height="wrap_content"
+	        android:minWidth="200dp"/>
    
    </LinearLayout> 
     
@@ -161,10 +200,10 @@
         android:id="@+id/editInstitucion"
         android:layout_width="wrap_content"
      	android:layout_height="wrap_content"
-        android:layout_below="@+id/editNacimiento"
+        android:layout_below="@+id/editPais"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/black" 
     	android:orientation="horizontal">  	
 
@@ -172,13 +211,15 @@
 	    	android:id="@+id/txtInstitucion"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
-	    	android:hint="@string/buscarId"
-	    	android:textColor="@color/background"/>
+	    	android:textSize="18sp"
+	    	android:textStyle="bold"
+	    	android:textColor="@color/black"/>
 	   
 	   <Spinner
 	        android:id="@+id/spinInstitucion"
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"/>
+	        android:layout_height="wrap_content"
+	        android:minWidth="200dp"/>
    
    </LinearLayout> 
    
@@ -187,9 +228,12 @@
 	    style="?android:textAppearanceSmall"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
+	    android:layout_marginTop="10dp"
+	    android:layout_marginBottom="10dp"
 	    android:text="Actualizar Perfil"
 	    android:textStyle="bold" 
 		android:layout_below="@+id/editInstitucion"
 	    android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
+</ScrollView>

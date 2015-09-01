@@ -27,14 +27,14 @@ import java.util.ArrayList;
 import com.example.aceptaelreto.R;
 import com.example.aceptaelreto.R.styleable;
 
-public class PieGraph extends View implements  HoloGraphAnimate {
+public class PieGraph extends View {
 
     private int mPadding;
     private int mInnerCircleRatio;
     private ArrayList<PieSlice> mSlices = new ArrayList<PieSlice>();
     private Paint mPaint = new Paint();
     private int mSelectedIndex = -1;
-    private OnSliceClickedListener mListener;
+
     private boolean mDrawCompleted = false;
     private RectF mRectF = new RectF();
     private Bitmap mBackgroundImage = null;
@@ -105,7 +105,7 @@ public class PieGraph extends View implements  HoloGraphAnimate {
             Path p = slice.getPath();
             p.reset();
 
-            if (mSelectedIndex == count && mListener != null) {
+            if (mSelectedIndex == count) {
                 mPaint.setColor(slice.getSelectedColor());
             } else {
                 mPaint.setColor(slice.getColor());
@@ -159,52 +159,6 @@ public class PieGraph extends View implements  HoloGraphAnimate {
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (mDrawCompleted) {
-            Point point = new Point();
-            point.x = (int) event.getX();
-            point.y = (int) event.getY();
-
-            int count = 0;
-            Region r = new Region();
-            for (PieSlice slice : mSlices) {
-                r.setPath(slice.getPath(), slice.getRegion());
-                switch (event.getAction()) {
-                    default:
-                        break;
-                    case MotionEvent.ACTION_DOWN:
-                        if (r.contains(point.x, point.y)) {
-                            mSelectedIndex = count;
-                            postInvalidate();
-                        }
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        if (count == mSelectedIndex
-                                && mListener != null
-                                && r.contains(point.x, point.y)) {
-                            mListener.onClick(mSelectedIndex);
-                        }
-                        break;
-                }
-                count++;
-            }
-        }
-        // Case we click somewhere else, also get feedback!
-        if(MotionEvent.ACTION_UP == event.getAction()
-                && mSelectedIndex == -1
-                && mListener != null) {
-            mListener.onClick(mSelectedIndex);
-        }
-        // Reset selection
-        if (MotionEvent.ACTION_UP == event.getAction()
-                || MotionEvent.ACTION_CANCEL == event.getAction()) {
-            mSelectedIndex = -1;
-            postInvalidate();
-        }
-        return true;
-    }
-
     public Bitmap getBackgroundBitmap() {
         return mBackgroundImage;
     }
@@ -253,93 +207,10 @@ public class PieGraph extends View implements  HoloGraphAnimate {
         postInvalidate();
     }
 
-    public void setOnSliceClickedListener(OnSliceClickedListener listener) {
-        mListener = listener;
-    }
-
     public void removeSlices() {
         mSlices.clear();
         postInvalidate();
     }
 
-    @Override
-    public int getDuration() {
-        return mDuration;
-    }
-
-    @Override
-    public void setDuration(int duration) {mDuration = duration;}
-
-    @Override
-    public Interpolator getInterpolator() {
-        return mInterpolator;
-    }
-
-    @Override
-    public void setInterpolator(Interpolator interpolator) {mInterpolator = interpolator;}
-
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
-    @Override
-    public boolean isAnimating() {
-        if(mValueAnimator != null)
-            return mValueAnimator.isRunning();
-        return false;
-    }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
-    @Override
-    public boolean cancelAnimating() {
-        if (mValueAnimator != null)
-            mValueAnimator.cancel();
-        return false;
-    }
-
-
-    /**
-     * Stops running animation and starts a new one, animating each slice from their current to goal value.
-     * If removing a slice, consider animating to 0 then removing in onAnimationEnd listener.
-     * Default inerpolator is linear; constant speed.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
-    @Override
-    public void animateToGoalValues() {
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB_MR1){
-            Log.e("HoloGraphLibrary compatibility error", "Animation not supported on api level 12 and below. Returning without animating.");
-            return;
-        }
-        if (mValueAnimator != null)
-            mValueAnimator.cancel();
-
-        for (PieSlice s : mSlices)
-            s.setOldValue(s.getValue());
-        ValueAnimator va = ValueAnimator.ofFloat(0,1);
-        mValueAnimator = va;
-        va.setDuration(getDuration());
-        if (mInterpolator == null) mInterpolator = new LinearInterpolator();
-        va.setInterpolator(mInterpolator);
-        if (mAnimationListener != null) va.addListener(mAnimationListener);
-        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float f = Math.max(animation.getAnimatedFraction(), 0.01f);//avoid blank frames; never multiply values by 0
-               // Log.d("f", String.valueOf(f));
-                for (PieSlice s : mSlices) {
-                    float x = s.getGoalValue() - s.getOldValue();
-                    s.setValue(s.getOldValue() + (x * f));
-                }
-                postInvalidate();
-            }});
-            va.start();
-
-        }
-
-
-
-    @Override
-    public void setAnimationListener(Animator.AnimatorListener animationListener) { mAnimationListener = animationListener;}
-
-    public interface OnSliceClickedListener {
-        public abstract void onClick(int index);
-    }
+   
 }

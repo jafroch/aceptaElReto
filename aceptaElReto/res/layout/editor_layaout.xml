@@ -1,5 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/defaultBackground" >
@@ -30,17 +33,18 @@
      	android:layout_below="@+id/txtProblemNum"
     	android:layout_marginTop="20dp"
     	android:layout_marginLeft="10dp"
-    	android:textSize="20sp"
     	android:orientation="horizontal">  
 
 	   	<TextView
 	    	android:id="@+id/txtLenguaje"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
-	    	android:textColor="@color/background"/>
+	    	android:textColor="@color/background"
+	    	android:textSize="20sp"/>
 	   
 	   	<Spinner
 	   		android:id="@+id/lenguaje"
+	   		android:textSize="20sp"
 	   		android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
 	    	android:layout_toRightOf="@+id/txtLenguaje"
@@ -56,14 +60,14 @@
     	android:layout_marginTop="10dp"
     	android:layout_marginLeft="10dp"
     	android:layout_marginRight="10dp"
-    	android:textSize="20sp"
     	android:orientation="horizontal">   	
 
 	   	<TextView
 	    	android:id="@+id/txtComentario"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
-	    	android:textColor="@color/background"/>
+	    	android:textColor="@color/background"
+	    	android:textSize="20sp"/>
 	    
 	     <EditText
 	    	android:id="@+id/Comentario"
@@ -73,7 +77,7 @@
 	    	android:inputType="textCapSentences|textMultiLine"
 	    	android:maxLines ="5" 
 	    	android:scrollHorizontally="false"
-	    	android:textColor="@color/background"
+	    	android:textColor="@color/black"
 	    	android:layout_toRightOf="@+id/Comentario"
 	    	android:layout_marginLeft="5dp"/>
      
@@ -86,14 +90,14 @@
      	android:layout_below="@+id/campoComentario"
     	android:layout_marginTop="10dp"
     	android:layout_marginLeft="10dp"
-    	android:textSize="20sp"
     	android:orientation="horizontal">   	
 
 	   	<TextView
 	    	android:id="@+id/txtCF"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
-	    	android:textColor="@color/background"/>
+	    	android:textColor="@color/background"
+	    	android:textSize="20sp"/>
 	   		
 	    <Button
 	       	android:id="@+id/bChooseFile"
@@ -104,6 +108,14 @@
 	       	android:textStyle="bold" 
 	       	android:layout_toRightOf="@+id/CF"
 	    	android:layout_marginLeft="5dp"/>
+	    
+	    <TextView
+	        android:id="@+id/fileName"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_toRightOf="@+id/CF"
+	    	android:layout_marginLeft="5dp"
+	    	android:textSize="20sp"/>
      	
      </LinearLayout>
      
@@ -115,14 +127,14 @@
     	android:layout_marginTop="10dp"
     	android:layout_marginLeft="10dp"
     	android:layout_marginRight="10dp"
-    	android:textSize="20sp"
     	android:orientation="horizontal">   	
 
 	   	<TextView
 	    	android:id="@+id/txtCode"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
-	    	android:textColor="@color/background"/>
+	    	android:textColor="@color/background"
+	    	android:textSize="20sp"/>
 	   		
 	   	<EditText
 	    	android:id="@+id/Code"
@@ -133,22 +145,39 @@
 	    	android:maxLines ="20" 
 	    	android:maxLength ="2000" 
 	    	android:scrollHorizontally="false"
-	    	android:hint="Empieza a programar!\n\n\n"
-	    	android:textColor="@color/background"
+	    	android:hint="Empieza a programar!"
+	    	android:textColor="@color/black"
 	    	android:layout_toRightOf="@+id/Code"
 	    	android:layout_marginLeft="5dp"/>
     
      </LinearLayout>
      
-     <Button
-        android:id="@+id/bEnviar"
-        style="?android:textAppearanceSmall"
+    <LinearLayout 
+        android:id="@+id/campoButtons"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/Enviar"
-        android:textStyle="bold" 
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/campoCode"/>
+     	android:layout_height="wrap_content"
+     	android:layout_below="@+id/campoCode"
+     	android:layout_marginTop="25dp"
+    	android:orientation="horizontal"
+    	android:layout_centerHorizontal="true">
+	   	
+	    <Button
+		    android:id="@+id/bDelete"
+		    style="?android:textAppearanceSmall"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		   	android:textStyle="bold" 
+		    android:layout_marginRight="5dp"/>
+	     
+	     <Button
+	        android:id="@+id/bEnviar"
+	        style="?android:textAppearanceSmall"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/Enviar"
+	        android:textStyle="bold"/>
     
+     </LinearLayout>
+     
 </RelativeLayout>
+</ScrollView>

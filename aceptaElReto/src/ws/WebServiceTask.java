@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 
 
+
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
@@ -33,10 +35,14 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.InputStreamEntity;
 
 
 
+import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.StringBody;
 import org.json.JSONObject;
 
 import android.app.ProgressDialog;
@@ -109,8 +115,8 @@ public class WebServiceTask  {
             return result;
         } else {
             try {
-                result = inputStreamToString(response.getEntity().getContent());
-
+                if (response.getEntity() != null) result = inputStreamToString(response.getEntity().getContent());
+                if (taskType == POST_TASK) result = Integer.toString(response.getStatusLine().getStatusCode());
             } catch (IllegalStateException e) {
                 Log.e(TAG, e.getLocalizedMessage(), e);
 
@@ -119,6 +125,7 @@ public class WebServiceTask  {
             }
 
         }
+        
         
         return result;
     }
@@ -149,8 +156,8 @@ public class WebServiceTask  {
         cookie.setDomain(this.Domain);
         cookie.setPath(this.path);
         this.cookieStore.addCookie(cookie);
-        localContext.setAttribute(ClientContext.COOKIE_STORE, this.cookieStore);
-     
+        localContext.setAttribute(ClientContext.COOKIE_STORE, this.cookieStore); 
+        
         HttpResponse response = null; 
         try {
             switch (taskType) {
@@ -158,8 +165,12 @@ public class WebServiceTask  {
             case POST_TASK:
                 HttpPost httppost = new HttpPost(url);
                 httppost.addHeader("accept", "application/json");
-                // Add parameters
-                httppost.setEntity(new UrlEncodedFormEntity(params));
+                if (this.FileName != null && this.FileName.equals("encoded")) httppost.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                else httppost.addHeader("Content-Type", "application/json");
+                // Add parameters           
+	            StringEntity se = new StringEntity(json.toString());
+	            httppost.setEntity(se);
+                //httppost.setEntity(new UrlEncodedFormEntity(params));
                 int executeCount = 0;
     			do
     			{
@@ -185,15 +196,16 @@ public class WebServiceTask  {
             case PUT_TASK:
                 HttpPut httpput = new HttpPut(url);
                 httpput.addHeader("accept", "application/json");
+                httpput.addHeader("Content-Type", "application/json");
                 if(this.FileName!=null){
-                File file = new File(this.FileName);
-                InputStreamEntity reqEntity = new InputStreamEntity(new FileInputStream(file), -1);
-                reqEntity.setContentType("binary/octet-stream");
-                reqEntity.setChunked(true); // Send in multiple parts if needed
-                httpput.setEntity(reqEntity);
+	                File file = new File(this.FileName);
+	                InputStreamEntity reqEntity = new InputStreamEntity(new FileInputStream(file), -1);
+	                reqEntity.setContentType("binary/octet-stream");
+	                reqEntity.setChunked(true); // Send in multiple parts if needed
+	                httpput.setEntity(reqEntity);
                 }
                 if(this.json!=null){
-                httpput.setEntity(new ByteArrayEntity(this.json.toString().getBytes()));
+                	httpput.setEntity(new ByteArrayEntity(this.json.toString().getBytes()));
                 }
                 response = httpclient.execute(httpput,localContext);
                 responseCode = response.getStatusLine().getStatusCode();

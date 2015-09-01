@@ -1,43 +1,14 @@
 package com.example.aceptaelreto;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-
-import com.squareup.picasso.Picasso;
-
 import Tools.TouchImageView;
-import acr.estructuras.CategoryWSType;
-import acr.estructuras.SubmissionWSType;
-import acr.estructuras.SubmissionsListWSType;
-import acr.estructuras.UserWSType;
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 public class Enunc_Fragment extends Fragment{
 

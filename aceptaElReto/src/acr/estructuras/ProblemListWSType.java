@@ -10,6 +10,7 @@ public class ProblemListWSType {
 	public String prevLink;
 	public String nextLink;
 	public List<ProblemWSType> problemlist;
+	
 	public List<ProblemWSType> getSubmissionlis() {
 		return problemlist;
 	}
