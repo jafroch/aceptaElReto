@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 
 
-
+import org.apache.http.entity.mime.MultipartEntity;
 
 
 
@@ -42,6 +42,8 @@ import org.apache.http.entity.InputStreamEntity;
 
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.ContentBody;
+import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.json.JSONObject;
 
@@ -164,25 +166,37 @@ public class WebServiceTask  {
 
             case POST_TASK:
                 HttpPost httppost = new HttpPost(url);
-                httppost.addHeader("accept", "application/json");
-                if (this.FileName != null && this.FileName.equals("encoded")) httppost.addHeader("Content-Type", "application/x-www-form-urlencoded");
-                else httppost.addHeader("Content-Type", "application/json");
-                // Add parameters           
-	            StringEntity se = new StringEntity(json.toString());
-	            httppost.setEntity(se);
-                //httppost.setEntity(new UrlEncodedFormEntity(params));
-                int executeCount = 0;
-    			do
-    			{
-    				//pDlg.setMessage("Logging in.. ("+(executeCount+1)+"/5)");
-    				// Execute HTTP Post Request
-    				executeCount++;
-    				response = httpclient.execute(httppost,localContext);
-    				responseCode = response.getStatusLine().getStatusCode();   			
-    				// If you want to see the response code, you can Log it
-    				// out here by calling:
-    				// Log.d("256 Design", "statusCode: " + responseCode)
-    			} while (executeCount < 5 && responseCode == 408);          
+                //httppost.addHeader("accept", "application/json");
+                if (this.FileName != null){
+                	httppost.addHeader("Content-Type", "multipart\form-data");
+                	MultipartEntity mp = new MultipartEntity();
+                	File file = new File(this.FileName);
+                	ContentBody cb = new FileBody(file,"image/jpeg");
+                	mp.addPart("userfile",cb);
+                	httppost.setEntity(mp);
+                	response = httpclient.execute(httppost,localContext);
+    				responseCode = response.getStatusLine().getStatusCode();
+                }
+                else{
+                	httppost.addHeader("Content-Type", "application/json");
+                	 // Add parameters           
+    	            StringEntity se = new StringEntity(json.toString());
+    	            httppost.setEntity(se);
+                    //httppost.setEntity(new UrlEncodedFormEntity(params));
+                    int executeCount = 0;
+        			do
+        			{
+        				//pDlg.setMessage("Logging in.. ("+(executeCount+1)+"/5)");
+        				// Execute HTTP Post Request
+        				executeCount++;
+        				response = httpclient.execute(httppost,localContext);
+        				responseCode = response.getStatusLine().getStatusCode();   			
+        				// If you want to see the response code, you can Log it
+        				// out here by calling:
+        				// Log.d("256 Design", "statusCode: " + responseCode)
+        			} while (executeCount < 5 && responseCode == 408); 
+                }
+                        
                 uriInfo = httppost.getURI();               
                 break;
             case GET_TASK:

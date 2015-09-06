@@ -3,6 +3,7 @@ package com.example.aceptaelreto;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,9 +43,11 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.MediaStore.MediaColumns;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Base64;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -214,8 +217,12 @@ public class PerfilEdit_Fragment extends Fragment{
 		btnEditPhoto.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				 Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-	                startActivityForResult(i, RESULT_LOAD_IMAGE);
+				Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+				 //Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+	                startActivityForResult(intent, RESULT_LOAD_IMAGE);
+                
 			}
 		});
 	    
@@ -257,8 +264,8 @@ public class PerfilEdit_Fragment extends Fragment{
         } else if (requestCode == RESULT_CROP && resultCode == Activity.RESULT_OK && data != null){*/
             // Get the Image from data
 
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            //Uri selectedImage = data.getData();
+            /*String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
             // Get the cursor
             Cursor cursor = getActivity().getContentResolver().query(selectedImage,filePathColumn, null, null, null);
@@ -278,18 +285,29 @@ public class PerfilEdit_Fragment extends Fragment{
             bm.compress(Bitmap.CompressFormat.JPEG,40,baos);
 
             // bitmap object
-            byte[] byteImage_photo = baos.toByteArray();
+            byte[] byteImage_photo = baos.toByteArray();*/
 
             //generate base64 string of image
-             encodedImage = Base64.encodeToString(byteImage_photo, Base64.DEFAULT);
-             
+             //encodedImage = Base64.encodeToString(byteImage_photo, Base64.DEFAULT);
+			Uri selectedImageUri = data.getData();
+            encodedImage = getPath(selectedImageUri);
              MyAsyncTask task = new MyAsyncTask(getActivity(),"GETting data...");
  	    	task.execute("imageChange");
             }
+		
 		    
 		    	
 		
-	}	 
+	}	
+	
+	public String getPath(Uri uri) {
+        String[] projection = { MediaColumns.DATA };
+        Cursor cursor = getActivity().getContentResolver().query(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaColumns.DATA);
+        cursor.moveToFirst();
+
+        return cursor.getString(column_index);
+    }
 
 	private void crop(Uri photoUri) {
         Intent intent = new Intent("com.android.camera.action.CROP");
@@ -364,7 +382,7 @@ public class PerfilEdit_Fragment extends Fragment{
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					path.setFileLocal("encoded");
+					path.setFileLocal(encodedImage);
 					path.setJson(json);
 					ws.setPath(path);
 					String respuesta = ws.postCall(token.getString("TOKEN"));
@@ -462,7 +480,7 @@ public class PerfilEdit_Fragment extends Fragment{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US);
+					DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 					birthday = df2.format(date);
 				}
 				JSONObject json= new JSONObject();
@@ -483,7 +501,7 @@ public class PerfilEdit_Fragment extends Fragment{
 					
 					json.put("mailNotification", "NEVER");
 					
-					if(!editTxtNacimineto.getText().toString().equals("")) json.put("birthday", birthday);
+					if(!editTxtNacimineto.getText().toString().equals("")) json.put("birthday", birthday+"T12:00:00Z");
 					
 				} catch (JSONException e1) {
 					// TODO Auto-generated catch block
@@ -543,6 +561,8 @@ public class PerfilEdit_Fragment extends Fragment{
 			
 	    	pDlg.dismiss();
 	    }
+		
+		
 		
 	}
 

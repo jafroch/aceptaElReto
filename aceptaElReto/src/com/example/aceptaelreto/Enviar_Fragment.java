@@ -250,7 +250,7 @@ public class Enviar_Fragment extends Fragment{
 							}
 						}
 						else codeQuotes = code.getText().toString();
-						codeQuotes = codeQuotes.replace("\"", "\\\"");
+						//codeQuotes = codeQuotes.replace("\"", "\\\"");
 						JSONObject json= new JSONObject();
 						path.cleanQuery();
 						path.addType(type.currentuser);
@@ -258,7 +258,8 @@ public class Enviar_Fragment extends Fragment{
 						path.addType(type.problem);
 						path.addID(numProb);				
 						try {
-							json.put("language", splenguaje.getSelectedItem().toString());		
+							if (splenguaje.getSelectedItem().toString().equals("C++")) json.put("language", "CPP");
+							else json.put("language", splenguaje.getSelectedItem().toString().toUpperCase());		
 							json.put("code", codeQuotes);
 							json.put("comment", comentario.getText().toString());
 						} catch (JSONException e1) {

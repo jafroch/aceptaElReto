@@ -276,7 +276,8 @@ public class Perfil_Fragment extends Fragment{
 		    	txtNick.setText(perfil.nick);	
 		    	txtNombreCompleto.setText(perfil.name);
 		    	txtPais.setText(perfil.country.name);
-		    	txtInstitucion.setText(perfil.institution.name);
+		    	if (perfil.institution != null) txtInstitucion.setText(perfil.institution.name);
+		    	else txtInstitucion.setText("Sin establecer");
 				
 				if(sublist != null){
 					noEnvios.setVisibility(View.GONE);
